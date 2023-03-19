@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Image,
   ImageBackground,
-  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -107,7 +106,8 @@ const styleSheet = ({theme}: IStyleSheet) =>
     imageBackground: {
       width: '100%',
       height: 260,
-      paddingTop: Platform.OS === 'android' ? 16 : 0,
+      // paddingTop: Platform.OS === 'android' ? 16 : 0,
+      paddingTop: 16,
     },
     main: {
       padding: 16,

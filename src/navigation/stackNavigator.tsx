@@ -17,7 +17,7 @@ function StackNavigator() {
       <Stack.Screen
         name="Details"
         component={Details}
-        options={{headerShown: false}}
+        options={{headerShown: false, presentation: 'modal'}}
       />
     </Stack.Navigator>
   );

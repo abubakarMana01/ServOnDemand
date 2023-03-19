@@ -22,9 +22,6 @@ export default function PopularItem({
 
 const styleSheet = ({theme, isColored}: IStyleSheet & {isColored: boolean}) =>
   StyleSheet.create({
-    listHeader: {
-      marginLeft: 16,
-    },
     popularItemContainer: {
       paddingHorizontal: 24,
       paddingVertical: 8,

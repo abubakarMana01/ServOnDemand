@@ -14,7 +14,11 @@ function StackNavigator() {
         component={Home}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }

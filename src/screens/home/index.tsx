@@ -1,6 +1,7 @@
 import {
   Image,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,21 +14,25 @@ import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {Colors} from '../constants';
+import {Colors} from '../../constants';
 import LinearGradient from 'react-native-linear-gradient';
-import {useAppContext} from '../context';
-import {ScreenHeaderBg} from '../components';
+import {useAppContext} from '../../context';
+import {ScreenHeaderBg} from '../../components';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export default function Home() {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
+
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
     <View style={styles.wrapper}>
       <ScreenHeaderBg>
         <View style={styles.headerUser}>
           <Image
-            source={require('../assets/user.png')}
+            source={require('../../assets/user.png')}
             style={styles.userImage}
             resizeMode="cover"
           />
@@ -95,7 +100,8 @@ export default function Home() {
 
             <View>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <View
+                <Pressable
+                  onPress={() => navigation.navigate('Details')}
                   style={[
                     styles.categoryCard,
                     // eslint-disable-next-line react-native/no-inline-styles
@@ -107,8 +113,9 @@ export default function Home() {
                     color={Colors.dark}
                   />
                   <Text style={styles.categoryText}>Cleaning</Text>
-                </View>
-                <View
+                </Pressable>
+                <Pressable
+                  onPress={() => navigation.navigate('Details')}
                   // eslint-disable-next-line react-native/no-inline-styles
                   style={{
                     ...styles.categoryCard,
@@ -116,8 +123,9 @@ export default function Home() {
                   }}>
                   <Entypo name="tools" size={45} color={Colors.dark} />
                   <Text style={styles.categoryText}>Repairs</Text>
-                </View>
-                <View
+                </Pressable>
+                <Pressable
+                  onPress={() => navigation.navigate('Details')}
                   // eslint-disable-next-line react-native/no-inline-styles
                   style={{
                     ...styles.categoryCard,
@@ -129,8 +137,9 @@ export default function Home() {
                     color={Colors.dark}
                   />
                   <Text style={styles.categoryText}>Painting</Text>
-                </View>
-                <View
+                </Pressable>
+                <Pressable
+                  onPress={() => navigation.navigate('Details')}
                   // eslint-disable-next-line react-native/no-inline-styles
                   style={[styles.categoryCard, {backgroundColor: '#E9E9F6'}]}>
                   <MaterialCommunityIcons
@@ -139,8 +148,9 @@ export default function Home() {
                     color={Colors.dark}
                   />
                   <Text style={styles.categoryText}>Laundry</Text>
-                </View>
-                <View
+                </Pressable>
+                <Pressable
+                  onPress={() => navigation.navigate('Details')}
                   // eslint-disable-next-line react-native/no-inline-styles
                   style={[styles.categoryCard, {backgroundColor: '#FAC3E2'}]}>
                   <MaterialIcons
@@ -149,7 +159,7 @@ export default function Home() {
                     color={Colors.dark}
                   />
                   <Text style={styles.categoryText}>Mechanic</Text>
-                </View>
+                </Pressable>
               </ScrollView>
             </View>
           </View>

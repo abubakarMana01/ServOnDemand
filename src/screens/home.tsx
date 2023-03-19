@@ -4,7 +4,6 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -191,14 +190,14 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: Colors.darkBlue,
     padding: 24,
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 60,
+    paddingTop: Platform.OS === 'android' ? 25 : 60,
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
   },
   headerUser: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 20,
   },
   nameAndNotification: {
     flexDirection: 'row',
@@ -223,8 +222,6 @@ const styles = StyleSheet.create({
   },
 
   searchBarContainer: {
-    marginTop: 16,
-    marginBottom: 5,
     borderRadius: 6,
     flexDirection: 'row',
     alignItems: 'center',

@@ -1,4 +1,5 @@
 import {DarkTheme, DefaultTheme} from '@react-navigation/native';
+import {Colors} from '../constants';
 import {useAppContext} from '../context';
 
 export default function useNavigationTheme() {
@@ -12,7 +13,7 @@ export default function useNavigationTheme() {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: '#fff',
+      background: Colors.white,
     },
   };
 }

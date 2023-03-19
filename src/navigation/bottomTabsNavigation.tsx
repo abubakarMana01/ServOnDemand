@@ -4,13 +4,23 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Bookings, Calendar} from '../screens';
 import StackNavigator from './stackNavigator';
 import {Colors} from '../constants';
+import {useAppContext} from '../context';
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabsNavigation() {
+  const {theme} = useAppContext();
+
   return (
     <Tab.Navigator
-      screenOptions={{headerShown: false, tabBarActiveTintColor: Colors.blue}}>
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: Colors.blue,
+        tabBarStyle: {
+          borderTopWidth: 1,
+          borderTopColor: theme === 'dark' ? '#333' : Colors.lightGrey,
+        },
+      }}>
       <Tab.Screen
         name="StackNav"
         component={StackNavigator}

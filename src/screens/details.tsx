@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Image,
   ImageBackground,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -12,8 +13,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Divider, GoBackButton} from '../components';
 import {Colors} from '../constants';
+import {useAppContext} from '../context';
 
 export default function Details() {
+  const {theme} = useAppContext();
+  const styles = styleSheet({theme});
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -56,7 +61,7 @@ export default function Details() {
               />
             </View>
 
-            <Text>Nile Street, Maitama, Abuja</Text>
+            <Text style={styles.location}>Nile Street, Maitama, Abuja</Text>
           </View>
 
           <View style={styles.infoContainer}>
@@ -82,10 +87,10 @@ export default function Details() {
             <Text style={styles.descriptionText}>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
               quam laborum ab quis nam. Reprehenderit, pariatur ipsa voluptatum
-              vel id error voluptatem iste. Aperiam ab, facilis autem quam quia
-              nesciunt quam laborum ab quis nam. Reprehenderit, pariatur ipsa
-              voluptatum vel id error voluptatem iste. Aperiam ab, facilis autem
-              quam quia nesciunt.
+              vel id error voluptatem iste.{'\n'}Aperiam ab, facilis autem quam
+              quia nesciunt quam laborum ab quis nam. Reprehenderit, pariatur
+              ipsa voluptatum vel id error voluptatem iste. Aperiam ab, facilis
+              autem quam quia nesciunt.
             </Text>
           </View>
         </View>
@@ -94,76 +99,87 @@ export default function Details() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  imageBackground: {
-    width: '100%',
-    height: 260,
-  },
-  main: {
-    padding: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: '600',
-    marginTop: 16,
-  },
-  infoContainer: {
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  userImg: {
-    width: 43,
-    height: 43,
-    borderRadius: 21.5,
-    marginRight: 10,
-  },
-  username: {
-    fontWeight: '600',
-    fontSize: 18,
-  },
-  userRatingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 3,
-  },
-  ratingText: {
-    marginLeft: 4,
-  },
-  ratingCount: {
-    color: Colors.darkGrey,
-  },
-  infoIconContainer: {
-    backgroundColor: Colors.lightGrey,
-    width: 43,
-    height: 43,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 10,
-  },
-  price: {
-    fontSize: 32,
-    fontWeight: '600',
-  },
-  perHour: {
-    fontSize: 14,
-    color: Colors.darkGrey,
-  },
-  dividerContainer: {
-    paddingVertical: 35,
-  },
+const styleSheet = ({theme}: IStyleSheet) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    imageBackground: {
+      width: '100%',
+      height: 260,
+      paddingTop: Platform.OS === 'android' ? 16 : 0,
+    },
+    main: {
+      padding: 16,
+    },
+    title: {
+      fontSize: 32,
+      fontWeight: '600',
+      marginTop: 16,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    infoContainer: {
+      marginTop: 20,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    userImg: {
+      width: 43,
+      height: 43,
+      borderRadius: 21.5,
+      marginRight: 10,
+    },
+    username: {
+      fontWeight: '600',
+      fontSize: 18,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    userRatingContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 3,
+    },
+    ratingText: {
+      marginLeft: 4,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    ratingCount: {
+      color: Colors.darkGrey,
+    },
+    infoIconContainer: {
+      backgroundColor: Colors.lightGrey,
+      width: 43,
+      height: 43,
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginRight: 10,
+    },
+    location: {
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    price: {
+      fontSize: 32,
+      fontWeight: '600',
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    perHour: {
+      fontSize: 14,
+      color: Colors.darkGrey,
+    },
+    dividerContainer: {
+      paddingVertical: 35,
+    },
 
-  descriptionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginBottom: 16,
-  },
-  descriptionText: {
-    fontSize: 16,
-    opacity: 0.6,
-  },
-});
+    descriptionTitle: {
+      fontSize: 20,
+      fontWeight: '600',
+      marginBottom: 16,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    descriptionText: {
+      fontSize: 16,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+      opacity: 0.6,
+    },
+  });

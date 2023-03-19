@@ -17,7 +17,7 @@ export default function AppProvider({children}: IAppProvider) {
   return (
     <AppContext.Provider value={{theme, setTheme}}>
       <StatusBar
-        barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+        barStyle={theme === 'dark' ? 'dark-content' : 'light-content'}
         backgroundColor={theme === 'dark' ? '#fff' : '#333'}
       />
 

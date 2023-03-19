@@ -1,6 +1,7 @@
 import {useContext, createContext, useState} from 'react';
 import {Appearance, StatusBar} from 'react-native';
 import React from 'react';
+import {Colors} from '../constants';
 
 const AppContext = createContext({} as IAppContext);
 
@@ -17,8 +18,8 @@ export default function AppProvider({children}: IAppProvider) {
   return (
     <AppContext.Provider value={{theme, setTheme}}>
       <StatusBar
-        barStyle={theme === 'dark' ? 'dark-content' : 'light-content'}
-        backgroundColor={theme === 'dark' ? '#fff' : '#1C1C25'}
+        barStyle={theme === 'dark' ? 'light-content' : 'light-content'}
+        backgroundColor={theme === 'dark' ? Colors.white : Colors.darkBlue}
       />
 
       {children}

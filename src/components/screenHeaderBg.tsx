@@ -12,7 +12,7 @@ export default function ScreenHeaderBg({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.darkBlue,
+    backgroundColor: Colors.dark,
     padding: 24,
     paddingTop: Platform.OS === 'android' ? 25 : 60,
     borderBottomLeftRadius: 40,

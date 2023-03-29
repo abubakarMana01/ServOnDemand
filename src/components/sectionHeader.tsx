@@ -1,11 +1,19 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {Colors} from '../../../constants';
-import {useAppContext} from '../../../context';
+import {Colors} from '../constants';
+import {useAppContext} from '../context';
 
-export default function SectionHeader({title}: {title: string}) {
+interface ISectionHeader {
+  title: string;
+  withPaddingHorizontal?: boolean;
+}
+
+export default function SectionHeader({
+  title,
+  withPaddingHorizontal = true,
+}: ISectionHeader) {
   const {theme} = useAppContext();
-  const styles = styleSheet({theme});
+  const styles = styleSheet({theme, withPaddingHorizontal});
 
   return (
     <View style={[styles.sectionTitleContainer, styles.marginInline]}>
@@ -18,7 +26,7 @@ export default function SectionHeader({title}: {title: string}) {
   );
 }
 
-const styleSheet = ({theme}: IStyleSheet) =>
+const styleSheet = ({theme, withPaddingHorizontal}: any) =>
   StyleSheet.create({
     sectionTitleContainer: {
       flexDirection: 'row',
@@ -29,13 +37,12 @@ const styleSheet = ({theme}: IStyleSheet) =>
     sectionTitle: {
       fontSize: 18,
       fontWeight: '600',
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     sectionRightActionText: {
       color: Colors.blue,
-      fontWeight: '300',
     },
     marginInline: {
-      marginHorizontal: 16,
+      marginHorizontal: withPaddingHorizontal ? 16 : 0,
     },
   });

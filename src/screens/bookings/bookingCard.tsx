@@ -53,7 +53,7 @@ export default function BookingCard({data}: any) {
       <View style={styles.dropArea}>
         <MaterialCommunityIcons
           name="chevron-down"
-          color={theme === 'dark' ? Colors.white : Colors.dark}
+          color={theme === 'dark' ? Colors.white : Colors.black}
           size={24}
         />
       </View>
@@ -64,7 +64,8 @@ export default function BookingCard({data}: any) {
 const styleSheet = ({theme}: IStyleSheet) =>
   StyleSheet.create({
     container: {
-      backgroundColor: theme === 'dark' ? Colors.darkBlue : Colors.white,
+      // backgroundColor: theme === 'dark' ? #121212 : Colors.white,
+      backgroundColor: theme === 'dark' ? Colors.dark : Colors.white,
       borderRadius: 16,
       shadowOffset: {
         height: 1,
@@ -89,12 +90,12 @@ const styleSheet = ({theme}: IStyleSheet) =>
     title: {
       fontSize: 18,
       fontWeight: '600',
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     date: {
       marginTop: 3,
       marginBottom: 10,
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
       opacity: 0.7,
       fontSize: 12,
     },

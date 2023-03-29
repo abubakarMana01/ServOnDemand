@@ -116,7 +116,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       fontSize: 32,
       fontWeight: '600',
       marginTop: 16,
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     infoContainer: {
       marginTop: 20,
@@ -132,7 +132,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     username: {
       fontWeight: '600',
       fontSize: 18,
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     userRatingContainer: {
       flexDirection: 'row',
@@ -141,7 +141,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     ratingText: {
       marginLeft: 4,
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     ratingCount: {
       color: Colors.darkGrey,
@@ -156,12 +156,12 @@ const styleSheet = ({theme}: IStyleSheet) =>
       marginRight: 10,
     },
     location: {
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     price: {
       fontSize: 32,
       fontWeight: '600',
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     perHour: {
       fontSize: 14,
@@ -175,11 +175,11 @@ const styleSheet = ({theme}: IStyleSheet) =>
       fontSize: 20,
       fontWeight: '600',
       marginBottom: 16,
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     descriptionText: {
       fontSize: 16,
-      color: theme === 'dark' ? Colors.white : Colors.dark,
+      color: theme === 'dark' ? Colors.white : Colors.black,
       opacity: 0.6,
     },
   });

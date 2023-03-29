@@ -1,7 +1,6 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
-import {ScreenHeaderBg} from '../../components';
-import {Colors} from '../../constants';
+import {ScreenHeaderBg, ScreenHeaderText} from '../../components';
 import BookingCard from './bookingCard';
 import {useAppContext} from '../../context';
 
@@ -51,14 +50,12 @@ export default function Bookings() {
   return (
     <View style={styles.wrapper}>
       <ScreenHeaderBg>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>My Bookings</Text>
-        </View>
+        <ScreenHeaderText title="My Bookings" />
       </ScreenHeaderBg>
 
       <View style={styles.main}>
         <FlatList
-          style={styles.flatlist}
+          contentContainerStyle={styles.flatlist}
           data={MY_BOOKINGS}
           ItemSeparatorComponent={() => (
             <View style={styles.flatlistSeparator} />
@@ -70,20 +67,10 @@ export default function Bookings() {
   );
 }
 
-const styleSheet = ({theme}: IStyleSheet) =>
+const styleSheet = ({}: IStyleSheet) =>
   StyleSheet.create({
     wrapper: {
       flex: 1,
-      backgroundColor: theme === 'dark' ? '#121212' : 'transparent',
-    },
-    header: {
-      paddingTop: 24,
-      paddingBottom: 40,
-    },
-    headerTitle: {
-      fontSize: 28,
-      fontWeight: '600',
-      color: Colors.white,
     },
     main: {
       marginTop: -35,
@@ -91,9 +78,9 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     flatlist: {
       paddingHorizontal: 32,
-      paddingBottom: 50,
+      paddingBottom: 30,
     },
     flatlistSeparator: {
-      height: 10,
+      height: 16,
     },
   });

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   specialOfferContainer: {
     paddingHorizontal: 28,
     paddingVertical: 24,
-    backgroundColor: Colors.darkBlue,
+    backgroundColor: Colors.dark,
     borderRadius: 30,
     minHeight: 140,
   },

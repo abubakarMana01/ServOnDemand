@@ -10,7 +10,7 @@ export default function GoBackButton() {
 
   return (
     <Pressable style={styles.button} onPress={navigation.goBack}>
-      <Ionicons name="arrow-back" color={Colors.dark} size={24} />
+      <Ionicons name="arrow-back" color={Colors.black} size={24} />
     </Pressable>
   );
 }

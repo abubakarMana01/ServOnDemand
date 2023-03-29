@@ -20,7 +20,7 @@ export default function Categories() {
             // eslint-disable-next-line react-native/no-inline-styles
             {backgroundColor: '#FAC3E2', ...styles.marginInline},
           ]}>
-          <MaterialCommunityIcons name="broom" size={45} color={Colors.dark} />
+          <MaterialCommunityIcons name="broom" size={45} color={Colors.black} />
           <Text style={styles.categoryText}>Cleaning</Text>
         </Pressable>
         <Pressable
@@ -30,7 +30,7 @@ export default function Categories() {
             ...styles.categoryCard,
             backgroundColor: '#D4D1FE',
           }}>
-          <Entypo name="tools" size={45} color={Colors.dark} />
+          <Entypo name="tools" size={45} color={Colors.black} />
           <Text style={styles.categoryText}>Repairs</Text>
         </Pressable>
         <Pressable
@@ -43,7 +43,7 @@ export default function Categories() {
           <MaterialCommunityIcons
             name="format-paint"
             size={45}
-            color={Colors.dark}
+            color={Colors.black}
           />
           <Text style={styles.categoryText}>Painting</Text>
         </Pressable>
@@ -54,7 +54,7 @@ export default function Categories() {
           <MaterialCommunityIcons
             name="washing-machine"
             size={45}
-            color={Colors.dark}
+            color={Colors.black}
           />
           <Text style={styles.categoryText}>Laundry</Text>
         </Pressable>
@@ -62,7 +62,7 @@ export default function Categories() {
           onPress={() => navigation.navigate('Details')}
           // eslint-disable-next-line react-native/no-inline-styles
           style={[styles.categoryCard, {backgroundColor: '#FAC3E2'}]}>
-          <MaterialIcons name="car-repair" size={45} color={Colors.dark} />
+          <MaterialIcons name="car-repair" size={45} color={Colors.black} />
           <Text style={styles.categoryText}>Mechanic</Text>
         </Pressable>
       </ScrollView>
@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 10,
+    marginRight: 16,
   },
   categoryText: {
     textAlign: 'center',
     marginTop: 5,
-    color: Colors.dark,
+    color: Colors.black,
   },
 });

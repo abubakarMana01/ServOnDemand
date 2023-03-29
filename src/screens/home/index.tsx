@@ -1,11 +1,11 @@
 import {ScrollView, StyleSheet, View} from 'react-native';
 import React from 'react';
-import {Colors} from '../../constants';
 import HomeHeader from './components/homeHeader';
 import Categories from './components/categories';
 import MostPopular from './components/mostPopular';
 import SpecialOffer from './components/specialOffer';
-import SectionHeader from './components/sectionHeader';
+import {SectionHeader} from '../../components';
+import MostBookedServices from './components/mostBookedServices';
 
 export default function Home() {
   return (
@@ -26,6 +26,13 @@ export default function Home() {
           </View>
 
           <View style={styles.section}>
+            <SectionHeader title="Most booked services" />
+
+            {/* <Categories /> */}
+            <MostBookedServices />
+          </View>
+
+          <View style={styles.section}>
             <SectionHeader title="Most Popular" />
 
             <MostPopular />
@@ -42,10 +49,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     paddingBottom: 32,
-  },
-  sectionRightActionText: {
-    color: Colors.blue,
-    fontWeight: '300',
   },
   section: {
     marginTop: 34,

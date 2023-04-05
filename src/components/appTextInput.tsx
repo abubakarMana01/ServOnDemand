@@ -16,6 +16,8 @@ interface IAppTextInput {
   secureTextEntry?: boolean;
   autoCapitalize?: 'sentences' | 'none' | 'words' | 'characters';
   icon?: React.ReactNode;
+  autoComplete?: any;
+  autoCorrect?: boolean;
 }
 
 const AppTextInput = ({
@@ -25,6 +27,8 @@ const AppTextInput = ({
   keyboardType = 'default',
   secureTextEntry = false,
   autoCapitalize = 'sentences',
+  autoComplete = 'off',
+  autoCorrect = false,
   icon,
 }: IAppTextInput) => {
   return (
@@ -44,6 +48,8 @@ const AppTextInput = ({
           keyboardType={keyboardType}
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize}
+          autoComplete={autoComplete}
+          autoCorrect={autoCorrect}
         />
         {icon && icon}
       </View>

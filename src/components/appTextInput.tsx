@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import {Colors} from '../constants';
+import {useAppContext} from '../context';
 
 interface IAppTextInput {
   label?: string;
@@ -31,6 +32,9 @@ const AppTextInput = ({
   autoCorrect = false,
   icon,
 }: IAppTextInput) => {
+  const {theme} = useAppContext();
+  const styles = styleSheet({theme});
+
   return (
     <View>
       <View style={styles.labelAndErrorContainer}>
@@ -50,6 +54,7 @@ const AppTextInput = ({
           autoCapitalize={autoCapitalize}
           autoComplete={autoComplete}
           autoCorrect={autoCorrect}
+          placeholderTextColor={theme === 'dark' ? Colors.darkGrey : 'auto'}
         />
         {icon && icon}
       </View>
@@ -59,32 +64,34 @@ const AppTextInput = ({
 
 export default AppTextInput;
 
-const styles = StyleSheet.create({
-  labelAndErrorContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  label: {
-    fontWeight: '600',
-    color: Colors.dark,
-    marginBottom: 5,
-  },
-  textInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1.5,
-    borderColor: '#b2beb590',
-    borderRadius: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-  textInput: {
-    flex: 1,
-    height: 25,
-  },
-  error: {
-    color: 'red',
-    fontSize: 12,
-    alignSelf: 'flex-end',
-  },
-});
+const styleSheet = ({theme}: IStyleSheet) =>
+  StyleSheet.create({
+    labelAndErrorContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    label: {
+      fontWeight: '600',
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+      marginBottom: 5,
+    },
+    textInputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderWidth: 1.5,
+      borderColor: '#b2beb590',
+      borderRadius: 8,
+      paddingVertical: 8,
+      paddingHorizontal: 12,
+    },
+    textInput: {
+      flex: 1,
+      height: 25,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    error: {
+      color: 'red',
+      fontSize: 12,
+      alignSelf: 'flex-end',
+    },
+  });

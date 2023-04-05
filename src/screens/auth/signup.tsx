@@ -17,6 +17,8 @@ import {Pressable} from 'react-native';
 import {useAppContext} from '../../context';
 
 export default function Signup() {
+  const {theme} = useAppContext();
+  const styles = styleSheet({theme});
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -103,56 +105,58 @@ export default function Signup() {
   );
 }
 
-const styles = StyleSheet.create({
-  keyboardAvoidingView: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  container: {
-    marginHorizontal: 16,
-    flex: 1,
-  },
-  header: {
-    marginTop: 16,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: '600',
-  },
-  subtitle: {
-    fontWeight: Platform.OS === 'ios' ? '500' : '600',
-    color: Colors.dark,
-    opacity: 0.5,
-    marginTop: 3,
-  },
-  animationContainer: {
-    alignItems: 'center',
-  },
-  animation: {
-    width: 180,
-    height: 180,
-  },
-  form: {
-    marginVertical: 40,
-  },
-  inputContainer: {
-    marginBottom: 24,
-  },
-  bottom: {
-    alignItems: 'center',
-    paddingBottom: 16,
-  },
-  bottomTextContainer: {
-    alignSelf: 'center',
-  },
-  bottomText: {
-    marginTop: 10,
-    fontSize: 12,
-    color: Colors.dark,
-  },
-  bottomTextLink: {
-    color: Colors.darkBlue,
-    fontWeight: '600',
-  },
-});
+const styleSheet = ({theme}: IStyleSheet) =>
+  StyleSheet.create({
+    keyboardAvoidingView: {
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    container: {
+      marginHorizontal: 16,
+      flex: 1,
+    },
+    header: {
+      marginTop: 16,
+    },
+    title: {
+      fontSize: 30,
+      fontWeight: '600',
+      color: theme === 'dark' ? Colors.white : Colors.black,
+    },
+    subtitle: {
+      fontWeight: Platform.OS === 'ios' ? '500' : '600',
+      color: theme === 'dark' ? Colors.white : Colors.black,
+      opacity: 0.5,
+      marginTop: 3,
+    },
+    animationContainer: {
+      alignItems: 'center',
+    },
+    animation: {
+      width: 180,
+      height: 180,
+    },
+    form: {
+      marginVertical: 40,
+    },
+    inputContainer: {
+      marginBottom: 24,
+    },
+    bottom: {
+      alignItems: 'center',
+      paddingBottom: 16,
+    },
+    bottomTextContainer: {
+      alignSelf: 'center',
+    },
+    bottomText: {
+      marginTop: 10,
+      fontSize: 12,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    bottomTextLink: {
+      fontWeight: '600',
+      color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+    },
+  });

@@ -20,6 +20,8 @@ import {Colors} from '../../constants';
 import {useAppContext} from '../../context';
 
 export default function Login() {
+  const {theme} = useAppContext();
+  const styles = styleSheet({theme});
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {setUser} = useAppContext();
 
@@ -43,7 +45,7 @@ export default function Login() {
             {/* <View style={{flex: 1}} /> */}
 
             <View style={styles.header}>
-              <Text style={styles.title}>Welcome Back!👋</Text>
+              <Text style={styles.title}>Welcome Back! 👋</Text>
               <Text style={styles.subtitle}>
                 You've been missed. Please login!
               </Text>
@@ -75,7 +77,7 @@ export default function Login() {
                   <Ionicons
                     name={isRememberMeChecked ? 'checkbox' : 'checkbox-outline'}
                     size={24}
-                    color={Colors.darkBlue}
+                    color={theme === 'dark' ? Colors.blue : Colors.darkBlue}
                   />
                   <Text style={styles.remeberMeText}>Remember me</Text>
                 </Pressable>
@@ -112,61 +114,64 @@ export default function Login() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 16,
-    flex: 1,
-  },
-  header: {
-    marginTop: 16,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: '600',
-  },
-  subtitle: {
-    fontWeight: Platform.OS === 'ios' ? '500' : '600',
-    color: Colors.dark,
-    opacity: 0.5,
-  },
-  form: {
-    marginTop: 50,
-    marginBottom: 20,
-  },
-  inputContainer: {
-    marginBottom: 24,
-  },
-  forgotPasswordContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  forgotPasswordCheckBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  remeberMeText: {
-    marginLeft: 4,
-  },
-  forgotPasswordText: {
-    color: Colors.darkBlue,
-    fontSize: 12,
-    fontWeight: '500',
-  },
-  bottom: {
-    alignItems: 'center',
-    paddingBottom: 16,
-  },
-  bottomTextContainer: {
-    alignSelf: 'center',
-  },
-  bottomText: {
-    marginTop: 10,
-    fontSize: 12,
-    color: Colors.dark,
-  },
-  bottomTextLink: {
-    color: Colors.darkBlue,
-    fontWeight: '600',
-  },
-});
+const styleSheet = ({theme}: IStyleSheet) =>
+  StyleSheet.create({
+    container: {
+      marginHorizontal: 16,
+      flex: 1,
+    },
+    header: {
+      marginTop: 16,
+    },
+    title: {
+      fontSize: 30,
+      fontWeight: '600',
+      color: theme === 'dark' ? Colors.white : Colors.black,
+    },
+    subtitle: {
+      fontWeight: Platform.OS === 'ios' ? '500' : '600',
+      opacity: 0.5,
+      color: theme === 'dark' ? Colors.white : Colors.black,
+    },
+    form: {
+      marginTop: 50,
+      marginBottom: 20,
+    },
+    inputContainer: {
+      marginBottom: 24,
+    },
+    forgotPasswordContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    forgotPasswordCheckBox: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    remeberMeText: {
+      marginLeft: 4,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    forgotPasswordText: {
+      color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+      fontSize: 12,
+      fontWeight: '500',
+    },
+    bottom: {
+      alignItems: 'center',
+      paddingBottom: 16,
+    },
+    bottomTextContainer: {
+      alignSelf: 'center',
+    },
+    bottomText: {
+      marginTop: 10,
+      fontSize: 12,
+      color: theme === 'dark' ? Colors.white : Colors.dark,
+    },
+    bottomTextLink: {
+      fontWeight: '600',
+      color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+    },
+  });

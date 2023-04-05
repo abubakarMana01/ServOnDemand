@@ -18,10 +18,14 @@ export default function AppProvider({children}: IAppProvider) {
 
   return (
     <AppContext.Provider value={{theme, setTheme, user, setUser}}>
-      <StatusBar
-        barStyle={user ? 'light-content' : 'dark-content'}
-        backgroundColor={user ? Colors.dark : Colors.white}
-      />
+      {theme === 'light' ? (
+        <StatusBar
+          barStyle={user ? 'light-content' : 'dark-content'}
+          backgroundColor={user ? Colors.dark : Colors.white}
+        />
+      ) : (
+        <StatusBar barStyle="light-content" backgroundColor={Colors.dark} />
+      )}
 
       {children}
     </AppContext.Provider>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -14,11 +14,20 @@ import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Colors} from '../../constants';
 import {Pressable} from 'react-native';
+import {useAppContext} from '../../context';
 
 export default function Signup() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const {setUser} = useAppContext();
+
+  const handleLogin = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setUser({});
+    }, 2500);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -75,8 +84,8 @@ export default function Signup() {
           <View style={styles.bottom}>
             <AppButton
               title="Sign up"
-              isLoading={false}
-              onPress={() => {}}
+              isLoading={isLoading}
+              onPress={handleLogin}
               full
             />
             <Pressable

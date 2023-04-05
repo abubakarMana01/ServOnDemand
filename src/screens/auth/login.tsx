@@ -17,12 +17,21 @@ import {AppTextInput, AppButton} from '../../components';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Colors} from '../../constants';
+import {useAppContext} from '../../context';
 
 export default function Login() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const {setUser} = useAppContext();
 
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isRememberMeChecked, setIsRememberMeChecked] = useState(true);
+
+  const handleLogin = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setUser({});
+    }, 2500);
+  };
 
   return (
     <KeyboardAvoidingView
@@ -83,8 +92,8 @@ export default function Login() {
             <View style={styles.bottom}>
               <AppButton
                 title="Log in"
-                isLoading={false}
-                onPress={() => {}}
+                isLoading={isLoading}
+                onPress={handleLogin}
                 full
               />
               <Pressable

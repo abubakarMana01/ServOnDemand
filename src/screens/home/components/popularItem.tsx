@@ -28,8 +28,16 @@ const styleSheet = ({theme, isColored}: IStyleSheet & {isColored: boolean}) =>
       borderRadius: 8,
       marginRight: 10,
       borderWidth: 1,
-      borderColor: isColored ? Colors.blue : Colors.grey,
-      backgroundColor: isColored ? Colors.blue : 'transparent',
+      borderColor: isColored
+        ? theme === 'dark'
+          ? Colors.blue
+          : Colors.darkBlue
+        : Colors.grey,
+      backgroundColor: isColored
+        ? theme === 'dark'
+          ? Colors.blue
+          : Colors.darkBlue
+        : 'transparent',
     },
     popularItemText: {
       fontSize: 16,

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   Keyboard,
+  KeyboardAvoidingView,
   Platform,
   Pressable,
   SafeAreaView,
@@ -24,73 +25,81 @@ export default function Login() {
   const [isRememberMeChecked, setIsRememberMeChecked] = useState(true);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{flex: 1}} />
-
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{flex: 1}}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <>
-          <View style={styles.header}>
-            <Text style={styles.title}>Hi, Welcome Back!👋</Text>
-            <Text style={styles.subtitle}>
-              You&apos;ve been missed. Please login!
-            </Text>
-          </View>
+        <SafeAreaView style={styles.container}>
+          <>
+            {/* <View style={{flex: 1}} /> */}
 
-          <View style={styles.form}>
-            <View style={styles.inputContainer}>
-              <AppTextInput
-                label="Email address"
-                placeholder="Email Address"
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <AppTextInput
-                label="Password"
-                placeholder="Enter your password"
-                secureTextEntry
-                autoCapitalize="none"
-              />
-            </View>
-
-            <View style={styles.forgotPasswordContainer}>
-              <Pressable
-                style={styles.forgotPasswordCheckBox}
-                onPress={() => setIsRememberMeChecked(prev => !prev)}>
-                <Ionicons
-                  name={isRememberMeChecked ? 'checkbox' : 'checkbox-outline'}
-                  size={24}
-                  color={Colors.darkBlue}
-                />
-                <Text style={styles.remeberMeText}>Remember me</Text>
-              </Pressable>
-              <TouchableOpacity>
-                <Text style={styles.forgotPasswordText}>Forgot password</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View style={styles.bottom}>
-            <AppButton
-              title="Log in"
-              isLoading={false}
-              onPress={() => {}}
-              full
-            />
-            <TouchableOpacity
-              style={styles.bottomTextContainer}
-              onPress={() => navigation.navigate('Signup')}>
-              <Text style={styles.bottomText}>
-                Don't have an account?{' '}
-                <Text style={styles.bottomTextLink}>Create one</Text>
+            <View style={styles.header}>
+              <Text style={styles.title}>Welcome Back!👋</Text>
+              <Text style={styles.subtitle}>
+                You've been missed. Please login!
               </Text>
-            </TouchableOpacity>
-          </View>
-        </>
+            </View>
+
+            <View style={styles.form}>
+              <View style={styles.inputContainer}>
+                <AppTextInput
+                  label="Email address"
+                  placeholder="Email Address"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <AppTextInput
+                  label="Password"
+                  placeholder="Enter your password"
+                  secureTextEntry
+                  autoCapitalize="none"
+                />
+              </View>
+
+              <View style={styles.forgotPasswordContainer}>
+                <Pressable
+                  style={styles.forgotPasswordCheckBox}
+                  onPress={() => setIsRememberMeChecked(prev => !prev)}>
+                  <Ionicons
+                    name={isRememberMeChecked ? 'checkbox' : 'checkbox-outline'}
+                    size={24}
+                    color={Colors.darkBlue}
+                  />
+                  <Text style={styles.remeberMeText}>Remember me</Text>
+                </Pressable>
+                <TouchableOpacity>
+                  <Text style={styles.forgotPasswordText}>
+                    Forgot password?
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View style={{flex: 1}} />
+
+            <View style={styles.bottom}>
+              <AppButton
+                title="Log in"
+                isLoading={false}
+                onPress={() => {}}
+                full
+              />
+              <Pressable
+                style={styles.bottomTextContainer}
+                onPress={() => navigation.navigate('Signup')}>
+                <Text style={styles.bottomText}>
+                  Don't have an account?{' '}
+                  <Text style={styles.bottomTextLink}>Create one</Text>
+                </Text>
+              </Pressable>
+            </View>
+          </>
+        </SafeAreaView>
       </TouchableWithoutFeedback>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    marginTop: 10,
+    marginTop: 16,
   },
   title: {
     fontSize: 30,
@@ -111,15 +120,9 @@ const styles = StyleSheet.create({
     color: Colors.dark,
     opacity: 0.5,
   },
-  animationContainer: {
-    alignItems: 'center',
-  },
-  animation: {
-    width: 180,
-    height: 180,
-  },
   form: {
-    marginVertical: 50,
+    marginTop: 50,
+    marginBottom: 20,
   },
   inputContainer: {
     marginBottom: 24,
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   forgotPasswordText: {
-    color: 'red',
+    color: Colors.darkBlue,
     fontSize: 12,
     fontWeight: '500',
   },
@@ -151,7 +154,6 @@ const styles = StyleSheet.create({
   bottomText: {
     marginTop: 10,
     fontSize: 12,
-    fontWeight: '500',
     color: Colors.dark,
   },
   bottomTextLink: {

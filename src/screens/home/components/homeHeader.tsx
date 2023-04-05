@@ -1,10 +1,12 @@
-import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
-import React from 'react';
+import {Image, Pressable, StyleSheet, Text, Modal, View} from 'react-native';
+import React, {useState} from 'react';
 import {ScreenHeaderBg} from '../../../components';
 import Feather from 'react-native-vector-icons/Feather';
 import {Colors} from '../../../constants';
 
 export default function HomeHeader() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <ScreenHeaderBg>
       <View style={styles.headerUser}>
@@ -26,15 +28,23 @@ export default function HomeHeader() {
 
       <View style={styles.searchBarContainer}>
         <Feather name="search" size={30} color={Colors.white} />
-        <TextInput
-          placeholder="Search..."
-          style={styles.searchInput}
-          autoCorrect={false}
-          placeholderTextColor={Colors.grey}
-        />
+        <Pressable
+          onPress={() => setModalVisible(true)}
+          style={styles.searchInputContainer}>
+          <Text style={styles.searchInputText}>Search...</Text>
+        </Pressable>
 
         <Feather name="filter" size={24} color={Colors.purple} />
       </View>
+
+      <Modal
+        animationType="fade"
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.modalContainer}></View>
+      </Modal>
     </ScreenHeaderBg>
   );
 }
@@ -72,11 +82,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  searchInputContainer: {
+    paddingHorizontal: 10,
+    flex: 1,
+    height: 40,
+    justifyContent: 'center',
+  },
+  searchInputText: {
+    marginLeft: 16,
+    fontSize: 16,
+    color: Colors.grey,
+  },
   searchInput: {
     marginLeft: 16,
     fontSize: 16,
     height: 40,
     flex: 1,
     color: Colors.white,
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

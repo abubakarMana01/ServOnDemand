@@ -15,7 +15,7 @@ export default function BottomTabsNavigation() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: Colors.blue,
+        tabBarActiveTintColor: theme === 'dark' ? Colors.blue : Colors.darkBlue,
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: theme === 'dark' ? '#333' : Colors.lightGrey,

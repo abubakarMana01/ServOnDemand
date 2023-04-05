@@ -10,14 +10,18 @@ interface IAppProvider {
 }
 
 export default function AppProvider({children}: IAppProvider) {
+  const [user, setUser] = useState<IAppContext['user']>(null);
   const [theme, setTheme] = useState(Appearance.getColorScheme()!);
   Appearance.addChangeListener(scheme => {
     setTheme(scheme.colorScheme!);
   });
 
   return (
-    <AppContext.Provider value={{theme, setTheme}}>
-      <StatusBar barStyle={'light-content'} backgroundColor={Colors.dark} />
+    <AppContext.Provider value={{theme, setTheme, user, setUser}}>
+      <StatusBar
+        barStyle={user ? 'light-content' : 'dark-content'}
+        backgroundColor={user ? Colors.dark : Colors.white}
+      />
 
       {children}
     </AppContext.Provider>

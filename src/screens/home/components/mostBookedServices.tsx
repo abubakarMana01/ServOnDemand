@@ -10,22 +10,19 @@ import {
 import React from 'react';
 import {useAppContext} from '../../../context';
 import {Colors} from '../../../constants';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const MostBookedServices = () => {
   const {theme} = useAppContext();
   const styles = stylesheet({theme});
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
     <View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {/* <View style={styles.card}>
-          <Pressable>
-            <Image style={styles.image} />
-          </Pressable>
-          <Text style={styles.cardText}>AC Service and Repair</Text>
-        </View> */}
         {MOST_BOOKED_SERVICES.map((service, index) => (
-          <View
+          <Pressable
             key={service.id}
             style={[
               styles.card,
@@ -33,14 +30,13 @@ const MostBookedServices = () => {
                 marginRight: 16,
                 marginLeft: !index ? 16 : 0,
               },
-            ]}>
-            <Pressable>
-              <Image source={{uri: service.image}} style={styles.image} />
-            </Pressable>
+            ]}
+            onPress={() => navigation.navigate('Details')}>
+            <Image source={{uri: service.image}} style={styles.image} />
             <Text numberOfLines={2} style={styles.cardText}>
               {service.title}
             </Text>
-          </View>
+          </Pressable>
         ))}
       </ScrollView>
     </View>
@@ -61,7 +57,7 @@ const stylesheet = ({theme}: IStyleSheet) =>
       width: 100,
       height: 100,
       borderRadius: 10,
-      backgroundColor: '#eee',
+      backgroundColor: '#eeeeee',
     },
     cardText: {
       marginTop: 8,
@@ -72,7 +68,7 @@ const stylesheet = ({theme}: IStyleSheet) =>
 const MOST_BOOKED_SERVICES = [
   {
     id: '1',
-    title: 'AC Service and Repair',
+    title: 'AC Service and Repairs',
     image:
       'https://images.unsplash.com/photo-1558919047-80f932b017cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YWMlMjByZXBhaXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
   },

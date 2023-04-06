@@ -48,19 +48,19 @@ export default function Signup() {
           <View style={styles.form}>
             <View style={styles.inputContainer}>
               <AppTextInput
-                label="First Name"
-                placeholder="First Name"
-                keyboardType="email-address"
-                autoCapitalize="none"
+                label="First name"
+                placeholder="Enter your first name"
+                keyboardType="default"
+                autoCapitalize="words"
               />
             </View>
 
             <View style={styles.inputContainer}>
               <AppTextInput
-                label="Email address"
-                placeholder="Email Address"
-                keyboardType="email-address"
-                autoCapitalize="none"
+                label="Last name"
+                placeholder="Enter your last name"
+                keyboardType="default"
+                autoCapitalize="words"
               />
             </View>
 

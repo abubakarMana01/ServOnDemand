@@ -20,20 +20,17 @@ export default function Home() {
 
           <View style={styles.section}>
             <SectionHeader title="Categories" />
-
             <Categories />
           </View>
 
           <View style={styles.section}>
             <SectionHeader title="Most booked services" />
-
             {/* <Categories /> */}
             <MostBookedServices />
           </View>
 
           <View style={styles.section}>
             <SectionHeader title="Most Popular" />
-
             <MostPopular />
           </View>
         </View>

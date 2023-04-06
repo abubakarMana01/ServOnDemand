@@ -56,7 +56,7 @@ const AppTextInput = ({
           <TouchableOpacity onPress={handleBackArrowPress}>
             <Ionicons
               name="arrow-back"
-              color={Colors.black}
+              color={theme === 'dark' ? Colors.lightGrey : Colors.black}
               size={24}
               style={styles.backArrow}
             />

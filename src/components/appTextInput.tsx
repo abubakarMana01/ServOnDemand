@@ -4,10 +4,12 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface IAppTextInput {
   label?: string;
@@ -19,6 +21,7 @@ interface IAppTextInput {
   icon?: React.ReactNode;
   autoComplete?: any;
   autoCorrect?: boolean;
+  handleBackArrowPress?: () => void;
 }
 
 const AppTextInput = ({
@@ -30,6 +33,7 @@ const AppTextInput = ({
   autoCapitalize = 'sentences',
   autoComplete = 'off',
   autoCorrect = false,
+  handleBackArrowPress,
   icon,
 }: IAppTextInput) => {
   const {theme} = useAppContext();
@@ -37,15 +41,27 @@ const AppTextInput = ({
 
   return (
     <View>
-      <View style={styles.labelAndErrorContainer}>
-        {<Text style={styles.label}>{label}</Text>}
-        {error && (
-          <View>
-            <Text style={styles.error}>{error}</Text>
-          </View>
-        )}
-      </View>
+      {label || error ? (
+        <View style={styles.labelAndErrorContainer}>
+          {<Text style={styles.label}>{label}</Text>}
+          {error && (
+            <View>
+              <Text style={styles.error}>{error}</Text>
+            </View>
+          )}
+        </View>
+      ) : null}
       <View style={styles.textInputContainer}>
+        {handleBackArrowPress && (
+          <TouchableOpacity onPress={handleBackArrowPress}>
+            <Ionicons
+              name="arrow-back"
+              color={Colors.black}
+              size={24}
+              style={styles.backArrow}
+            />
+          </TouchableOpacity>
+        )}
         <TextInput
           style={styles.textInput}
           placeholder={placeholder}
@@ -83,6 +99,9 @@ const styleSheet = ({theme}: IStyleSheet) =>
       borderRadius: 8,
       paddingVertical: 8,
       paddingHorizontal: 12,
+    },
+    backArrow: {
+      marginRight: 10,
     },
     textInput: {
       flex: 1,

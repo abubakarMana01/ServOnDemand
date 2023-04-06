@@ -32,11 +32,11 @@ export default function Signup() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        style={styles.keyboardAvoidingView}
-        behavior="padding"
-        keyboardVerticalOffset={0}>
+    <KeyboardAvoidingView
+      style={styles.keyboardAvoidingView}
+      behavior="padding"
+      keyboardVerticalOffset={0}>
+      <SafeAreaView style={styles.container}>
         <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <Text style={styles.title}>Sign up</Text>
@@ -100,8 +100,8 @@ export default function Signup() {
             </Pressable>
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -109,11 +109,9 @@ const styleSheet = ({theme}: IStyleSheet) =>
   StyleSheet.create({
     keyboardAvoidingView: {
       flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center',
+      paddingHorizontal: 16,
     },
     container: {
-      marginHorizontal: 16,
       flex: 1,
     },
     header: {

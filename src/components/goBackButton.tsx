@@ -5,11 +5,15 @@ import {Pressable, StyleSheet} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Colors} from '../constants';
 
-export default function GoBackButton() {
+interface IGoBackButton {
+  handlePress?: () => void;
+}
+
+export default function GoBackButton({handlePress}: IGoBackButton) {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
-    <Pressable style={styles.button} onPress={navigation.goBack}>
+    <Pressable style={styles.button} onPress={handlePress || navigation.goBack}>
       <Ionicons name="arrow-back" color={Colors.black} size={24} />
     </Pressable>
   );
@@ -23,6 +27,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 16,
   },
 });

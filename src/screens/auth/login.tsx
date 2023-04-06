@@ -38,7 +38,7 @@ export default function Login() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{flex: 1}}>
+      style={styles.keyboardAvoidingView}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={styles.container}>
           <>
@@ -116,8 +116,11 @@ export default function Login() {
 
 const styleSheet = ({theme}: IStyleSheet) =>
   StyleSheet.create({
+    keyboardAvoidingView: {
+      flex: 1,
+      paddingHorizontal: 16,
+    },
     container: {
-      marginHorizontal: 16,
       flex: 1,
     },
     header: {

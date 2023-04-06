@@ -3,7 +3,6 @@ import React from 'react';
 import HomeHeader from './components/homeHeader';
 import Categories from './components/categories';
 import MostPopular from './components/mostPopular';
-import SpecialOffer from './components/specialOffer';
 import {SectionHeader} from '../../components';
 import MostBookedServices from './components/mostBookedServices';
 
@@ -14,10 +13,10 @@ export default function Home() {
 
       <ScrollView>
         <View style={styles.mainContainer}>
-          <View style={styles.section}>
+          {/* <View style={styles.section}>
             <SectionHeader title="Special Offers" />
             <SpecialOffer />
-          </View>
+          </View> */}
 
           <View style={styles.section}>
             <SectionHeader title="Categories" />

@@ -40,7 +40,7 @@ const styleSheet = ({theme, withPaddingHorizontal}: any) =>
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     sectionRightActionText: {
-      color: Colors.blue,
+      color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
     },
     marginInline: {
       marginHorizontal: withPaddingHorizontal ? 16 : 0,

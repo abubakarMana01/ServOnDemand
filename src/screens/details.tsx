@@ -24,7 +24,7 @@ export default function Details() {
         source={require('../assets/details/painting.png')}
         style={styles.imageBackground}
         resizeMode="cover">
-        <SafeAreaView>
+        <SafeAreaView style={{marginLeft: 16}}>
           <GoBackButton />
         </SafeAreaView>
       </ImageBackground>

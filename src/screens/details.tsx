@@ -79,7 +79,7 @@ export default function Details() {
               </View>
 
               <Text style={styles.price}>
-                ₦3000 <Text style={styles.perHour}>/hr</Text>
+                ₦3000<Text style={styles.perHour}>/hr</Text>
               </Text>
             </View>
 

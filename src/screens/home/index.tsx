@@ -11,7 +11,7 @@ export default function Home() {
     <View style={styles.wrapper}>
       <HomeHeader />
 
-      <ScrollView>
+      <ScrollView bounces={false}>
         <View style={styles.mainContainer}>
           {/* <View style={styles.section}>
             <SectionHeader title="Special Offers" />

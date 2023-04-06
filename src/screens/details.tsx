@@ -7,10 +7,11 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Divider, GoBackButton} from '../components';
+import {AppButton, Divider, GoBackButton} from '../components';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
 
@@ -29,71 +30,91 @@ export default function Details() {
         </SafeAreaView>
       </ImageBackground>
 
-      <ScrollView>
-        <View style={styles.main}>
-          <Text style={styles.title}>Painting</Text>
+      <View style={{flex: 1}}>
+        <ScrollView>
+          <View style={styles.main}>
+            <Text style={styles.title}>Painting</Text>
 
-          <View style={styles.infoContainer}>
-            <Image
-              source={require('../assets/user2.png')}
-              resizeMode="cover"
-              style={styles.userImg}
-            />
+            <View style={styles.infoContainer}>
+              <Image
+                source={require('../assets/user2.png')}
+                resizeMode="cover"
+                style={styles.userImg}
+              />
 
-            <View>
-              <Text style={styles.username}>Ogunmekpon Johnson</Text>
-              <View style={styles.userRatingContainer}>
-                <MaterialCommunityIcons name="star" color="#E38902" size={18} />
-                <Text style={styles.ratingText}>
-                  4.8 / <Text style={styles.ratingCount}>(128 reviews)</Text>
-                </Text>
+              <View>
+                <Text style={styles.username}>Ogunmekpon Johnson</Text>
+                <View style={styles.userRatingContainer}>
+                  <MaterialCommunityIcons
+                    name="star"
+                    color="#E38902"
+                    size={18}
+                  />
+                  <Text style={styles.ratingText}>
+                    4.8 / <Text style={styles.ratingCount}>(128 reviews)</Text>
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
 
-          <View style={styles.infoContainer}>
-            <View style={styles.infoIconContainer}>
-              <Ionicons
-                name="location-outline"
-                size={24}
-                color={Colors.darkGrey}
-              />
+            <View style={styles.infoContainer}>
+              <View style={styles.infoIconContainer}>
+                <Ionicons
+                  name="location-outline"
+                  size={24}
+                  color={Colors.darkGrey}
+                />
+              </View>
+
+              <Text style={styles.location}>Nile Street, Maitama, Abuja</Text>
             </View>
 
-            <Text style={styles.location}>Nile Street, Maitama, Abuja</Text>
-          </View>
+            <View style={styles.infoContainer}>
+              <View style={styles.infoIconContainer}>
+                <Ionicons
+                  name="pricetag-outline"
+                  size={20}
+                  color={Colors.darkGrey}
+                />
+              </View>
 
-          <View style={styles.infoContainer}>
-            <View style={styles.infoIconContainer}>
-              <Ionicons
-                name="pricetag-outline"
-                size={20}
-                color={Colors.darkGrey}
-              />
+              <Text style={styles.price}>
+                ₦3000 <Text style={styles.perHour}>/hr</Text>
+              </Text>
             </View>
 
-            <Text style={styles.price}>
-              ₦3000 <Text style={styles.perHour}>/hr</Text>
-            </Text>
-          </View>
+            <View style={styles.dividerContainer}>
+              <Divider />
+            </View>
 
-          <View style={styles.dividerContainer}>
-            <Divider />
+            <View>
+              <Text style={styles.descriptionTitle}>Description</Text>
+              <Text style={styles.descriptionText}>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Eveniet quam laborum ab quis nam. Reprehenderit, pariatur ipsa
+                voluptatum vel id error voluptatem iste.
+              </Text>
+            </View>
           </View>
+        </ScrollView>
+      </View>
 
-          <View>
-            <Text style={styles.descriptionTitle}>Description</Text>
-            <Text style={styles.descriptionText}>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
-              quam laborum ab quis nam. Reprehenderit, pariatur ipsa voluptatum
-              vel id error voluptatem iste.{'\n'}Aperiam ab, facilis autem quam
-              quia nesciunt quam laborum ab quis nam. Reprehenderit, pariatur
-              ipsa voluptatum vel id error voluptatem iste. Aperiam ab, facilis
-              autem quam quia nesciunt.
-            </Text>
+      <SafeAreaView>
+        <View style={styles.actionButtonsContainer}>
+          <View style={styles.actionButton}>
+            <AppButton
+              title="Message"
+              onPress={() => {}}
+              full
+              customStyles={styles.messageButton}
+              customTextStyles={styles.messageButtonText}
+            />
+          </View>
+          <View style={styles.actionButton}>
+            <AppButton title="Book now" onPress={() => {}} full />
           </View>
         </View>
-      </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
@@ -105,9 +126,10 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     imageBackground: {
       width: '100%',
-      height: 260,
-      // paddingTop: Platform.OS === 'android' ? 16 : 0,
+      height: Dimensions.get('window').height / 3.5,
+      maxHeight: 260,
       paddingTop: 16,
+      overflow: 'hidden',
     },
     main: {
       padding: 16,
@@ -168,7 +190,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: Colors.darkGrey,
     },
     dividerContainer: {
-      paddingVertical: 35,
+      paddingVertical: 25,
     },
 
     descriptionTitle: {
@@ -181,5 +203,23 @@ const styleSheet = ({theme}: IStyleSheet) =>
       fontSize: 16,
       color: theme === 'dark' ? Colors.white : Colors.black,
       opacity: 0.6,
+    },
+
+    actionButtonsContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingHorizontal: 16,
+      paddingTop: 12,
+      borderColor: Colors.lightGrey,
+      borderTopWidth: 1,
+    },
+    actionButton: {
+      flex: 0.47,
+    },
+    messageButton: {
+      backgroundColor: '#d8e2ff',
+    },
+    messageButtonText: {
+      color: Colors.darkBlue,
     },
   });

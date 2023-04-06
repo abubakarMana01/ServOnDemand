@@ -30,7 +30,7 @@ export default function SearchModal({
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible);

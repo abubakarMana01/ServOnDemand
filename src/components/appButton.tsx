@@ -12,6 +12,8 @@ interface IAuthButton {
   onPress: () => void;
   isLoading?: boolean;
   full?: boolean;
+  customStyles?: object;
+  customTextStyles?: object;
 }
 
 export default function AppButton({
@@ -19,15 +21,17 @@ export default function AppButton({
   onPress,
   isLoading = false,
   full = false,
+  customStyles = {},
+  customTextStyles = {},
 }: IAuthButton) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.button, {maxWidth: full ? '100%' : 263}]}>
+      style={[styles.button, {maxWidth: full ? '100%' : 263}, customStyles]}>
       {isLoading ? (
         <ActivityIndicator size="small" color={Colors.white} />
       ) : (
-        <Text style={styles.text}>{title}</Text>
+        <Text style={[styles.text, customTextStyles]}>{title}</Text>
       )}
     </TouchableOpacity>
   );

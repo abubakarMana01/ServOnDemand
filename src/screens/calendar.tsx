@@ -107,7 +107,7 @@ const styleSheet = ({}: IStyleSheet) =>
       // borderWidth: theme === 'dark' ? 1 : 0,
     },
     flatlist: {
-      paddingHorizontal: 32,
+      paddingHorizontal: 24,
       paddingBottom: 30,
     },
     flatlistSeparator: {

@@ -77,7 +77,7 @@ const styleSheet = ({}: IStyleSheet) =>
       flex: 1,
     },
     flatlist: {
-      paddingHorizontal: 32,
+      paddingHorizontal: 24,
       paddingBottom: 30,
     },
     flatlistSeparator: {

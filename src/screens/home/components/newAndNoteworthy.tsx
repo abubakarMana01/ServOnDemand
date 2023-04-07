@@ -14,6 +14,7 @@ const NewAndNoteWorthy = () => {
           <View style={{flexDirection: 'row'}}>
             {NEW_AND_NOTEWORTHY_SERVICES_ROW_1.map((service, index) => (
               <ServiceCard
+                bonus={{category: 'new', text: 'New'}}
                 key={service.id}
                 service={service}
                 isFirst={!index}
@@ -24,6 +25,7 @@ const NewAndNoteWorthy = () => {
           <View style={{flexDirection: 'row', marginTop: 16}}>
             {NEW_AND_NOTEWORTHY_SERVICES_ROW_2.map((service, index) => (
               <ServiceCard
+                bonus={{category: 'new', text: 'New'}}
                 key={service.id}
                 service={service}
                 isFirst={!index}
@@ -106,5 +108,11 @@ const NEW_AND_NOTEWORTHY_SERVICES_ROW_2 = [
     title: 'Security Camera installation',
     image:
       'https://images.unsplash.com/photo-1676630656246-3047520adfdf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2058&q=80',
+  },
+  {
+    id: '5',
+    title: 'AC Service and Repairs',
+    image:
+      'https://images.unsplash.com/photo-1558919047-80f932b017cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YWMlMjByZXBhaXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
   },
 ];

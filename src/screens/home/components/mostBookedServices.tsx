@@ -11,7 +11,12 @@ const MostBookedServices = () => {
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {MOST_BOOKED_SERVICES.map((service, index) => (
-          <ServiceCard key={service.id} service={service} isFirst={!index} />
+          <ServiceCard
+            bonus={{category: 'most booked', text: '17% off'}}
+            key={service.id}
+            service={service}
+            isFirst={!index}
+          />
         ))}
       </ScrollView>
     </View>

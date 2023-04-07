@@ -78,7 +78,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       flex: 1,
     },
     username: {
-      fontWeight: '600',
+      fontWeight: '500',
       fontSize: 16,
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
@@ -95,11 +95,12 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: Colors.darkGrey,
     },
     selectButtonCustom: {
-      maxWidth: 75,
-      height: 32,
-      borderRadius: 8,
+      maxWidth: 65,
+      height: 28,
+      borderRadius: 6,
     },
     selectButtonCustomText: {
-      fontWeight: '400',
+      fontWeight: '500',
+      fontSize: 14,
     },
   });

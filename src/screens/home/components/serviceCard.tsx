@@ -1,4 +1,5 @@
-import {Image, Pressable, StyleSheet, Text} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {ROUTES} from '../../../navigation';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
@@ -9,19 +10,22 @@ import {Colors} from '../../../constants';
 interface IServiceCard {
   service: any;
   isFirst: boolean;
+  bonus?: {
+    category: 'new' | 'most booked';
+    text: string;
+  };
 }
 
-export default function ServiceCard({service, isFirst}: IServiceCard) {
+export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {theme} = useAppContext();
   const styles = stylesheet({theme});
 
   return (
-    <Pressable
+    <TouchableOpacity
       key={service.id}
       style={[
         styles.card,
-        // eslint-disable-next-line react-native/no-inline-styles
         {
           marginRight: 16,
           marginLeft: isFirst ? 16 : 0,
@@ -32,7 +36,28 @@ export default function ServiceCard({service, isFirst}: IServiceCard) {
       <Text numberOfLines={2} style={styles.cardText}>
         {service.title}
       </Text>
-    </Pressable>
+      {bonus?.category && (
+        <View
+          style={{
+            position: 'absolute',
+            backgroundColor: bonus?.category === 'new' ? 'brown' : 'green',
+            paddingHorizontal: 3,
+            paddingVertical: 1.5,
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+            left: 8,
+          }}>
+          <Text
+            style={{
+              fontSize: 8,
+              color: Colors.white,
+              textTransform: 'uppercase',
+            }}>
+            {bonus.text}
+          </Text>
+        </View>
+      )}
+    </TouchableOpacity>
   );
 }
 
@@ -43,6 +68,8 @@ const stylesheet = ({theme}: IStyleSheet) =>
     },
     card: {
       width: 90,
+      borderRadius: 10,
+      overflow: 'hidden',
     },
     image: {
       width: 90,
@@ -51,8 +78,8 @@ const stylesheet = ({theme}: IStyleSheet) =>
       backgroundColor: '#eeeeee',
     },
     cardText: {
-      marginTop: 10,
+      marginTop: 4,
       color: theme === 'dark' ? Colors.white : Colors.dark,
-      fontSize: 13,
+      fontSize: 12,
     },
   });

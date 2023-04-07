@@ -22,6 +22,10 @@ interface IAppTextInput {
   autoComplete?: any;
   autoCorrect?: boolean;
   handleBackArrowPress?: () => void;
+  value?: string;
+  onBlur?: (e: any) => void;
+  onChangeText?: (e: string | React.ChangeEvent<any>) => void;
+  touched?: boolean;
 }
 
 const AppTextInput = ({
@@ -35,20 +39,24 @@ const AppTextInput = ({
   autoCorrect = false,
   handleBackArrowPress,
   icon,
+  value,
+  onBlur,
+  onChangeText,
+  touched,
 }: IAppTextInput) => {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
   return (
     <View>
-      {label || error ? (
+      {label ? (
         <View style={styles.labelAndErrorContainer}>
           {<Text style={styles.label}>{label}</Text>}
-          {error && (
+          {error && touched ? (
             <View>
               <Text style={styles.error}>{error}</Text>
             </View>
-          )}
+          ) : null}
         </View>
       ) : null}
       <View style={styles.textInputContainer}>
@@ -71,6 +79,9 @@ const AppTextInput = ({
           autoComplete={autoComplete}
           autoCorrect={autoCorrect}
           placeholderTextColor={theme === 'dark' ? Colors.darkGrey : 'auto'}
+          onBlur={onBlur}
+          onChangeText={onChangeText}
+          value={value}
         />
         {icon && icon}
       </View>

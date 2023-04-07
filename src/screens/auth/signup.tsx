@@ -8,13 +8,39 @@ import {
   Text,
   View,
 } from 'react-native';
-
+import {Formik} from 'formik';
+import * as yup from 'yup';
 import {AppTextInput, AppButton} from '../../components';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Colors} from '../../constants';
 import {Pressable} from 'react-native';
 import {useAppContext} from '../../context';
+
+const signupValidationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Please enter valid email')
+    .required('Email is required')
+    .label('Email'),
+  password: yup
+    .string()
+    .min(8)
+    .required('Password is required')
+    .label('Password'),
+  firstName: yup
+    .string()
+    .min(2)
+    .max(255)
+    .required('First name is required')
+    .label('First name'),
+  lastName: yup
+    .string()
+    .min(2)
+    .max(255)
+    .required('Last name is required')
+    .label('Last name'),
+});
 
 export default function Signup() {
   const {theme} = useAppContext();
@@ -24,10 +50,12 @@ export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const {setUser} = useAppContext();
 
-  const handleLogin = () => {
+  const handleLogin = (values: {}) => {
+    console.log(values);
     setIsLoading(true);
     setTimeout(() => {
       setUser({});
+      // setIsLoading(false);
     }, 2500);
   };
 
@@ -45,60 +73,101 @@ export default function Signup() {
             </Text>
           </View>
 
-          <View style={styles.form}>
-            <View style={styles.inputContainer}>
-              <AppTextInput
-                label="First name"
-                placeholder="Enter your first name"
-                keyboardType="default"
-                autoCapitalize="words"
-              />
-            </View>
+          <Formik
+            validationSchema={signupValidationSchema}
+            initialValues={{
+              email: '',
+              password: '',
+              firstName: '',
+              lastName: '',
+            }}
+            onSubmit={values => handleLogin(values)}>
+            {({
+              errors,
+              handleSubmit,
+              handleBlur,
+              handleChange,
+              values,
+              touched,
+            }) => (
+              <>
+                <View style={styles.form}>
+                  <View style={styles.inputContainer}>
+                    <AppTextInput
+                      label="First name"
+                      placeholder="Enter your first name"
+                      keyboardType="default"
+                      autoCapitalize="words"
+                      value={values.firstName}
+                      onBlur={handleBlur('firstName')}
+                      onChangeText={handleChange('firstName')}
+                      error={errors.firstName}
+                      touched={touched.firstName}
+                    />
+                  </View>
 
-            <View style={styles.inputContainer}>
-              <AppTextInput
-                label="Last name"
-                placeholder="Enter your last name"
-                keyboardType="default"
-                autoCapitalize="words"
-              />
-            </View>
+                  <View style={styles.inputContainer}>
+                    <AppTextInput
+                      label="Last name"
+                      placeholder="Enter your last name"
+                      keyboardType="default"
+                      autoCapitalize="words"
+                      value={values.lastName}
+                      onBlur={handleBlur('lastName')}
+                      onChangeText={handleChange('lastName')}
+                      error={errors.lastName}
+                      touched={touched.lastName}
+                    />
+                  </View>
 
-            <View style={styles.inputContainer}>
-              <AppTextInput
-                label="Email address"
-                placeholder="Email Address"
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
+                  <View style={styles.inputContainer}>
+                    <AppTextInput
+                      label="Email address"
+                      placeholder="Email Address"
+                      keyboardType="email-address"
+                      autoCapitalize="none"
+                      value={values.email}
+                      onBlur={handleBlur('email')}
+                      onChangeText={handleChange('email')}
+                      error={errors.email}
+                      touched={touched.email}
+                    />
+                  </View>
 
-            <View style={styles.inputContainer}>
-              <AppTextInput
-                label="Password"
-                placeholder="Enter your password"
-                secureTextEntry
-                autoCapitalize="none"
-              />
-            </View>
-          </View>
+                  <View style={styles.inputContainer}>
+                    <AppTextInput
+                      label="Password"
+                      placeholder="Enter your password"
+                      secureTextEntry
+                      autoCapitalize="none"
+                      value={values.password}
+                      onBlur={handleBlur('password')}
+                      onChangeText={handleChange('password')}
+                      error={errors.password}
+                      touched={touched.password}
+                    />
+                  </View>
+                </View>
 
-          <View style={styles.bottom}>
-            <AppButton
-              title="Sign up"
-              isLoading={isLoading}
-              onPress={handleLogin}
-              full
-            />
-            <Pressable
-              style={styles.bottomTextContainer}
-              onPress={() => navigation.navigate('Login')}>
-              <Text style={styles.bottomText}>
-                Already have an account?{' '}
-                <Text style={styles.bottomTextLink}>Log in</Text>
-              </Text>
-            </Pressable>
-          </View>
+                <View style={styles.bottom}>
+                  <AppButton
+                    title="Sign up"
+                    isLoading={isLoading}
+                    onPress={handleSubmit}
+                    full
+                  />
+                  <Pressable
+                    style={styles.bottomTextContainer}
+                    onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.bottomText}>
+                      Already have an account?{' '}
+                      <Text style={styles.bottomTextLink}>Log in</Text>
+                    </Text>
+                  </Pressable>
+                </View>
+              </>
+            )}
+          </Formik>
         </ScrollView>
       </SafeAreaView>
     </KeyboardAvoidingView>

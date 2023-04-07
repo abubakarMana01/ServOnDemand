@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {ActivityIndicator, Pressable, StyleSheet, Text} from 'react-native';
 import {Colors} from '../constants';
 
 interface IAuthButton {
@@ -25,7 +20,7 @@ export default function AppButton({
   customTextStyles = {},
 }: IAuthButton) {
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       style={[styles.button, {maxWidth: full ? '100%' : 263}, customStyles]}>
       {isLoading ? (
@@ -33,7 +28,7 @@ export default function AppButton({
       ) : (
         <Text style={[styles.text, customTextStyles]}>{title}</Text>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

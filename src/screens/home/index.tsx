@@ -5,6 +5,7 @@ import MostPopular from './components/mostPopular';
 import {SectionHeader} from '../../components';
 import MostBookedServices from './components/mostBookedServices';
 import SpecialOffer from './components/specialOffer';
+import NewAndNoteWorthy from './components/newAndNoteworthy';
 
 export default function Home() {
   return (
@@ -13,25 +14,29 @@ export default function Home() {
 
       <ScrollView bounces={false}>
         <View style={styles.mainContainer}>
-          <View style={styles.section}>
-            <SectionHeader title="Special Offers" />
-            <SpecialOffer />
-          </View>
-
-          {/* <View style={styles.section}>
+          {/* <View style={[styles.section, {marginTop: 20}]}>
             <SectionHeader title="Categories" />
             <Categories />
           </View> */}
 
-          <View style={styles.section}>
+          <View style={[styles.section, styles.sectionMinMarginTop]}>
             <SectionHeader title="Most Popular" />
             <MostPopular />
           </View>
 
+          <View style={[styles.section, styles.sectionMinMarginTop]}>
+            <SectionHeader title="Special Offers" />
+            <SpecialOffer />
+          </View>
+
           <View style={styles.section}>
             <SectionHeader title="Most booked services" />
-            {/* <Categories /> */}
             <MostBookedServices />
+          </View>
+
+          <View style={styles.section}>
+            <SectionHeader title="New and Noteworthy" />
+            <NewAndNoteWorthy />
           </View>
         </View>
       </ScrollView>
@@ -47,6 +52,9 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
   section: {
-    marginTop: 28,
+    marginTop: 40,
+  },
+  sectionMinMarginTop: {
+    marginTop: 25,
   },
 });

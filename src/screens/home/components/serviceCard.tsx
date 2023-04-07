@@ -53,6 +53,6 @@ const stylesheet = ({theme}: IStyleSheet) =>
     cardText: {
       marginTop: 10,
       color: theme === 'dark' ? Colors.white : Colors.dark,
-      fontSize: 14,
+      fontSize: 13,
     },
   });

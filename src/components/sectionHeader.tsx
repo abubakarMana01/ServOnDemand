@@ -32,7 +32,7 @@ const styleSheet = ({theme, withPaddingHorizontal}: any) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'flex-end',
-      marginBottom: 10,
+      marginBottom: 14,
     },
     sectionTitle: {
       fontSize: 18,

@@ -25,6 +25,9 @@ function StackNavigator() {
       <Stack.Screen
         name={ROUTES.AVAILABLE_HANDYMEN}
         component={AvailableHandymen}
+        options={{
+          headerTitle: 'Available',
+        }}
       />
     </Stack.Navigator>
   );

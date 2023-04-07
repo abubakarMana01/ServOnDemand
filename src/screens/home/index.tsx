@@ -1,10 +1,10 @@
 import {ScrollView, StyleSheet, View} from 'react-native';
 import React from 'react';
 import HomeHeader from './components/homeHeader';
-import Categories from './components/categories';
 import MostPopular from './components/mostPopular';
 import {SectionHeader} from '../../components';
 import MostBookedServices from './components/mostBookedServices';
+import SpecialOffer from './components/specialOffer';
 
 export default function Home() {
   return (
@@ -13,25 +13,25 @@ export default function Home() {
 
       <ScrollView bounces={false}>
         <View style={styles.mainContainer}>
-          {/* <View style={styles.section}>
+          <View style={styles.section}>
             <SectionHeader title="Special Offers" />
             <SpecialOffer />
+          </View>
+
+          {/* <View style={styles.section}>
+            <SectionHeader title="Categories" />
+            <Categories />
           </View> */}
 
           <View style={styles.section}>
-            <SectionHeader title="Categories" />
-            <Categories />
+            <SectionHeader title="Most Popular" />
+            <MostPopular />
           </View>
 
           <View style={styles.section}>
             <SectionHeader title="Most booked services" />
             {/* <Categories /> */}
             <MostBookedServices />
-          </View>
-
-          <View style={styles.section}>
-            <SectionHeader title="Most Popular" />
-            <MostPopular />
           </View>
         </View>
       </ScrollView>

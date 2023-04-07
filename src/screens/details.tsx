@@ -138,7 +138,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     title: {
       fontSize: 32,
       fontWeight: '600',
-      marginTop: 16,
+      marginTop: 8,
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     infoContainer: {
@@ -197,11 +197,10 @@ const styleSheet = ({theme}: IStyleSheet) =>
     descriptionTitle: {
       fontSize: 20,
       fontWeight: '600',
-      marginBottom: 16,
+      marginBottom: 8,
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     descriptionText: {
-      fontSize: 16,
       color: theme === 'dark' ? Colors.white : Colors.black,
       opacity: 0.6,
     },
@@ -211,7 +210,12 @@ const styleSheet = ({theme}: IStyleSheet) =>
       justifyContent: 'space-between',
       paddingHorizontal: 16,
       paddingTop: 12,
-      paddingBottom: Platform.OS === 'android' ? 12 : 5,
+      paddingBottom:
+        Platform.OS === 'android'
+          ? 12
+          : Dimensions.get('window').height < 700
+          ? 12
+          : 0,
       borderColor: Colors.lightGrey,
       borderTopWidth: 1,
     },

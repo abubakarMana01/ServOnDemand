@@ -14,6 +14,7 @@ export default function useNavigationTheme() {
     colors: {
       ...DefaultTheme.colors,
       background: Colors.white,
+      // primary: Colors.darkBlue,
     },
   };
 }

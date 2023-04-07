@@ -20,12 +20,12 @@ export default function HandymanItem({data}: IHandymanItem) {
   return (
     <View style={styles.infoContainer}>
       <Image
-        source={require('../../../assets/user2.png')}
+        source={{uri: data.picture}}
         resizeMode="cover"
         style={styles.userImg}
       />
 
-      <View style={{flex: 1}}>
+      <View style={styles.userDetails}>
         <Text style={styles.username} numberOfLines={1}>
           {data.name}
         </Text>
@@ -40,10 +40,22 @@ export default function HandymanItem({data}: IHandymanItem) {
         </View>
       </View>
 
+      {/* <AppButton
+        title="Details"
+        onPress={() => navigation.navigate(ROUTES.DETAILS)}
+        customStyles={[
+          styles.selectButtonCustom,
+          {backgroundColor: 'transparent'},
+        ]}
+        customTextStyles={{
+          color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+        }}
+      /> */}
       <AppButton
-        title="Select"
+        title="Details"
         onPress={() => navigation.navigate(ROUTES.DETAILS)}
         customStyles={styles.selectButtonCustom}
+        customTextStyles={styles.selectButtonCustomText}
       />
     </View>
   );
@@ -60,6 +72,10 @@ const styleSheet = ({theme}: IStyleSheet) =>
       height: 43,
       borderRadius: 21.5,
       marginRight: 8,
+      backgroundColor: Colors.lightGrey,
+    },
+    userDetails: {
+      flex: 1,
     },
     username: {
       fontWeight: '600',
@@ -80,7 +96,10 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     selectButtonCustom: {
       maxWidth: 75,
-      height: 35,
+      height: 32,
       borderRadius: 8,
+    },
+    selectButtonCustomText: {
+      fontWeight: '400',
     },
   });

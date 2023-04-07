@@ -1,43 +1,17 @@
-/* eslint-disable react-native/no-inline-styles */
-import {
-  Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useAppContext} from '../../../context';
-import {Colors} from '../../../constants';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {ROUTES} from '../../../navigation';
+import ServiceCard from './serviceCard';
 
 const MostBookedServices = () => {
   const {theme} = useAppContext();
   const styles = stylesheet({theme});
-  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
-    <View>
+    <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {MOST_BOOKED_SERVICES.map((service, index) => (
-          <Pressable
-            key={service.id}
-            style={[
-              styles.card,
-              {
-                marginRight: 16,
-                marginLeft: !index ? 16 : 0,
-              },
-            ]}
-            onPress={() => navigation.navigate(ROUTES.AVAILABLE_HANDYMEN)}>
-            <Image source={{uri: service.image}} style={styles.image} />
-            <Text numberOfLines={2} style={styles.cardText}>
-              {service.title}
-            </Text>
-          </Pressable>
+          <ServiceCard key={service.id} service={service} isFirst={!index} />
         ))}
       </ScrollView>
     </View>
@@ -46,24 +20,9 @@ const MostBookedServices = () => {
 
 export default MostBookedServices;
 
-const stylesheet = ({theme}: IStyleSheet) =>
+const stylesheet = ({}: IStyleSheet) =>
   StyleSheet.create({
-    marginInline: {
-      marginHorizontal: 16,
-    },
-    card: {
-      width: 100,
-    },
-    image: {
-      width: 100,
-      height: 100,
-      borderRadius: 10,
-      backgroundColor: '#eeeeee',
-    },
-    cardText: {
-      marginTop: 8,
-      color: theme === 'dark' ? Colors.white : Colors.dark,
-    },
+    container: {},
   });
 
 const MOST_BOOKED_SERVICES = [

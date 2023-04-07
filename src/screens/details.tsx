@@ -9,6 +9,7 @@ import {
   View,
   Dimensions,
   Platform,
+  StatusBar,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -22,6 +23,8 @@ export default function Details() {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle={'light-content'} backgroundColor={Colors.dark} />
+
       <ImageBackground
         source={require('../assets/details/painting.png')}
         style={styles.imageBackground}
@@ -216,7 +219,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
           : Dimensions.get('window').height < 700
           ? 12
           : 0,
-      borderColor: Colors.lightGrey,
+      borderColor: '#d7d7d7c2',
       borderTopWidth: 1,
     },
     actionButton: {

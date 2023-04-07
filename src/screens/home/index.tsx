@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
   section: {
-    marginTop: 34,
+    marginTop: 28,
   },
 });

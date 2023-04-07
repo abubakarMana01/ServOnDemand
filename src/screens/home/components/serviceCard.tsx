@@ -68,8 +68,6 @@ const stylesheet = ({theme}: IStyleSheet) =>
     },
     card: {
       width: 90,
-      borderRadius: 10,
-      overflow: 'hidden',
     },
     image: {
       width: 90,

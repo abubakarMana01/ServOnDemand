@@ -4,7 +4,6 @@ import HomeHeader from './components/homeHeader';
 import MostPopular from './components/mostPopular';
 import {SectionHeader} from '../../components';
 import MostBookedServices from './components/mostBookedServices';
-import SpecialOffer from './components/specialOffer';
 import NewAndNoteWorthy from './components/newAndNoteworthy';
 
 export default function Home() {
@@ -12,7 +11,7 @@ export default function Home() {
     <View style={styles.wrapper}>
       <HomeHeader />
 
-      <ScrollView bounces={false}>
+      <ScrollView bounces={true}>
         <View style={styles.mainContainer}>
           {/* <View style={[styles.section, {marginTop: 20}]}>
             <SectionHeader title="Categories" />
@@ -24,10 +23,10 @@ export default function Home() {
             <MostPopular />
           </View>
 
-          <View style={[styles.section, styles.sectionMinMarginTop]}>
+          {/* <View style={[styles.section, styles.sectionMinMarginTop]}>
             <SectionHeader title="Special Offers" />
             <SpecialOffer />
-          </View>
+          </View> */}
 
           <View style={styles.section}>
             <SectionHeader title="Most booked services" />
@@ -55,6 +54,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   sectionMinMarginTop: {
-    marginTop: 25,
+    marginTop: 30,
   },
 });

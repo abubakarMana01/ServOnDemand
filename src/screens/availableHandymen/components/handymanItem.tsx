@@ -47,9 +47,12 @@ export default function HandymanItem({data}: IHandymanItem) {
           styles.selectButtonCustom,
           {backgroundColor: 'transparent'},
         ]}
-        customTextStyles={{
-          color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
-        }}
+        customTextStyles={[
+          styles.selectButtonCustomText,
+          {
+            color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+          },
+        ]}
       /> */}
       <AppButton
         title="Details"

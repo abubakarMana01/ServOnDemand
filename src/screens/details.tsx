@@ -8,6 +8,7 @@ import {
   Text,
   View,
   Dimensions,
+  Platform,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -210,6 +211,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       justifyContent: 'space-between',
       paddingHorizontal: 16,
       paddingTop: 12,
+      paddingBottom: Platform.OS === 'android' ? 12 : 5,
       borderColor: Colors.lightGrey,
       borderTopWidth: 1,
     },

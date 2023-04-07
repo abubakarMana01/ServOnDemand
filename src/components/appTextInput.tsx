@@ -108,7 +108,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       borderWidth: 1.5,
       borderColor: '#b2beb590',
       borderRadius: 8,
-      paddingVertical: 8,
+      // paddingVertical: 8,
       paddingHorizontal: 12,
     },
     backArrow: {
@@ -116,7 +116,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     textInput: {
       flex: 1,
-      height: 25,
+      height: 40,
       color: theme === 'dark' ? Colors.white : Colors.dark,
     },
     error: {

@@ -32,7 +32,7 @@ const MostBookedServices = () => {
                 marginLeft: !index ? 16 : 0,
               },
             ]}
-            onPress={() => navigation.navigate(ROUTES.DETAILS)}>
+            onPress={() => navigation.navigate(ROUTES.AVAILABLE_HANDYMEN)}>
             <Image source={{uri: service.image}} style={styles.image} />
             <Text numberOfLines={2} style={styles.cardText}>
               {service.title}

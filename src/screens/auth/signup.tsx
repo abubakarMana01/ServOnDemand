@@ -63,7 +63,7 @@ export default function Signup() {
   return (
     <KeyboardAvoidingView
       style={styles.keyboardAvoidingView}
-      behavior="padding"
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={0}>
       <SafeAreaView style={styles.container}>
         <ScrollView bounces={false} showsVerticalScrollIndicator={false}>

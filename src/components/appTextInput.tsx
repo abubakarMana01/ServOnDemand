@@ -34,7 +34,7 @@ const AppTextInput = ({
   error = '',
   keyboardType = 'default',
   secureTextEntry = false,
-  autoCapitalize = 'sentences',
+  autoCapitalize = 'none',
   autoComplete = 'off',
   autoCorrect = false,
   handleBackArrowPress,

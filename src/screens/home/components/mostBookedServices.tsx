@@ -12,6 +12,7 @@ import {useAppContext} from '../../../context';
 import {Colors} from '../../../constants';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ROUTES} from '../../../navigation';
 
 const MostBookedServices = () => {
   const {theme} = useAppContext();
@@ -31,7 +32,7 @@ const MostBookedServices = () => {
                 marginLeft: !index ? 16 : 0,
               },
             ]}
-            onPress={() => navigation.navigate('Details')}>
+            onPress={() => navigation.navigate(ROUTES.DETAILS)}>
             <Image source={{uri: service.image}} style={styles.image} />
             <Text numberOfLines={2} style={styles.cardText}>
               {service.title}

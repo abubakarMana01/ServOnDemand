@@ -20,6 +20,7 @@ import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Colors} from '../../constants';
 import {useAppContext} from '../../context';
+import {ROUTES} from '../../navigation';
 
 const loginValidationSchema = yup.object().shape({
   email: yup
@@ -141,7 +142,7 @@ export default function Login() {
                   />
                   <Pressable
                     style={styles.bottomTextContainer}
-                    onPress={() => navigation.navigate('Signup')}>
+                    onPress={() => navigation.navigate(ROUTES.SIGNUP)}>
                     <Text style={styles.bottomText}>
                       Don't have an account?{' '}
                       <Text style={styles.bottomTextLink}>Create one</Text>

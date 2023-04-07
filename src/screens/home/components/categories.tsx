@@ -6,6 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {Colors} from '../../../constants';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ROUTES} from '../../../navigation';
 
 export default function Categories() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
@@ -14,7 +15,7 @@ export default function Categories() {
     <View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <Pressable
-          onPress={() => navigation.navigate('Details')}
+          onPress={() => navigation.navigate(ROUTES.DETAILS)}
           style={[
             styles.categoryCard,
             // eslint-disable-next-line react-native/no-inline-styles
@@ -24,7 +25,7 @@ export default function Categories() {
           <Text style={styles.categoryText}>Cleaning</Text>
         </Pressable>
         <Pressable
-          onPress={() => navigation.navigate('Details')}
+          onPress={() => navigation.navigate(ROUTES.DETAILS)}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             ...styles.categoryCard,
@@ -34,7 +35,7 @@ export default function Categories() {
           <Text style={styles.categoryText}>Repairs</Text>
         </Pressable>
         <Pressable
-          onPress={() => navigation.navigate('Details')}
+          onPress={() => navigation.navigate(ROUTES.DETAILS)}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             ...styles.categoryCard,
@@ -48,7 +49,7 @@ export default function Categories() {
           <Text style={styles.categoryText}>Painting</Text>
         </Pressable>
         <Pressable
-          onPress={() => navigation.navigate('Details')}
+          onPress={() => navigation.navigate(ROUTES.DETAILS)}
           // eslint-disable-next-line react-native/no-inline-styles
           style={[styles.categoryCard, {backgroundColor: '#E9E9F6'}]}>
           <MaterialCommunityIcons
@@ -59,7 +60,7 @@ export default function Categories() {
           <Text style={styles.categoryText}>Laundry</Text>
         </Pressable>
         <Pressable
-          onPress={() => navigation.navigate('Details')}
+          onPress={() => navigation.navigate(ROUTES.DETAILS)}
           // eslint-disable-next-line react-native/no-inline-styles
           style={[styles.categoryCard, {backgroundColor: '#FAC3E2'}]}>
           <MaterialIcons name="car-repair" size={45} color={Colors.black} />

@@ -5,6 +5,7 @@ import {Bookings, Calendar} from '../screens';
 import StackNavigator from './stackNavigator';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
+import {ROUTES} from '.';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ export default function BottomTabsNavigation() {
         },
       }}>
       <Tab.Screen
-        name="StackNav"
+        name={ROUTES.STACK_NAV}
         component={StackNavigator}
         options={{
           title: 'Home',
@@ -36,7 +37,7 @@ export default function BottomTabsNavigation() {
         }}
       />
       <Tab.Screen
-        name="Bookings"
+        name={ROUTES.BOOKINGS}
         component={Bookings}
         options={{
           tabBarIcon: ({color, size, focused}) => (
@@ -49,7 +50,7 @@ export default function BottomTabsNavigation() {
         }}
       />
       <Tab.Screen
-        name="Calendar"
+        name={ROUTES.CALENDAR}
         component={Calendar}
         options={{
           tabBarIcon: ({color, size, focused}) => (
@@ -62,7 +63,7 @@ export default function BottomTabsNavigation() {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name={ROUTES.PROFILE}
         component={Bookings}
         options={{
           tabBarIcon: ({color, size, focused}) => (

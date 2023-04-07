@@ -16,6 +16,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Colors} from '../../constants';
 import {Pressable} from 'react-native';
 import {useAppContext} from '../../context';
+import {ROUTES} from '../../navigation';
 
 const signupValidationSchema = yup.object().shape({
   email: yup
@@ -158,7 +159,7 @@ export default function Signup() {
                   />
                   <Pressable
                     style={styles.bottomTextContainer}
-                    onPress={() => navigation.navigate('Login')}>
+                    onPress={() => navigation.navigate(ROUTES.LOGIN)}>
                     <Text style={styles.bottomText}>
                       Already have an account?{' '}
                       <Text style={styles.bottomTextLink}>Log in</Text>

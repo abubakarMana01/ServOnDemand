@@ -1,13 +1,15 @@
-import {Platform, StyleSheet, View} from 'react-native';
+import {Platform, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import React from 'react';
 import {Colors} from '../constants';
 
 export default function ScreenHeaderBg({
   children,
+  customStyles,
 }: {
   children: React.ReactNode;
+  customStyles?: StyleProp<ViewStyle>;
 }) {
-  return <View style={styles.container}>{children}</View>;
+  return <View style={[styles.container, customStyles]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({

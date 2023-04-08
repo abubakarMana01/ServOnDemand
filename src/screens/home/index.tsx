@@ -11,34 +11,36 @@ export default function Home() {
     <View style={styles.wrapper}>
       <HomeHeader />
 
-      <ScrollView bounces={true}>
-        <View style={styles.mainContainer}>
-          {/* <View style={[styles.section, {marginTop: 20}]}>
+      <View style={styles.scrollViewContainer}>
+        <ScrollView bounces={true}>
+          <View style={styles.mainContainer}>
+            {/* <View style={[styles.section, {marginTop: 20}]}>
             <SectionHeader title="Categories" />
             <Categories />
           </View> */}
 
-          <View style={[styles.section, styles.sectionMinMarginTop]}>
-            <SectionHeader title="Most Popular" />
-            <MostPopular />
-          </View>
+            <View style={[styles.section, styles.sectionMinMarginTop]}>
+              <SectionHeader title="Most Popular" />
+              <MostPopular />
+            </View>
 
-          {/* <View style={[styles.section, styles.sectionMinMarginTop]}>
+            {/* <View style={[styles.section, styles.sectionMinMarginTop]}>
             <SectionHeader title="Special Offers" />
             <SpecialOffer />
           </View> */}
 
-          <View style={styles.section}>
-            <SectionHeader title="Most booked services" />
-            <MostBookedServices />
-          </View>
+            <View style={styles.section}>
+              <SectionHeader title="Most booked services" />
+              <MostBookedServices />
+            </View>
 
-          <View style={styles.section}>
-            <SectionHeader title="New and Noteworthy" />
-            <NewAndNoteWorthy />
+            <View style={styles.section}>
+              <SectionHeader title="New and Noteworthy" />
+              <NewAndNoteWorthy />
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -47,8 +49,13 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
+  scrollViewContainer: {
+    flex: 1,
+    marginTop: -40,
+  },
   mainContainer: {
     paddingBottom: 32,
+    paddingTop: 40,
   },
   section: {
     marginTop: 40,

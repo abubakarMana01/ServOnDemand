@@ -1,5 +1,11 @@
 import React from 'react';
-import {ActivityIndicator, Pressable, StyleSheet, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {Colors} from '../constants';
 
 interface IAuthButton {
@@ -9,6 +15,7 @@ interface IAuthButton {
   full?: boolean;
   customStyles?: object;
   customTextStyles?: object;
+  icon?: React.ReactNode;
 }
 
 export default function AppButton({
@@ -18,32 +25,45 @@ export default function AppButton({
   full = false,
   customStyles = {},
   customTextStyles = {},
+  icon,
 }: IAuthButton) {
+  const styles = styleSheet({full});
+
   return (
-    <Pressable
-      onPress={onPress}
-      style={[styles.button, {maxWidth: full ? '100%' : 263}, customStyles]}>
+    <Pressable onPress={onPress} style={[styles.button, customStyles]}>
       {isLoading ? (
         <ActivityIndicator size="small" color={Colors.white} />
       ) : (
-        <Text style={[styles.text, customTextStyles]}>{title}</Text>
+        <View style={styles.content}>
+          {icon && <View style={styles.iconContainer}>{icon}</View>}
+          <Text style={[styles.text, customTextStyles]}>{title}</Text>
+        </View>
       )}
     </Pressable>
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: 54,
-    backgroundColor: Colors.darkBlue,
-    borderRadius: 12,
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: Colors.white,
-  },
-});
+const styleSheet = ({full}: {full: boolean}) =>
+  StyleSheet.create({
+    button: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: 54,
+      backgroundColor: Colors.darkBlue,
+      borderRadius: 12,
+      maxWidth: full ? '100%' : 263,
+    },
+    content: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    iconContainer: {
+      marginRight: 8,
+    },
+    text: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: Colors.white,
+    },
+  });

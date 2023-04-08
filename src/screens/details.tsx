@@ -88,7 +88,9 @@ export default function Details() {
             </View>
 
             <View style={styles.dividerContainer}>
-              <Divider />
+              <Divider
+                color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
+              />
             </View>
 
             <View>
@@ -104,7 +106,9 @@ export default function Details() {
       </View>
 
       <SafeAreaView>
-        <Divider />
+        <Divider
+          color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
+        />
         <View style={styles.actionButtonsContainer}>
           <View style={styles.actionButton}>
             <AppButton

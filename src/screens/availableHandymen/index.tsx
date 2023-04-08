@@ -19,7 +19,9 @@ const AvailableHandymen = () => {
         contentContainerStyle={styles.flatList}
         ItemSeparatorComponent={() => (
           <View style={styles.separator}>
-            <Divider color="#d7d7d7c2" />
+            <Divider
+              color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '50'}
+            />
           </View>
         )}
         data={AVAILABLE_HANDYMEN}

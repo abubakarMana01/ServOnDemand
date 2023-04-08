@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Bookings, Calendar} from '../screens';
+import {Bookings, Calendar, Profile} from '../screens';
 import StackNavigator from './stackNavigator';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
@@ -64,7 +64,7 @@ export default function BottomTabsNavigation() {
       />
       <Tab.Screen
         name={ROUTES.PROFILE}
-        component={Bookings}
+        component={Profile}
         options={{
           tabBarIcon: ({color, size, focused}) => (
             <Ionicons

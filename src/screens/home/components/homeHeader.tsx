@@ -8,11 +8,11 @@ import SearchModal from './searchModal';
 
 export default function HomeHeader() {
   const [modalVisible, setModalVisible] = useState(false);
-  const {theme, setUser} = useAppContext();
+  const {theme} = useAppContext();
 
   const styles = styleSheet({theme});
   return (
-    <ScreenHeaderBg>
+    <ScreenHeaderBg customStyles={styles.screenHeader}>
       <View style={styles.headerUser}>
         <Image
           source={require('../../../assets/neymar.jpeg')}
@@ -20,12 +20,12 @@ export default function HomeHeader() {
           resizeMode="cover"
         />
 
-        <View style={{flex: 1}}>
+        <View style={styles.userInfo}>
           <Text style={styles.greeting}>Good morning</Text>
           <View style={styles.nameAndNotification}>
             <Text style={styles.username}>Abubakar</Text>
 
-            <Pressable onPress={() => setUser(null)}>
+            <Pressable>
               <Feather name="bell" size={24} color={Colors.grey} />
             </Pressable>
           </View>
@@ -50,11 +50,15 @@ export default function HomeHeader() {
 
 const styleSheet = ({}: IStyleSheet) =>
   StyleSheet.create({
+    screenHeader: {
+      zIndex: 10,
+    },
     headerUser: {
       flexDirection: 'row',
       alignItems: 'center',
       marginBottom: 24,
     },
+    userInfo: {flex: 1},
     nameAndNotification: {
       flexDirection: 'row',
       alignItems: 'center',

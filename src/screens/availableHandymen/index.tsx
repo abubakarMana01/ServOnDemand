@@ -16,7 +16,7 @@ const AvailableHandymen = () => {
         backgroundColor={theme === 'dark' ? Colors.dark : Colors.white}
       />
       <FlatList
-        style={styles.flatList}
+        contentContainerStyle={styles.flatList}
         ItemSeparatorComponent={() => (
           <View style={styles.separator}>
             <Divider color="#d7d7d7c2" />
@@ -37,7 +37,7 @@ const styleSheet = ({}: IStyleSheet) =>
       flex: 1,
     },
     flatList: {
-      paddingTop: 20,
+      paddingVertical: 20,
       paddingHorizontal: 16,
     },
     separator: {

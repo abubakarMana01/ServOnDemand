@@ -119,7 +119,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     textInput: {
       flex: 1,
-      height: 40,
+      height: 45,
       color: theme === 'dark' ? Colors.white : Colors.dark,
     },
     error: {

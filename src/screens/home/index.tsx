@@ -19,15 +19,15 @@ export default function Home() {
             <Categories />
           </View> */}
 
+            {/* <View style={[styles.section, styles.sectionMinMarginTop]}>
+              <SectionHeader title="Special Offers" />
+              <SpecialOffer />
+            </View> */}
+
             <View style={[styles.section, styles.sectionMinMarginTop]}>
               <SectionHeader title="Most Popular" />
               <MostPopular />
             </View>
-
-            {/* <View style={[styles.section, styles.sectionMinMarginTop]}>
-            <SectionHeader title="Special Offers" />
-            <SpecialOffer />
-          </View> */}
 
             <View style={styles.section}>
               <SectionHeader title="Most booked services" />

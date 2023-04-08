@@ -189,7 +189,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       marginTop: 16,
     },
     title: {
-      fontSize: 30,
+      fontSize: 36,
       fontWeight: '600',
       color: theme === 'dark' ? Colors.white : Colors.black,
     },

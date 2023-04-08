@@ -1,7 +1,21 @@
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import {useAppContext} from '../../context';
-import {AppButton, ScreenHeaderBg, ScreenHeaderText} from '../../components';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {
+  AppButton,
+  Divider,
+  ScreenHeaderBg,
+  ScreenHeaderText,
+} from '../../components';
 import {Colors} from '../../constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -25,7 +39,38 @@ export default function Profile() {
           <Text style={styles.userEmail}>ym.abubakr8@gmail.com</Text>
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollView}></ScrollView>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <Pressable style={styles.options}>
+            <Ionicons
+              name="person-outline"
+              size={24}
+              color={theme === 'dark' ? Colors.white : Colors.black}
+            />
+            <Text style={styles.optionText}>Edit Profile</Text>
+          </Pressable>
+          <Divider
+            color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
+          />
+          <Pressable style={styles.options}>
+            <Ionicons
+              name="notifications-outline"
+              size={24}
+              color={theme === 'dark' ? Colors.white : Colors.black}
+            />
+            <Text style={styles.optionText}>Notifications</Text>
+          </Pressable>
+          <Divider
+            color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
+          />
+          <Pressable style={styles.options}>
+            <Ionicons
+              name="settings-outline"
+              size={24}
+              color={theme === 'dark' ? Colors.white : Colors.black}
+            />
+            <Text style={styles.optionText}>Settings</Text>
+          </Pressable>
+        </ScrollView>
 
         <AppButton
           title="Logout"
@@ -38,6 +83,7 @@ export default function Profile() {
               color={Colors.white}
             />
           }
+          customStyles={styles.logoutButton}
         />
       </View>
     </View>
@@ -54,7 +100,9 @@ const styleSheet = ({theme}: IStyleSheet) =>
       flex: 1,
       padding: 16,
     },
-    scrollView: {},
+    scrollView: {
+      marginTop: 32,
+    },
 
     userInfo: {
       alignItems: 'center',
@@ -71,8 +119,25 @@ const styleSheet = ({theme}: IStyleSheet) =>
       fontSize: 24,
       fontWeight: '700',
       marginTop: 8,
+      color: theme === 'dark' ? Colors.white : Colors.black,
     },
     userEmail: {
-      marginTop: 4,
+      marginTop: 2,
+      color: theme === 'dark' ? Colors.white : Colors.black,
+    },
+
+    options: {
+      paddingVertical: 20,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    optionText: {
+      color: theme === 'dark' ? Colors.white : Colors.black,
+      marginLeft: 16,
+      fontSize: 16,
+      fontWeight: '500',
+    },
+    logoutButton: {
+      marginBottom: Dimensions.get('window').height < 700 ? 0 : 8,
     },
   });

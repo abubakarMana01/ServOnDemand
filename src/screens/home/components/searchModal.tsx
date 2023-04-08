@@ -38,7 +38,7 @@ export default function SearchModal({
       <SafeAreaView style={styles.modal}>
         <StatusBar
           barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
-          backgroundColor={theme === 'dark' ? Colors.dark : Colors.white}
+          backgroundColor={Colors.dark}
         />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.modalContainer}>

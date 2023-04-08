@@ -1,7 +1,7 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Colors} from '../../../constants';
-import {AppButton} from '../../../components';
+import {AppButton, Avatar} from '../../../components';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useAppContext} from '../../../context';
@@ -19,11 +19,13 @@ export default function HandymanItem({data}: IHandymanItem) {
 
   return (
     <View style={styles.infoContainer}>
-      <Image
+      {/* <Image
         source={{uri: data.picture}}
         resizeMode="cover"
         style={styles.userImg}
-      />
+      /> */}
+
+      <Avatar size={55} initials={'JB'} />
 
       <View style={styles.userDetails}>
         <Text style={styles.username} numberOfLines={1}>
@@ -71,14 +73,14 @@ const styleSheet = ({theme}: IStyleSheet) =>
       alignItems: 'center',
     },
     userImg: {
-      width: 43,
-      height: 43,
-      borderRadius: 21.5,
-      marginRight: 8,
+      width: 55,
+      height: 55,
+      borderRadius: 30,
       backgroundColor: theme === 'dark' ? Colors.darkGrey : Colors.lightGrey,
     },
     userDetails: {
       flex: 1,
+      marginLeft: 8,
     },
     username: {
       fontWeight: '600',

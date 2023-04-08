@@ -1,13 +1,30 @@
 import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useAppContext} from '../../context';
 import {Colors} from '../../constants';
 import HandymanItem from './components/handymanItem';
 import {Divider} from '../../components';
+import {
+  ParamListBase,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
 const AvailableHandymen = () => {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
+  const navigation = useNavigation();
+  const {params} = useRoute<
+    RouteProp<ParamListBase> & {params: {title: string}}
+  >();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: params?.title,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -43,7 +60,7 @@ const styleSheet = ({}: IStyleSheet) =>
       paddingHorizontal: 16,
     },
     separator: {
-      paddingVertical: 16,
+      paddingVertical: 12,
     },
   });
 

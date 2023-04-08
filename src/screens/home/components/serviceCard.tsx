@@ -31,7 +31,9 @@ export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
           marginLeft: isFirst ? 16 : 0,
         },
       ]}
-      onPress={() => navigation.navigate(ROUTES.AVAILABLE_HANDYMEN)}>
+      onPress={() =>
+        navigation.navigate(ROUTES.AVAILABLE_HANDYMEN, {title: service.title})
+      }>
       <Image source={{uri: service.image}} style={styles.image} />
       <Text numberOfLines={2} style={styles.cardText}>
         {service.title}

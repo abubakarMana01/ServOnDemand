@@ -17,6 +17,12 @@ export default function HandymanItem({data}: IHandymanItem) {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
+  const initials = data.name
+    .split(' ')
+    .map(n => n[0])
+    .slice(0, 2)
+    .join('');
+
   return (
     <View style={styles.infoContainer}>
       {/* <Image
@@ -25,7 +31,7 @@ export default function HandymanItem({data}: IHandymanItem) {
         style={styles.userImg}
       /> */}
 
-      <Avatar size={55} initials={'JB'} />
+      <Avatar size={55} initials={initials} />
 
       <View style={styles.userDetails}>
         <Text style={styles.username} numberOfLines={1}>

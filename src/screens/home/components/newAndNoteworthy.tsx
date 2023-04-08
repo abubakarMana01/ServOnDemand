@@ -99,9 +99,9 @@ const NEW_AND_NOTEWORTHY_SERVICES_ROW_1 = [
 const NEW_AND_NOTEWORTHY_SERVICES_ROW_2 = [
   {
     id: '1',
-    title: 'Car Mechanic',
+    title: 'Haircut for men',
     image:
-      'https://images.pexels.com/photos/1388278/pexels-photo-1388278.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '2',

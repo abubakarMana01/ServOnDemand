@@ -9,7 +9,6 @@ interface IAvatar {
 const Avatar = ({initials, size}: IAvatar) => {
   const backgroundColor = generateColor();
   const fontSize = Math.floor(size / 2.5); // Font size based on avatar size
-
   const styles = styleSheet({size, backgroundColor, fontSize});
 
   return (

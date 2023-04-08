@@ -35,7 +35,7 @@ const MOST_BOOKED_SERVICES = [
     id: '1',
     title: 'AC Service and Repairs',
     image:
-      'https://images.unsplash.com/photo-1558919047-80f932b017cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YWMlMjByZXBhaXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
+      'https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '2',
@@ -45,14 +45,20 @@ const MOST_BOOKED_SERVICES = [
   },
   {
     id: '3',
-    title: 'Water Purifier',
+    title: 'Electrician',
     image:
-      'https://images.unsplash.com/photo-1629969337555-e384ed2d1439?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8d2F0ZXIlMjBwdXJpZmllcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+      'https://images.pexels.com/photos/8005397/pexels-photo-8005397.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '4',
     title: 'Computer Repair',
     image:
       'https://images.unsplash.com/photo-1591238372338-22d30c883a86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXIlMjByZXBhaXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: '5',
+    title: 'Plumber',
+    image:
+      'https://images.pexels.com/photos/2339722/pexels-photo-2339722.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
 ];

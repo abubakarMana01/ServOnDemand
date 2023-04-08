@@ -104,6 +104,7 @@ export default function Signup() {
                       onChangeText={handleChange('firstName')}
                       error={errors.firstName}
                       touched={touched.firstName}
+                      autoFocus
                     />
                   </View>
 

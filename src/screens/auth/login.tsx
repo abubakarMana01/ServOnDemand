@@ -93,6 +93,7 @@ export default function Login() {
                       onChangeText={handleChange('email')}
                       error={errors.email}
                       touched={touched.email}
+                      autoFocus
                     />
                   </View>
 

@@ -104,6 +104,7 @@ export default function Details() {
       </View>
 
       <SafeAreaView>
+        <Divider />
         <View style={styles.actionButtonsContainer}>
           <View style={styles.actionButton}>
             <AppButton
@@ -219,8 +220,6 @@ const styleSheet = ({theme}: IStyleSheet) =>
           : Dimensions.get('window').height < 700
           ? 12
           : 0,
-      borderColor: '#d7d7d7c2',
-      borderTopWidth: 1,
     },
     actionButton: {
       flex: 0.47,

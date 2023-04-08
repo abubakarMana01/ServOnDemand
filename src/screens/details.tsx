@@ -135,6 +135,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       maxHeight: 260,
       paddingTop: 16,
       overflow: 'hidden',
+      backgroundColor: theme === 'dark' ? Colors.darkGrey : Colors.lightGrey,
     },
     main: {
       padding: 16,

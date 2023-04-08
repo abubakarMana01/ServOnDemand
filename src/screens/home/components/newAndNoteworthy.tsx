@@ -78,15 +78,21 @@ const NEW_AND_NOTEWORTHY_SERVICES_ROW_1 = [
   },
   {
     id: '6',
-    title: 'Haircut for men',
+    title: 'Computer Repair',
     image:
-      'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.unsplash.com/photo-1591238372338-22d30c883a86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXIlMjByZXBhaXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
   },
   {
     id: '7',
     title: 'Concrete Flooring',
     image:
       'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=800',
+  },
+  {
+    id: '8',
+    title: 'Security Camera installation',
+    image:
+      'https://images.unsplash.com/photo-1676630656246-3047520adfdf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2058&q=80',
   },
 ];
 

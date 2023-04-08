@@ -40,7 +40,7 @@ export default function HandymanItem({data}: IHandymanItem) {
         </View>
       </View>
 
-      {/* <AppButton
+      <AppButton
         title="Details"
         onPress={() => navigation.navigate(ROUTES.DETAILS)}
         customStyles={[
@@ -53,13 +53,13 @@ export default function HandymanItem({data}: IHandymanItem) {
             color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
           },
         ]}
-      /> */}
-      <AppButton
+      />
+      {/* <AppButton
         title="Details"
         onPress={() => navigation.navigate(ROUTES.DETAILS)}
         customStyles={styles.selectButtonCustom}
         customTextStyles={styles.selectButtonCustomText}
-      />
+      /> */}
     </View>
   );
 }
@@ -75,13 +75,13 @@ const styleSheet = ({theme}: IStyleSheet) =>
       height: 43,
       borderRadius: 21.5,
       marginRight: 8,
-      backgroundColor: Colors.lightGrey,
+      backgroundColor: theme === 'dark' ? Colors.darkGrey : Colors.lightGrey,
     },
     userDetails: {
       flex: 1,
     },
     username: {
-      fontWeight: '500',
+      fontWeight: '600',
       fontSize: 16,
       color: theme === 'dark' ? Colors.white : Colors.black,
     },

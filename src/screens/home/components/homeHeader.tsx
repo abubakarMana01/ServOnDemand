@@ -15,7 +15,7 @@ export default function HomeHeader() {
     <ScreenHeaderBg>
       <View style={styles.headerUser}>
         <Image
-          source={require('../../../assets/user.png')}
+          source={require('../../../assets/neymar.jpeg')}
           style={styles.userImage}
           resizeMode="cover"
         />

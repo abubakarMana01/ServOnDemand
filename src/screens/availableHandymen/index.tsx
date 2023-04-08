@@ -41,7 +41,7 @@ const styleSheet = ({}: IStyleSheet) =>
       paddingHorizontal: 16,
     },
     separator: {
-      paddingVertical: 14,
+      paddingVertical: 16,
     },
   });
 

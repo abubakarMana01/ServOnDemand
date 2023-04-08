@@ -10,7 +10,7 @@ interface IAppProvider {
 }
 
 export default function AppProvider({children}: IAppProvider) {
-  const [user, setUser] = useState<IAppContext['user']>({});
+  const [user, setUser] = useState<IAppContext['user']>(null);
   const [theme, setTheme] = useState(Appearance.getColorScheme()!);
   Appearance.addChangeListener(scheme => {
     setTheme(scheme.colorScheme!);

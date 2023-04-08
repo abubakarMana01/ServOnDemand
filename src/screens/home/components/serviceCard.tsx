@@ -67,13 +67,13 @@ const stylesheet = ({theme}: IStyleSheet) =>
       marginHorizontal: 16,
     },
     card: {
-      width: 90,
+      width: 100,
     },
     image: {
-      width: 90,
-      height: 90,
+      width: 100,
+      height: 100,
       borderRadius: 10,
-      backgroundColor: '#eeeeee',
+      backgroundColor: Colors.lightGrey,
     },
     cardText: {
       marginTop: 4,

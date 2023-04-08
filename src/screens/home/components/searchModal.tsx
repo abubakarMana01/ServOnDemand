@@ -45,6 +45,7 @@ export default function SearchModal({
             <AppTextInput
               placeholder="Search for services..."
               handleBackArrowPress={() => setModalVisible(false)}
+              autoFocus
             />
 
             <View style={styles.trendingSection}>
@@ -77,6 +78,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     modalContainer: {
       padding: 16,
+      flex: 1,
     },
     trendingSection: {
       paddingTop: 32,

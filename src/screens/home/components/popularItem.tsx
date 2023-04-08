@@ -40,7 +40,6 @@ const styleSheet = ({theme, isColored}: IStyleSheet & {isColored: boolean}) =>
         : 'transparent',
     },
     popularItemText: {
-      fontSize: 16,
       color: theme === 'dark' || isColored ? Colors.white : Colors.black,
     },
   });

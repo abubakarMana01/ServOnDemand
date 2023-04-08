@@ -26,6 +26,7 @@ interface IAppTextInput {
   onBlur?: (e: any) => void;
   onChangeText?: (e: string | React.ChangeEvent<any>) => void;
   touched?: boolean;
+  autoFocus?: boolean;
 }
 
 const AppTextInput = ({
@@ -37,6 +38,7 @@ const AppTextInput = ({
   autoCapitalize = 'none',
   autoComplete = 'off',
   autoCorrect = false,
+  autoFocus = false,
   handleBackArrowPress,
   icon,
   value,
@@ -82,6 +84,7 @@ const AppTextInput = ({
           onBlur={onBlur}
           onChangeText={onChangeText}
           value={value}
+          autoFocus={autoFocus}
         />
         {icon && icon}
       </View>

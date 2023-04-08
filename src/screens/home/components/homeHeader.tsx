@@ -8,7 +8,7 @@ import SearchModal from './searchModal';
 
 export default function HomeHeader() {
   const [modalVisible, setModalVisible] = useState(false);
-  const {theme} = useAppContext();
+  const {theme, setUser} = useAppContext();
 
   const styles = styleSheet({theme});
   return (
@@ -25,7 +25,9 @@ export default function HomeHeader() {
           <View style={styles.nameAndNotification}>
             <Text style={styles.username}>Abubakar</Text>
 
-            <Feather name="bell" size={24} color={Colors.grey} />
+            <Pressable onPress={() => setUser(null)}>
+              <Feather name="bell" size={24} color={Colors.grey} />
+            </Pressable>
           </View>
         </View>
       </View>

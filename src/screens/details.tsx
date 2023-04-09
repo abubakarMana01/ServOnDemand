@@ -10,16 +10,21 @@ import {
   Dimensions,
   Platform,
   StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AppButton, Divider, GoBackButton} from '../components';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ROUTES} from '../navigation';
 
 export default function Details() {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
     <View style={styles.container}>
@@ -37,7 +42,14 @@ export default function Details() {
       <View style={{flex: 1}}>
         <ScrollView>
           <View style={styles.main}>
-            <Text style={styles.title}>Painting</Text>
+            <View style={styles.header}>
+              <Text style={styles.title}>Painting</Text>
+
+              <TouchableOpacity
+                onPress={() => navigation.navigate(ROUTES.HANDYMAN_REVIEWS)}>
+                <Text style={styles.reviewsButton}>View reviews</Text>
+              </TouchableOpacity>
+            </View>
 
             <View style={styles.infoContainer}>
               <Image
@@ -144,10 +156,19 @@ const styleSheet = ({theme}: IStyleSheet) =>
     main: {
       padding: 16,
     },
+    header: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: 8,
+    },
+    reviewsButton: {
+      color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+      fontWeight: '500',
+    },
     title: {
       fontSize: 32,
       fontWeight: '600',
-      marginTop: 8,
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     infoContainer: {

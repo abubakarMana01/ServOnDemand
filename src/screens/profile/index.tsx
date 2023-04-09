@@ -39,7 +39,7 @@ export default function Profile() {
           <Text style={styles.userEmail}>ym.abubakr8@gmail.com</Text>
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollView}>
+        <ScrollView bounces={false} contentContainerStyle={styles.scrollView}>
           <Pressable style={styles.options}>
             <Ionicons
               name="person-outline"

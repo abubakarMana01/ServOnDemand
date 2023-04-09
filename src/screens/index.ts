@@ -6,4 +6,5 @@ export {default as BookingDetails} from './bookings/bookingDetails';
 export {default as Calendar} from './calendar';
 export {default as Details} from './details';
 export {default as AvailableHandymen} from './availableHandymen';
+export {default as HandymanReviews} from './availableHandymen/handymanReviews';
 export {default as Profile} from './profile';

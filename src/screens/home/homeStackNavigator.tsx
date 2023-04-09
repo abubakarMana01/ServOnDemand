@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {AvailableHandymen, Details, Home} from '..';
+import {AvailableHandymen, Details, HandymanReviews, Home} from '..';
 import {Platform} from 'react-native';
 import {ROUTES} from '../../navigation';
 
@@ -27,6 +27,14 @@ function HomeStackNavigator() {
         component={AvailableHandymen}
         options={{
           headerTitle: 'Available',
+        }}
+      />
+      <Stack.Screen
+        name={ROUTES.HANDYMAN_REVIEWS}
+        component={HandymanReviews}
+        options={{
+          headerTitle: 'Reviews',
+          presentation: Platform.OS === 'ios' ? 'modal' : 'card',
         }}
       />
     </Stack.Navigator>

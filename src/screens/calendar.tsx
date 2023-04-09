@@ -48,10 +48,13 @@ export default function CalendarView() {
                   // Collection of dates that have to be marked. Default = {}
                   style={styles.calendar}
                   theme={{
-                    arrowColor: Colors.blue,
+                    arrowColor:
+                      theme === 'dark' ? Colors.blue : Colors.darkBlue,
                     dotColor: 'red',
-                    indicatorColor: Colors.blue,
-                    todayTextColor: Colors.blue,
+                    indicatorColor:
+                      theme === 'dark' ? Colors.blue : Colors.darkBlue,
+                    todayTextColor:
+                      theme === 'dark' ? Colors.blue : Colors.darkBlue,
                     textMonthFontWeight: '600',
                     textDayFontSize: 14,
                   }}
@@ -59,10 +62,19 @@ export default function CalendarView() {
                     '2023-03-16': {
                       selected: true,
                       // marked: true,
-                      selectedColor: Colors.blue,
+                      selectedColor:
+                        theme === 'dark' ? Colors.blue : Colors.darkBlue,
                     },
-                    '2023-03-17': {marked: true, dotColor: Colors.blue},
-                    '2023-03-18': {marked: true, dotColor: Colors.blue},
+                    '2023-03-17': {
+                      marked: true,
+                      dotColor:
+                        theme === 'dark' ? Colors.blue : Colors.darkBlue,
+                    },
+                    '2023-03-18': {
+                      marked: true,
+                      dotColor:
+                        theme === 'dark' ? Colors.blue : Colors.darkBlue,
+                    },
                   }}
                 />
               </View>

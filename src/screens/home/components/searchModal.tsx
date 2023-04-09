@@ -1,6 +1,7 @@
 import {
   Keyboard,
   Modal,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -36,10 +37,12 @@ export default function SearchModal({
         setModalVisible(!modalVisible);
       }}>
       <SafeAreaView style={styles.modal}>
-        <StatusBar
-          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
-          backgroundColor={Colors.dark}
-        />
+        {Platform.OS === 'ios' && (
+          <StatusBar
+            barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+            backgroundColor={Colors.dark}
+          />
+        )}
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.modalContainer}>
             <AppTextInput

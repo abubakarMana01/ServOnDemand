@@ -59,18 +59,18 @@ export default function CalendarView() {
                     textDayFontSize: 14,
                   }}
                   markedDates={{
-                    '2023-03-16': {
+                    '2023-04-11': {
                       selected: true,
                       // marked: true,
                       selectedColor:
                         theme === 'dark' ? Colors.blue : Colors.darkBlue,
                     },
-                    '2023-03-17': {
+                    '2023-04-12': {
                       marked: true,
                       dotColor:
                         theme === 'dark' ? Colors.blue : Colors.darkBlue,
                     },
-                    '2023-03-18': {
+                    '2023-04-13': {
                       marked: true,
                       dotColor:
                         theme === 'dark' ? Colors.blue : Colors.darkBlue,

@@ -1,4 +1,4 @@
-import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
+import {FlatList, Platform, StatusBar, StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useAppContext} from '../../context';
 import {Colors} from '../../constants';
@@ -28,10 +28,12 @@ const AvailableHandymen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar
-        barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
-        backgroundColor={theme === 'dark' ? Colors.dark : Colors.white}
-      />
+      {Platform.OS === 'ios' && (
+        <StatusBar
+          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+          backgroundColor={theme === 'dark' ? Colors.dark : Colors.white}
+        />
+      )}
       <FlatList
         contentContainerStyle={styles.flatList}
         ItemSeparatorComponent={() => (

@@ -12,7 +12,7 @@ const NewAndNoteWorthy = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View>
           <View style={{flexDirection: 'row'}}>
-            {NEW_AND_NOTEWORTHY_SERVICES_ROW_1.map((service, index) => (
+            {SERVICES_ROW_1.map((service, index) => (
               <ServiceCard
                 bonus={{category: 'new', text: 'New'}}
                 key={service.id}
@@ -23,7 +23,7 @@ const NewAndNoteWorthy = () => {
           </View>
 
           <View style={{flexDirection: 'row', marginTop: 16}}>
-            {NEW_AND_NOTEWORTHY_SERVICES_ROW_2.map((service, index) => (
+            {SERVICES_ROW_2.map((service, index) => (
               <ServiceCard
                 bonus={{category: 'new', text: 'New'}}
                 key={service.id}
@@ -45,7 +45,7 @@ const stylesheet = ({}: IStyleSheet) =>
     container: {},
   });
 
-const NEW_AND_NOTEWORTHY_SERVICES_ROW_1 = [
+const SERVICES_ROW_1 = [
   {
     id: '1',
     title: 'Furniture Assembly',
@@ -96,7 +96,7 @@ const NEW_AND_NOTEWORTHY_SERVICES_ROW_1 = [
   },
 ];
 
-const NEW_AND_NOTEWORTHY_SERVICES_ROW_2 = [
+const SERVICES_ROW_2 = [
   {
     id: '1',
     title: 'Haircut for men',

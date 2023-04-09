@@ -3,6 +3,7 @@ export {default as Home} from './home';
 export {default as BookingsStackNavigator} from './bookings/bookingsStackNavigator';
 export {default as Bookings} from './bookings';
 export {default as BookingDetails} from './bookings/bookingDetails';
+export {default as WriteBookingReview} from './bookings/writeReview';
 export {default as Calendar} from './calendar';
 export {default as Details} from './details';
 export {default as AvailableHandymen} from './availableHandymen';

@@ -4,7 +4,7 @@ import HomeHeader from './components/homeHeader';
 import MostPopular from './components/mostPopular';
 import {SectionHeader} from '../../components';
 import MostBookedServices from './components/mostBookedServices';
-import NewAndNoteWorthy from './components/newAndNoteworthy';
+import BookAService from './components/bookAService';
 
 export default function Home() {
   return (
@@ -35,8 +35,8 @@ export default function Home() {
             </View>
 
             <View style={styles.section}>
-              <SectionHeader title="New and Noteworthy" />
-              <NewAndNoteWorthy />
+              <SectionHeader title="Book a Service" />
+              <BookAService />
             </View>
           </View>
         </ScrollView>

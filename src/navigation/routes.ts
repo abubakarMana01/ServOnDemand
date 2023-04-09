@@ -6,6 +6,7 @@ export default Object.freeze({
   HOME_STACK_NAV: 'Home StackNav',
   BOOKINGS_STACK_NAV: 'Bookings StackNav',
   BOOKINGS: 'Bookings',
+  WRITE_BOOKING_REVIEW: 'Write Booking Review',
   ABOUT_BOOKING: 'About Booking',
   CALENDAR: 'Calendar',
   PROFILE: 'Profile',

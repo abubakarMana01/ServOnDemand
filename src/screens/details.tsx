@@ -28,7 +28,9 @@ export default function Details() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={'light-content'} backgroundColor={Colors.dark} />
+      {Platform.OS === 'ios' && (
+        <StatusBar barStyle={'light-content'} backgroundColor={Colors.dark} />
+      )}
 
       <ImageBackground
         source={require('../assets/details/painting.png')}

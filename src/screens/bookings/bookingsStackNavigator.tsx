@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {BookingDetails, Bookings} from '..';
+import {BookingDetails, Bookings, WriteBookingReview} from '..';
 import {Platform} from 'react-native';
 import {ROUTES} from '../../navigation';
 
@@ -10,10 +10,13 @@ function BookingsStackNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={ROUTES.BOOKINGS} component={Bookings} />
+      <Stack.Screen name={ROUTES.ABOUT_BOOKING} component={BookingDetails} />
       <Stack.Screen
-        name={ROUTES.ABOUT_BOOKING}
-        component={BookingDetails}
+        name={ROUTES.WRITE_BOOKING_REVIEW}
+        component={WriteBookingReview}
         options={{
+          headerShown: true,
+          headerTitle: 'Feedback',
           presentation: Platform.OS === 'ios' ? 'modal' : 'card',
         }}
       />

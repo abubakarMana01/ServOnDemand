@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {ROUTES} from '../../../navigation';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
@@ -22,7 +22,7 @@ export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
   const styles = stylesheet({theme});
 
   return (
-    <TouchableOpacity
+    <Pressable
       key={service.id}
       style={[
         styles.card,
@@ -59,7 +59,7 @@ export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
           </Text>
         </View>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

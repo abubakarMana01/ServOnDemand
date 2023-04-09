@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {AboutBooking, Bookings} from '..';
+import {BookingDetails, Bookings} from '..';
 import {Platform} from 'react-native';
 import {ROUTES} from '../../navigation';
 
@@ -12,7 +12,7 @@ function BookingsStackNavigator() {
       <Stack.Screen name={ROUTES.BOOKINGS} component={Bookings} />
       <Stack.Screen
         name={ROUTES.ABOUT_BOOKING}
-        component={AboutBooking}
+        component={BookingDetails}
         options={{
           presentation: Platform.OS === 'ios' ? 'modal' : 'card',
         }}

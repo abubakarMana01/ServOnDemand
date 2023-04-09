@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useAppContext} from '../../context';
 
-export default function AboutBooking() {
+export default function BookingDetails() {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 

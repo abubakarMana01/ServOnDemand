@@ -5,6 +5,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   View,
   ViewStyle,
 } from 'react-native';
@@ -16,7 +17,7 @@ interface IAuthButton {
   isLoading?: boolean;
   full?: boolean;
   customStyles?: StyleProp<ViewStyle>;
-  customTextStyles?: object;
+  customTextStyles?: StyleProp<TextStyle>;
   icon?: React.ReactNode;
 }
 

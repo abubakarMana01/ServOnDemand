@@ -72,7 +72,7 @@ export default function BookingDetails() {
           </ScrollView>
 
           <AppButton
-            title="Write a Review"
+            title="Write a review"
             onPress={() => navigation.navigate(ROUTES.WRITE_BOOKING_REVIEW)}
             full
             customStyles={{marginTop: 8}}
@@ -112,7 +112,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     handymanName: {
-      fontSize: 16,
+      fontSize: 14,
       marginTop: 2,
       color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
     },

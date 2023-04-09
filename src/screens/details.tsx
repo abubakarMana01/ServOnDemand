@@ -199,7 +199,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     ratingCount: {
-      color: Colors.darkGrey,
+      color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
     },
     infoIconContainer: {
       backgroundColor: Colors.lightGrey,

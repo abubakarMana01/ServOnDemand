@@ -9,13 +9,13 @@ const MY_BOOKINGS = [
     id: '1',
     title: 'Carpenter',
     date: new Date(),
-    status: 'upcoming',
+    status: 'completed',
   },
   {
     id: '2',
     title: 'Painting',
     date: new Date(),
-    status: 'upcoming',
+    status: 'completed',
   },
   {
     id: '3',
@@ -39,7 +39,7 @@ const MY_BOOKINGS = [
     id: '7',
     title: 'Mechanic',
     date: new Date(),
-    status: 'upcoming',
+    status: 'cancelled',
   },
 ];
 

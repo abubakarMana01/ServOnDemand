@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Colors} from '../../../constants';
-import {AppButton, Avatar} from '../../../components';
+import {Avatar} from '../../../components';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useAppContext} from '../../../context';
@@ -48,26 +48,15 @@ export default function HandymanItem({data}: IHandymanItem) {
         </View>
       </View>
 
-      <AppButton
-        title="Details"
-        onPress={() => navigation.navigate(ROUTES.DETAILS)}
-        customStyles={[
-          styles.selectButtonCustom,
-          {backgroundColor: 'transparent'},
-        ]}
-        customTextStyles={[
-          styles.selectButtonCustomText,
-          {
-            color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
-          },
-        ]}
-      />
       {/* <AppButton
         title="Details"
         onPress={() => navigation.navigate(ROUTES.DETAILS)}
         customStyles={styles.selectButtonCustom}
         customTextStyles={styles.selectButtonCustomText}
       /> */}
+      <TouchableOpacity onPress={() => navigation.navigate(ROUTES.DETAILS)}>
+        <Text style={styles.reviewsButton}>Details</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -77,6 +66,10 @@ const styleSheet = ({theme}: IStyleSheet) =>
     infoContainer: {
       flexDirection: 'row',
       alignItems: 'center',
+    },
+    reviewsButton: {
+      color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+      fontWeight: '500',
     },
     userImg: {
       width: 55,

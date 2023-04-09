@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {useAppContext} from '../../context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
@@ -22,6 +22,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 export default function Profile() {
   const {theme, setUser} = useAppContext();
   const styles = styleSheet({theme});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogout = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setUser(null);
+    }, 2000);
+  };
 
   return (
     <View style={styles.container}>
@@ -74,7 +82,8 @@ export default function Profile() {
 
         <AppButton
           title="Logout"
-          onPress={() => setUser(null)}
+          onPress={handleLogout}
+          isLoading={isLoading}
           full
           icon={
             <MaterialCommunityIcons

@@ -122,14 +122,15 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     statusText: {
       textTransform: 'capitalize',
+      fontWeight: '500',
     },
     upcomingStatus: {
       backgroundColor: theme === 'dark' ? '#1343ED' : '#1343ED30',
       color: theme === 'dark' ? Colors.lightGrey : '#1343ED',
     },
     completedStatus: {
-      backgroundColor: theme === 'dark' ? '#00A660' : '#00A66030',
-      color: theme === 'dark' ? Colors.lightGrey : '#00A660',
+      backgroundColor: theme === 'dark' ? '#00834c' : '#00A66030',
+      color: theme === 'dark' ? Colors.lightGrey : '#028a52',
     },
     cancelledStatus: {
       backgroundColor: theme === 'dark' ? '#ED1313' : '#ED131320',

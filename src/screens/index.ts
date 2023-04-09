@@ -1,5 +1,8 @@
+export {default as HomeStackNavigator} from './home/homeStackNavigator';
 export {default as Home} from './home';
+export {default as BookingsStackNavigator} from './bookings/bookingsStackNavigator';
 export {default as Bookings} from './bookings';
+export {default as AboutBooking} from './bookings/aboutBooking';
 export {default as Calendar} from './calendar';
 export {default as Details} from './details';
 export {default as AvailableHandymen} from './availableHandymen';

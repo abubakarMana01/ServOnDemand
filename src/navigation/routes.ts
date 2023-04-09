@@ -2,8 +2,10 @@ export default Object.freeze({
   HOME: 'Home',
   DETAILS: 'Details',
   AVAILABLE_HANDYMEN: 'Available Handymen',
-  STACK_NAV: 'StackNav',
+  HOME_STACK_NAV: 'Home StackNav',
+  BOOKINGS_STACK_NAV: 'Bookings StackNav',
   BOOKINGS: 'Bookings',
+  ABOUT_BOOKING: 'About Booking',
   CALENDAR: 'Calendar',
   PROFILE: 'Profile',
 

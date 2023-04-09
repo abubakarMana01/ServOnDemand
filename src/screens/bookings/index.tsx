@@ -60,7 +60,7 @@ export default function Bookings() {
           ItemSeparatorComponent={() => (
             <View style={styles.flatlistSeparator} />
           )}
-          renderItem={({item}) => <BookingCard data={item} />}
+          renderItem={({item}) => <BookingCard data={item} showDropdown />}
         />
       </View>
     </View>

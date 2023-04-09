@@ -1,12 +1,12 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {AvailableHandymen, Details, Home} from '../screens';
+import {AvailableHandymen, Details, Home} from '..';
 import {Platform} from 'react-native';
-import {ROUTES} from '.';
+import {ROUTES} from '../../navigation';
 
 const Stack = createNativeStackNavigator();
 
-function StackNavigator() {
+function HomeStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -33,4 +33,4 @@ function StackNavigator() {
   );
 }
 
-export default StackNavigator;
+export default HomeStackNavigator;

@@ -112,7 +112,7 @@ export default function Details() {
         <View style={styles.actionButtonsContainer}>
           <View style={styles.actionButton}>
             <AppButton
-              title="Message"
+              title="Contact"
               onPress={() => {}}
               full
               customStyles={styles.messageButton}

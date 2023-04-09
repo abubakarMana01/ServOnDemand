@@ -1,8 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Bookings, Calendar, Profile} from '../screens';
-import StackNavigator from './stackNavigator';
+import {
+  BookingsStackNavigator,
+  Calendar,
+  HomeStackNavigator,
+  Profile,
+} from '../screens';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
 import {ROUTES} from '.';
@@ -23,8 +27,8 @@ export default function BottomTabsNavigation() {
         },
       }}>
       <Tab.Screen
-        name={ROUTES.STACK_NAV}
-        component={StackNavigator}
+        name={ROUTES.HOME_STACK_NAV}
+        component={HomeStackNavigator}
         options={{
           title: 'Home',
           tabBarIcon: ({color, size, focused}) => (
@@ -37,9 +41,10 @@ export default function BottomTabsNavigation() {
         }}
       />
       <Tab.Screen
-        name={ROUTES.BOOKINGS}
-        component={Bookings}
+        name={ROUTES.BOOKINGS_STACK_NAV}
+        component={BookingsStackNavigator}
         options={{
+          title: 'Bookings',
           tabBarIcon: ({color, size, focused}) => (
             <Ionicons
               name={focused ? 'newspaper' : 'newspaper-outline'}

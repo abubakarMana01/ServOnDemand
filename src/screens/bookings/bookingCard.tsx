@@ -1,10 +1,22 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors} from '../../constants';
 import {useAppContext} from '../../context';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
+import {ROUTES} from '../../navigation';
 
-export default function BookingCard({data}: any) {
+interface IBookingCard {
+  data: any;
+  showDropdown?: boolean;
+}
+
+export default function BookingCard({
+  data,
+  showDropdown = false,
+}: IBookingCard) {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
@@ -50,13 +62,17 @@ export default function BookingCard({data}: any) {
         </View>
       </View>
 
-      <View style={styles.dropArea}>
-        <MaterialCommunityIcons
-          name="chevron-down"
-          color={theme === 'dark' ? Colors.white : Colors.black}
-          size={24}
-        />
-      </View>
+      {showDropdown && (
+        <Pressable
+          onPress={() => navigation.navigate(ROUTES.ABOUT_BOOKING)}
+          style={styles.dropArea}>
+          <MaterialCommunityIcons
+            name="chevron-down"
+            color={theme === 'dark' ? Colors.white : Colors.black}
+            size={24}
+          />
+        </Pressable>
+      )}
     </View>
   );
 }

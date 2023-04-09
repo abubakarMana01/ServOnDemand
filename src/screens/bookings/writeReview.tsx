@@ -42,7 +42,7 @@ export default function WriteReview() {
                 <TextInput
                   style={styles.textInput}
                   multiline={true}
-                  placeholder="Would you like to write anything about the service?"
+                  placeholder="What do you think about the service?"
                   placeholderTextColor={theme === 'dark' ? Colors.grey : 'auto'}
                 />
               </View>

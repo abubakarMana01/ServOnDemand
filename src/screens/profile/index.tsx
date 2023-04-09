@@ -110,12 +110,12 @@ const styleSheet = ({theme}: IStyleSheet) =>
       padding: 16,
     },
     scrollView: {
-      marginTop: 32,
+      marginTop: 16,
     },
 
     userInfo: {
       alignItems: 'center',
-      // paddingTop: 16,
+      paddingBottom: 16,
     },
     userImg: {
       width: Dimensions.get('window').height < 700 ? 100 : 130,

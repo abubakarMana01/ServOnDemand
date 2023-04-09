@@ -112,7 +112,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     handymanName: {
-      fontSize: 14,
+      fontSize: 16,
       marginTop: 2,
       color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
     },
@@ -123,7 +123,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     perHour: {
       fontSize: 14,
-      color: Colors.darkGrey,
+      color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
     },
     descriptionTitle: {
       fontSize: 18,

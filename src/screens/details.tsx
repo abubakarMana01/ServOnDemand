@@ -220,7 +220,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     perHour: {
       fontSize: 14,
-      color: Colors.darkGrey,
+      color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
     },
     dividerContainer: {
       paddingVertical: 25,
@@ -233,8 +233,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     descriptionText: {
-      color: theme === 'dark' ? Colors.white : Colors.black,
-      opacity: 0.6,
+      color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
     },
 
     actionButtonsContainer: {

@@ -23,7 +23,7 @@ export default function ReviewCard({data}: {data: any}) {
               rating={+data.rating}
               animationConfig={{scale: 1}}
               starStyle={styles.starStyle}
-              starSize={18}
+              starSize={16}
               onChange={rating => {
                 console.log(rating);
               }}
@@ -64,7 +64,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       width: 45,
       height: 45,
       borderRadius: 22.5,
-      marginRight: 16,
+      marginRight: 8,
     },
     starStyle: {
       marginHorizontal: -1,

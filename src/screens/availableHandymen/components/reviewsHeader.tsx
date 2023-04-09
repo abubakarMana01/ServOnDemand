@@ -18,9 +18,7 @@ export default function ReviewsHeader() {
           animationConfig={{scale: 1}}
           starStyle={styles.starStyle}
           starSize={30}
-          onChange={rating => {
-            console.log(rating);
-          }}
+          onChange={() => {}}
         />
         <Text style={styles.overallCount}>based on 23 reviews</Text>
       </View>
@@ -43,6 +41,6 @@ const styleSheet = ({theme}: IStyleSheet) =>
       marginTop: 4,
     },
     starStyle: {
-      marginHorizontal: 2,
+      marginHorizontal: 1,
     },
   });

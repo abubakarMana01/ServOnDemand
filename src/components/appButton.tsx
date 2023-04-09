@@ -2,9 +2,11 @@ import React from 'react';
 import {
   ActivityIndicator,
   Pressable,
+  StyleProp,
   StyleSheet,
   Text,
   View,
+  ViewStyle,
 } from 'react-native';
 import {Colors} from '../constants';
 
@@ -13,7 +15,7 @@ interface IAuthButton {
   onPress: () => void;
   isLoading?: boolean;
   full?: boolean;
-  customStyles?: object;
+  customStyles?: StyleProp<ViewStyle>;
   customTextStyles?: object;
   icon?: React.ReactNode;
 }

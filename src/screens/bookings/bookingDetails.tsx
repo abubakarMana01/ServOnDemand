@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   ImageBackground,
   Platform,
   SafeAreaView,
@@ -22,56 +23,63 @@ export default function BookingDetails() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
-    <View style={styles.container}>
-      {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+        {Platform.OS === 'ios' && (
+          <StatusBar
+            barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+          />
+        )}
 
-      <ImageBackground
-        style={styles.imageBackground}
-        source={{
-          uri: 'https://images.pexels.com/photos/5217124/pexels-photo-5217124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        }}>
-        <SafeAreaView style={{marginLeft: 16, marginTop: 16}}>
-          <GoBackButton />
-        </SafeAreaView>
-      </ImageBackground>
+        <ImageBackground
+          style={styles.imageBackground}
+          source={{
+            uri: 'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800',
+          }}>
+          <SafeAreaView style={{marginLeft: 16, marginTop: 16}}>
+            <GoBackButton />
+          </SafeAreaView>
+        </ImageBackground>
 
-      <SafeAreaView style={styles.wrapper}>
         <View style={styles.main}>
-          <View style={styles.detailsTop}>
-            <View style={{flex: 1}}>
-              <Text style={styles.title} numberOfLines={2}>
-                Haircut for Men
+          <ScrollView bounces={true} showsVerticalScrollIndicator={false}>
+            <View style={styles.detailsTop}>
+              <View style={{flex: 1}}>
+                <Text style={styles.title} numberOfLines={2}>
+                  Haircut for Men
+                </Text>
+                <Text style={styles.handymanName}>Michael Charles</Text>
+              </View>
+              <Text style={styles.price}>
+                ₦3000<Text style={styles.perHour}>/hr</Text>
               </Text>
-              <Text style={styles.handymanName}>Michael Charles</Text>
             </View>
-            <Text style={styles.price}>
-              ₦3000<Text style={styles.perHour}>/hr</Text>
-            </Text>
-          </View>
 
-          <View style={styles.separator}>
-            <Divider
-              color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
-            />
-          </View>
+            <View style={styles.separator}>
+              <Divider
+                color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
+              />
+            </View>
 
-          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
-            <Text style={styles.descriptionTitle}>About Service</Text>
-            <Text style={styles.descriptionText}>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
-              quam laborum ab quis nam. Reprehenderit, pariatur ipsa voluptatum
-              vel id error voluptatem iste.
-            </Text>
+            <View>
+              <Text style={styles.descriptionTitle}>About Service</Text>
+              <Text style={styles.descriptionText}>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Eveniet quam laborum ab quis nam. Reprehenderit, pariatur ipsa
+                voluptatum vel id error voluptatem iste.
+              </Text>
+            </View>
           </ScrollView>
 
           <AppButton
             title="Write a Review"
             onPress={() => navigation.navigate(ROUTES.WRITE_BOOKING_REVIEW)}
             full
+            customStyles={{marginTop: 8}}
           />
         </View>
-      </SafeAreaView>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -81,27 +89,26 @@ const styleSheet = ({theme}: IStyleSheet) =>
       flex: 1,
     },
     imageBackground: {
-      flex: 0.6,
+      flex: Dimensions.get('window').height < 700 ? 0.5 : 0.6,
       backgroundColor: theme === 'dark' ? Colors.darkGrey : Colors.lightGrey,
     },
-    wrapper: {
-      flex: 0.4,
-    },
     main: {
-      flex: 1,
+      flex: Dimensions.get('window').height < 700 ? 0.5 : 0.4,
       padding: 16,
+      paddingTop: 0,
     },
     detailsTop: {
       flexDirection: 'row',
       alignItems: 'flex-end',
       justifyContent: 'space-between',
+      paddingTop: 16,
     },
     separator: {
       paddingVertical: 24,
     },
     title: {
       fontSize: 24,
-      fontWeight: '600',
+      fontWeight: '700',
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     handymanName: {
@@ -126,5 +133,6 @@ const styleSheet = ({theme}: IStyleSheet) =>
     descriptionText: {
       color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
       marginTop: 8,
+      paddingBottom: 12,
     },
   });

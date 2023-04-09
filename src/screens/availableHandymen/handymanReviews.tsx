@@ -11,32 +11,29 @@ export default function HandymanReviews() {
   const styles = styleSheet({theme});
 
   return (
-    <View style={styles.container}>
-      <ReviewsHeader />
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.scrollView}
+      ListHeaderComponent={() => (
+        <>
+          <ReviewsHeader />
 
-      <View style={styles.separator}>
-        <Divider
-          color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
-        />
-      </View>
-
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollView}
-        ItemSeparatorComponent={() => <View style={{height: 24}} />}
-        data={REVIEWS_DATA}
-        renderItem={({item}) => <ReviewCard data={item} />}
-      />
-    </View>
+          <View style={styles.separator}>
+            <Divider
+              color={theme === 'dark' ? Colors.lightGrey : Colors.grey + '70'}
+            />
+          </View>
+        </>
+      )}
+      ItemSeparatorComponent={() => <View style={{height: 32}} />}
+      data={REVIEWS_DATA}
+      renderItem={({item}) => <ReviewCard data={item} />}
+    />
   );
 }
 
 const styleSheet = ({theme}: IStyleSheet) =>
   StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 16,
-    },
     reviewBasicInfo: {
       alignItems: 'center',
     },
@@ -50,14 +47,10 @@ const styleSheet = ({theme}: IStyleSheet) =>
       marginTop: 4,
     },
     separator: {
-      marginTop: 24,
+      marginVertical: 24,
     },
     scrollView: {
-      paddingTop: 24,
-    },
-
-    starStyle: {
-      marginHorizontal: -1,
+      padding: 16,
     },
   });
 
@@ -80,6 +73,14 @@ const REVIEWS_DATA = [
   },
   {
     id: '3',
+    author: 'Randy Palmer',
+    rating: '3.0',
+    date: '3 days ago',
+    review:
+      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam dolor non, ipsum obcaecati autem sunt eius in, commodi natus eligendi magnam minus. Sapiente dicta fapiente dicta eligendi aut recusandae.',
+  },
+  {
+    id: '4',
     author: 'Randy Palmer',
     rating: '3.0',
     date: '3 days ago',

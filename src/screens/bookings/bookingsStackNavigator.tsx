@@ -10,7 +10,15 @@ function BookingsStackNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={ROUTES.BOOKINGS} component={Bookings} />
-      <Stack.Screen name={ROUTES.ABOUT_BOOKING} component={BookingDetails} />
+      <Stack.Screen
+        name={ROUTES.ABOUT_BOOKING}
+        component={BookingDetails}
+        options={
+          {
+            // presentation: Platform.OS === 'ios' ? 'modal' : 'card',
+          }
+        }
+      />
       <Stack.Screen
         name={ROUTES.WRITE_BOOKING_REVIEW}
         component={WriteBookingReview}

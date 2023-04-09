@@ -1,4 +1,11 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {ScreenHeaderBg} from '../../../components';
 import Feather from 'react-native-vector-icons/Feather';
@@ -57,6 +64,7 @@ const styleSheet = ({}: IStyleSheet) =>
       flexDirection: 'row',
       alignItems: 'center',
       marginBottom: 24,
+      marginTop: Dimensions.get('window').height < 700 ? 16 : 0,
     },
     userInfo: {flex: 1},
     nameAndNotification: {

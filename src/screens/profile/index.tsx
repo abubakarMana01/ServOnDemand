@@ -39,7 +39,7 @@ export default function Profile() {
           <Text style={styles.userEmail}>ym.abubakr8@gmail.com</Text>
         </View>
 
-        <ScrollView bounces={false} contentContainerStyle={styles.scrollView}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
           <Pressable style={styles.options}>
             <Ionicons
               name="person-outline"
@@ -109,8 +109,8 @@ const styleSheet = ({theme}: IStyleSheet) =>
       // paddingTop: 16,
     },
     userImg: {
-      width: 130,
-      height: 130,
+      width: Dimensions.get('window').height < 700 ? 100 : 130,
+      height: Dimensions.get('window').height < 700 ? 100 : 130,
       borderRadius: 65,
       borderWidth: 5,
       borderColor: theme === 'dark' ? Colors.darkGrey : Colors.grey,

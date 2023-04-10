@@ -53,7 +53,7 @@ export default function WriteReview() {
                   color="#ffb700"
                   rating={rating}
                   animationConfig={{scale: 1}}
-                  starSize={50}
+                  starSize={55}
                   enableHalfStar={false}
                   emptyColor={theme === 'dark' ? Colors.darkGrey : '#c9c9c9'}
                   starStyle={styles.starStyle}

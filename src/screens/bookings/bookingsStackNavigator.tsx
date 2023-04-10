@@ -24,7 +24,7 @@ function BookingsStackNavigator() {
         component={WriteBookingReview}
         options={{
           headerShown: true,
-          headerTitle: 'Feedback',
+          headerTitle: 'Give Feedback',
           presentation: Platform.OS === 'ios' ? 'modal' : 'card',
         }}
       />

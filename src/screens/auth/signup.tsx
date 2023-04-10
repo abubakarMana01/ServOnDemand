@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -9,7 +10,6 @@ import {
   View,
 } from 'react-native';
 import {Formik} from 'formik';
-import * as yup from 'yup';
 import {AppTextInput, AppButton} from '../../components';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -17,31 +17,8 @@ import {Colors} from '../../constants';
 import {Pressable} from 'react-native';
 import {useAppContext} from '../../context';
 import {ROUTES} from '../../navigation';
-
-const signupValidationSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Please enter valid email')
-    .required('Email is required')
-    .label('Email'),
-  password: yup
-    .string()
-    .min(8)
-    .required('Password is required')
-    .label('Password'),
-  firstName: yup
-    .string()
-    .min(2)
-    .max(255)
-    .required('First name is required')
-    .label('First name'),
-  lastName: yup
-    .string()
-    .min(2)
-    .max(255)
-    .required('Last name is required')
-    .label('Last name'),
-});
+import {signupValidationSchema} from './helpers';
+import {signup} from '../../utils';
 
 export default function Signup() {
   const {theme} = useAppContext();
@@ -49,15 +26,24 @@ export default function Signup() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const [isLoading, setIsLoading] = useState(false);
-  const {setUser} = useAppContext();
 
-  const handleLogin = (values: {}) => {
-    console.log(values);
+  const handleSignup = async (values: any) => {
     setIsLoading(true);
-    setTimeout(() => {
-      setUser({});
-      // setIsLoading(false);
-    }, 2500);
+
+    try {
+      await signup(values);
+      Alert.alert('Success', 'You have successfully signed up', [
+        {
+          text: 'Login',
+          onPress: () => navigation.navigate(ROUTES.LOGIN),
+        },
+      ]);
+    } catch (ex: any) {
+      console.log(ex.response?.data?.error || ex.message);
+      Alert.alert(ex?.response?.data?.error?.message || ex.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -82,7 +68,7 @@ export default function Signup() {
               firstName: '',
               lastName: '',
             }}
-            onSubmit={values => handleLogin(values)}>
+            onSubmit={handleSignup}>
             {({
               errors,
               handleSubmit,

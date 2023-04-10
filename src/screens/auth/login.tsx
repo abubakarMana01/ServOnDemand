@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Formik} from 'formik';
-import * as yup from 'yup';
 
 import {AppTextInput, AppButton} from '../../components';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
@@ -21,19 +20,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Colors} from '../../constants';
 import {useAppContext} from '../../context';
 import {ROUTES} from '../../navigation';
-
-const loginValidationSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Please enter valid email')
-    .required('Email is required')
-    .label('Email'),
-  password: yup
-    .string()
-    .min(8)
-    .required('Password is required')
-    .label('Password'),
-});
+import {attemptLogin, loginValidationSchema} from './helpers';
 
 export default function Login() {
   const {theme} = useAppContext();
@@ -44,15 +31,6 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [isRememberMeChecked, setIsRememberMeChecked] = useState(true);
 
-  const handleLogin = (values: {}) => {
-    console.log(values);
-    setIsLoading(true);
-    setTimeout(() => {
-      setUser({});
-      // setIsLoading(false);
-    }, 2500);
-  };
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -62,7 +40,7 @@ export default function Login() {
           <Formik
             validationSchema={loginValidationSchema}
             initialValues={{email: '', password: ''}}
-            onSubmit={values => handleLogin(values)}>
+            onSubmit={values => attemptLogin({values, setIsLoading, setUser})}>
             {({
               handleChange,
               handleBlur,

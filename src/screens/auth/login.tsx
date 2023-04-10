@@ -21,12 +21,14 @@ import {Colors} from '../../constants';
 import {useAppContext} from '../../context';
 import {ROUTES} from '../../navigation';
 import {attemptLogin, loginValidationSchema} from './helpers';
+import {useAuthToken} from '../../hooks';
 
 export default function Login() {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {setUser} = useAppContext();
+  const {storeToken} = useAuthToken();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isRememberMeChecked, setIsRememberMeChecked] = useState(true);
@@ -40,7 +42,9 @@ export default function Login() {
           <Formik
             validationSchema={loginValidationSchema}
             initialValues={{email: '', password: ''}}
-            onSubmit={values => attemptLogin({values, setIsLoading, setUser})}>
+            onSubmit={values =>
+              attemptLogin({values, setIsLoading, setUser, storeToken})
+            }>
             {({
               handleChange,
               handleBlur,

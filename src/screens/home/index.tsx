@@ -7,6 +7,20 @@ import MostBookedServices from './components/mostBookedServices';
 import BookAService from './components/bookAService';
 
 export default function Home() {
+  // const queryClient = useQueryClient();
+
+  // // Queries
+  // const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })
+
+  // // Mutations
+  // const mutation = useMutation({
+  //   mutationFn: postTodo,
+  //   onSuccess: () => {
+  //     // Invalidate and refetch
+  //     queryClient.invalidateQueries({ queryKey: ['todos'] })
+  //   },
+  // })
+
   return (
     <View style={styles.wrapper}>
       <HomeHeader />

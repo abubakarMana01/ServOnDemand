@@ -1,7 +1,9 @@
-import {useContext, createContext, useState} from 'react';
-import {Appearance, StatusBar} from 'react-native';
+import {useContext, createContext, useState, useEffect} from 'react';
+import {ActivityIndicator, Appearance, StatusBar, View} from 'react-native';
 import React from 'react';
 import {Colors} from '../constants';
+import {getUserInfo} from '../utils';
+import {useAuthToken} from '../hooks';
 
 const AppContext = createContext({} as IAppContext);
 
@@ -12,9 +14,44 @@ interface IAppProvider {
 export default function AppProvider({children}: IAppProvider) {
   const [user, setUser] = useState<IAppContext['user']>(null);
   const [theme, setTheme] = useState(Appearance.getColorScheme()!);
+  const {getToken} = useAuthToken();
+  const [isLoading, setIsLoading] = useState(true);
+
   Appearance.addChangeListener(scheme => {
     setTheme(scheme.colorScheme!);
   });
+
+  async function persistAuthState() {
+    const token = await getToken();
+    if (!token) {
+      return setIsLoading(false);
+    }
+
+    try {
+      const {data} = await getUserInfo(token);
+      setUser(data);
+    } catch (ex) {
+      console.log(ex);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    persistAuthState();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator
+          size="large"
+          color={theme === 'dark' ? Colors.blue : Colors.darkBlue}
+        />
+      </View>
+    );
+  }
 
   return (
     <AppContext.Provider value={{theme, setTheme, user, setUser}}>

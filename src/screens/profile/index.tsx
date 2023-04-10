@@ -18,17 +18,18 @@ import {
 } from '../../components';
 import {Colors} from '../../constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useAuthToken} from '../../hooks';
 
 export default function Profile() {
   const {theme, setUser, user} = useAppContext();
   const styles = styleSheet({theme});
   const [isLoading, setIsLoading] = useState(false);
+  const {removeToken} = useAuthToken();
 
   const handleLogout = () => {
     setIsLoading(true);
-    setTimeout(() => {
-      setUser(null);
-    }, 1000);
+    removeToken();
+    setUser(null);
   };
 
   return (

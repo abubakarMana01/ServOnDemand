@@ -20,7 +20,7 @@ import {Colors} from '../../constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function Profile() {
-  const {theme, setUser} = useAppContext();
+  const {theme, setUser, user} = useAppContext();
   const styles = styleSheet({theme});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,7 +28,7 @@ export default function Profile() {
     setIsLoading(true);
     setTimeout(() => {
       setUser(null);
-    }, 2000);
+    }, 1000);
   };
 
   return (
@@ -43,8 +43,10 @@ export default function Profile() {
             source={require('../../assets/neymar.jpeg')}
             style={styles.userImg}
           />
-          <Text style={styles.userName}>Abubakar Mana</Text>
-          <Text style={styles.userEmail}>ym.abubakr8@gmail.com</Text>
+          <Text style={styles.userName}>
+            {user?.firstName} {user?.lastName}
+          </Text>
+          <Text style={styles.userEmail}>{user?.email}</Text>
         </View>
 
         <ScrollView contentContainerStyle={styles.scrollView}>
@@ -123,16 +125,20 @@ const styleSheet = ({theme}: IStyleSheet) =>
       borderRadius: 65,
       borderWidth: 5,
       borderColor: theme === 'dark' ? Colors.darkGrey : Colors.grey,
+      backgroundColor: theme === 'dark' ? Colors.dark : Colors.lightGrey,
     },
     userName: {
       fontSize: 24,
       fontWeight: '700',
       marginTop: 8,
       color: theme === 'dark' ? Colors.white : Colors.black,
+      textAlign: 'center',
+      textTransform: 'capitalize',
     },
     userEmail: {
       marginTop: 2,
       color: theme === 'dark' ? Colors.white : Colors.black,
+      textAlign: 'center',
     },
 
     options: {

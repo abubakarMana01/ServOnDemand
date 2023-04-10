@@ -5,4 +5,9 @@ interface IAppContext {
   setUser: React.Dispatch<React.SetStateAction<IAppContext['user'] | null>>;
 }
 
-type TUser = {};
+type TUser = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  _id: string;
+};

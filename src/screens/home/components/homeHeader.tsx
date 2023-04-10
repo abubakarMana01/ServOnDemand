@@ -15,7 +15,7 @@ import SearchModal from './searchModal';
 
 export default function HomeHeader() {
   const [modalVisible, setModalVisible] = useState(false);
-  const {theme} = useAppContext();
+  const {theme, user} = useAppContext();
 
   const styles = styleSheet({theme});
   return (
@@ -28,9 +28,9 @@ export default function HomeHeader() {
         />
 
         <View style={styles.userInfo}>
-          <Text style={styles.greeting}>Good morning</Text>
+          <Text style={styles.greeting}>Welcome</Text>
           <View style={styles.nameAndNotification}>
-            <Text style={styles.username}>Abubakar</Text>
+            <Text style={styles.username}>{user?.lastName}</Text>
 
             <Pressable>
               <Feather name="bell" size={24} color={Colors.grey} />
@@ -87,6 +87,7 @@ const styleSheet = ({}: IStyleSheet) =>
       fontSize: 28,
       fontWeight: '600',
       color: Colors.white,
+      textTransform: 'capitalize',
     },
 
     searchBarContainer: {

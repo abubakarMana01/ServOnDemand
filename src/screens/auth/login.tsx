@@ -110,7 +110,7 @@ export default function Login() {
                   </View>
                 </View>
 
-                <View style={{flex: 1}} />
+                <View style={styles.spacer} />
 
                 <View style={styles.bottom}>
                   <AppButton
@@ -183,6 +183,9 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
       fontSize: 12,
       fontWeight: '500',
+    },
+    spacer: {
+      flex: 1,
     },
     bottom: {
       alignItems: 'center',

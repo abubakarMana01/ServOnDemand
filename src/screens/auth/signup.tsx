@@ -34,7 +34,7 @@ export default function Signup() {
       await signup(values);
       Alert.alert('Success', 'You have successfully signed up', [
         {
-          text: 'Login',
+          text: 'OK',
           onPress: () => navigation.navigate(ROUTES.LOGIN),
         },
       ]);

@@ -8,7 +8,7 @@ type TAttemptLogin = {
     password: string;
   };
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setUser: React.Dispatch<React.SetStateAction<TUser>>;
+  setUser: React.Dispatch<React.SetStateAction<TUser | null>>;
 };
 
 export const attemptLogin = async ({
@@ -28,7 +28,10 @@ export const attemptLogin = async ({
     setUser(res.data);
   } catch (ex: any) {
     console.log(ex.response?.data?.error || ex.message);
-    Alert.alert(ex?.response?.data?.error?.message || ex.message);
+    Alert.alert(
+      'Something failed',
+      ex?.response?.data?.error?.message || ex.message,
+    );
   } finally {
     setIsLoading(false);
   }

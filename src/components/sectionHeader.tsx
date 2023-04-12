@@ -2,26 +2,33 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
 
 interface ISectionHeader {
   title: string;
   withPaddingHorizontal?: boolean;
+  navigationRoute?: string;
 }
 
 export default function SectionHeader({
   title,
   withPaddingHorizontal = true,
+  navigationRoute,
 }: ISectionHeader) {
   const {theme} = useAppContext();
   const styles = styleSheet({theme, withPaddingHorizontal});
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
     <View style={[styles.sectionTitleContainer, styles.marginInline]}>
       <Text style={styles.sectionTitle}>{title}</Text>
 
-      <TouchableOpacity>
-        <Text style={styles.sectionRightActionText}>See all</Text>
-      </TouchableOpacity>
+      {navigationRoute && (
+        <TouchableOpacity onPress={() => navigation.navigate(navigationRoute)}>
+          <Text style={styles.sectionRightActionText}>See all</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

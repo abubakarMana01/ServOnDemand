@@ -1,6 +1,5 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors} from '../../constants';
 import {useAppContext} from '../../context';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
@@ -8,29 +7,29 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/type
 import {ROUTES} from '../../navigation';
 
 interface IBookingCard {
-  data: any;
+  data: IBooking;
   showDropdown?: boolean;
 }
 
-export default function BookingCard({
-  data,
-  showDropdown = false,
-}: IBookingCard) {
+export default function BookingCard({data}: IBookingCard) {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate(ROUTES.ABOUT_BOOKING)}
+      style={styles.container}>
       <View style={styles.infoContainer}>
-        <Image
-          source={require('../../assets/bookings/booking1.png')}
-          style={styles.image}
-        />
+        <Image source={{uri: data.service.picture}} style={styles.image} />
 
-        <View>
-          <Text style={styles.title}>{data.title}</Text>
-          <Text style={styles.date}>{data.date.toLocaleDateString()}</Text>
+        <View style={{flex: 1}}>
+          <Text numberOfLines={2} style={styles.title}>
+            {data.service.title}
+          </Text>
+          <Text style={styles.date}>
+            {new Date(data.service.createdAt).toLocaleDateString()}
+          </Text>
 
           <View
             style={[
@@ -61,19 +60,7 @@ export default function BookingCard({
           </View>
         </View>
       </View>
-
-      {showDropdown && (
-        <Pressable
-          onPress={() => navigation.navigate(ROUTES.ABOUT_BOOKING)}
-          style={styles.dropArea}>
-          <MaterialCommunityIcons
-            name="chevron-down"
-            color={theme === 'dark' ? Colors.white : Colors.black}
-            size={24}
-          />
-        </Pressable>
-      )}
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -91,16 +78,18 @@ const styleSheet = ({theme}: IStyleSheet) =>
       borderColor: '#333',
       elevation: 3,
       borderWidth: theme === 'dark' ? 1 : 0,
+      flexDirection: 'row',
     },
     infoContainer: {
       padding: 16,
       flexDirection: 'row',
       alignItems: 'center',
+      flex: 1,
     },
     image: {
       width: 80,
       height: 80,
-      borderRadius: 12,
+      borderRadius: 8,
       marginRight: 16,
     },
     title: {
@@ -119,6 +108,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       paddingVertical: 4,
       paddingHorizontal: 10,
       borderRadius: 8,
+      alignSelf: 'flex-start',
     },
     statusText: {
       textTransform: 'capitalize',
@@ -136,10 +126,11 @@ const styleSheet = ({theme}: IStyleSheet) =>
       backgroundColor: theme === 'dark' ? '#ED1313' : '#ED131320',
       color: theme === 'dark' ? Colors.lightGrey : '#ED1313',
     },
-    dropArea: {
-      borderTopWidth: 1,
-      borderColor: theme === 'dark' ? '#333' : Colors.lightGrey,
-      padding: 8,
-      alignItems: 'center',
-    },
+    // dropArea: {
+    //   borderLeftWidth: 1,
+    //   borderColor: theme === 'dark' ? '#333' : Colors.lightGrey,
+    //   padding: 8,
+    //   alignItems: 'center',
+    //   justifyContent: 'center',
+    // },
   });

@@ -5,31 +5,17 @@ import BookingCard from './bookings/bookingCard';
 import {Calendar} from 'react-native-calendars';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
-
-const MY_BOOKINGS = [
-  {
-    id: '1',
-    title: 'Carpenter',
-    date: new Date(),
-    status: 'upcoming',
-  },
-  {
-    id: '2',
-    title: 'Painting',
-    date: new Date(),
-    status: 'upcoming',
-  },
-  {
-    id: '3',
-    title: 'Laundry',
-    date: new Date(),
-    status: 'upcoming',
-  },
-];
+import {getUpcomingBookings} from '../utils/apiRequests';
+import {useQuery} from '@tanstack/react-query';
 
 export default function CalendarView() {
-  const {theme} = useAppContext();
+  const {theme, token} = useAppContext();
   const styles = styleSheet({theme});
+
+  const {data: bookings, status} = useQuery({
+    queryKey: ['upcomingBookings'],
+    queryFn: () => getUpcomingBookings(token),
+  });
 
   return (
     <View style={styles.wrapper}>
@@ -37,59 +23,61 @@ export default function CalendarView() {
         <ScreenHeaderText title="Calendar" />
       </ScreenHeaderBg>
 
-      <View style={styles.main}>
-        <FlatList
-          contentContainerStyle={styles.flatlist}
-          data={MY_BOOKINGS}
-          ListHeaderComponent={() => (
-            <>
-              <View style={styles.calendarContainer}>
-                <Calendar
-                  // Collection of dates that have to be marked. Default = {}
-                  style={styles.calendar}
-                  theme={{
-                    arrowColor:
-                      theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                    dotColor: 'red',
-                    indicatorColor:
-                      theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                    todayTextColor:
-                      theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                    textMonthFontWeight: '600',
-                    textDayFontSize: 14,
-                  }}
-                  markedDates={{
-                    '2023-04-11': {
-                      selected: true,
-                      // marked: true,
-                      selectedColor:
+      {status === 'success' && (
+        <View style={styles.main}>
+          <FlatList
+            contentContainerStyle={styles.flatlist}
+            data={bookings}
+            ListHeaderComponent={() => (
+              <>
+                <View style={styles.calendarContainer}>
+                  <Calendar
+                    // Collection of dates that have to be marked. Default = {}
+                    style={styles.calendar}
+                    theme={{
+                      arrowColor:
                         theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                    },
-                    '2023-04-12': {
-                      marked: true,
-                      dotColor:
+                      dotColor: 'red',
+                      indicatorColor:
                         theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                    },
-                    '2023-04-13': {
-                      marked: true,
-                      dotColor:
+                      todayTextColor:
                         theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                    },
-                  }}
+                      textMonthFontWeight: '600',
+                      textDayFontSize: 14,
+                    }}
+                    markedDates={{
+                      '2023-04-11': {
+                        selected: true,
+                        // marked: true,
+                        selectedColor:
+                          theme === 'dark' ? Colors.blue : Colors.darkBlue,
+                      },
+                      '2023-04-12': {
+                        marked: true,
+                        dotColor:
+                          theme === 'dark' ? Colors.blue : Colors.darkBlue,
+                      },
+                      '2023-04-13': {
+                        marked: true,
+                        dotColor:
+                          theme === 'dark' ? Colors.blue : Colors.darkBlue,
+                      },
+                    }}
+                  />
+                </View>
+                <SectionHeader
+                  withPaddingHorizontal={false}
+                  title="Booked Services"
                 />
-              </View>
-              <SectionHeader
-                withPaddingHorizontal={false}
-                title="Booked Services"
-              />
-            </>
-          )}
-          ItemSeparatorComponent={() => (
-            <View style={styles.flatlistSeparator} />
-          )}
-          renderItem={({item}) => <BookingCard data={item} />}
-        />
-      </View>
+              </>
+            )}
+            ItemSeparatorComponent={() => (
+              <View style={styles.flatlistSeparator} />
+            )}
+            renderItem={({item}) => <BookingCard data={item} />}
+          />
+        </View>
+      )}
     </View>
   );
 }

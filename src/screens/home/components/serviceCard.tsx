@@ -37,10 +37,7 @@ export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          // source={{uri: service.picture}}
-          source={{
-            uri: service.picture,
-          }}
+          source={{uri: service.picture}}
           resizeMode="cover"
         />
       </View>

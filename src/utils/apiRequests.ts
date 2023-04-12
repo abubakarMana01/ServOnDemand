@@ -35,11 +35,31 @@ export const getUserInfo = async (token: string) => {
   return data;
 };
 
-export const getAllServices = async (token: string) => {
+export const getAllServices = async (token: string): Promise<IService[]> => {
   const {data} = await axiosInstance.get('/services/all', {
     headers: {
       Authorization: 'Bearer ' + token,
     },
   });
   return data;
+};
+
+export const getAllBookings = async (token: string): Promise<IBooking[]> => {
+  const {data} = await axiosInstance.get('/bookings/all', {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  return data.data;
+};
+
+export const getUpcomingBookings = async (
+  token: string,
+): Promise<IBooking[]> => {
+  const {data} = await axiosInstance.get('/bookings/upcoming', {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  return data.data;
 };

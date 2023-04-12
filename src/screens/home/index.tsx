@@ -1,4 +1,10 @@
-import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import HomeHeader from './components/homeHeader';
 import MostPopular from './components/mostPopular';
@@ -23,7 +29,7 @@ export default function Home() {
       <HomeHeader />
 
       {status === 'loading' && (
-        <View style={styles.loadingContainer}>
+        <View style={styles.beforeSuccessContainer}>
           <ActivityIndicator
             size={50}
             color={theme === 'dark' ? Colors.blue : Colors.darkBlue}
@@ -36,14 +42,14 @@ export default function Home() {
           <ScrollView bounces={true}>
             <View style={styles.mainContainer}>
               {/* <View style={[styles.section, {marginTop: 20}]}>
-            <SectionHeader title="Categories" />
-            <Categories />
-          </View> */}
+                <SectionHeader title="Categories" />
+                <Categories />
+              </View> */}
 
               {/* <View style={[styles.section, styles.sectionMinMarginTop]}>
-              <SectionHeader title="Special Offers" />
-              <SpecialOffer />
-            </View> */}
+                <SectionHeader title="Special Offers" />
+                <SpecialOffer />
+              </View> */}
 
               <View style={[styles.section, styles.sectionMinMarginTop]}>
                 <SectionHeader title="Most Popular" />
@@ -63,6 +69,12 @@ export default function Home() {
           </ScrollView>
         </View>
       )}
+
+      {status === 'error' && (
+        <View style={styles.beforeSuccessContainer}>
+          <Text>Something failed!!!</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -71,7 +83,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
-  loadingContainer: {
+  beforeSuccessContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,51 +1,19 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View, Text} from 'react-native';
 import React from 'react';
 import {ScreenHeaderBg, ScreenHeaderText} from '../../components';
 import BookingCard from './bookingCard';
 import {useAppContext} from '../../context';
-
-const MY_BOOKINGS = [
-  {
-    id: '1',
-    title: 'Carpenter',
-    date: new Date(),
-    status: 'completed',
-  },
-  {
-    id: '2',
-    title: 'Painting',
-    date: new Date(),
-    status: 'completed',
-  },
-  {
-    id: '3',
-    title: 'Laundry',
-    date: new Date(),
-    status: 'completed',
-  },
-  {
-    id: '5',
-    title: 'A/C Repair',
-    date: new Date(),
-    status: 'cancelled',
-  },
-  {
-    id: '6',
-    title: 'Painting',
-    date: new Date(),
-    status: 'completed',
-  },
-  {
-    id: '7',
-    title: 'Mechanic',
-    date: new Date(),
-    status: 'cancelled',
-  },
-];
+import {useQuery} from '@tanstack/react-query';
+import {getAllBookings} from '../../utils/apiRequests';
 
 export default function Bookings() {
-  const {theme} = useAppContext();
+  const {theme, token} = useAppContext();
   const styles = styleSheet({theme});
+
+  const {data: bookings, status} = useQuery({
+    queryKey: ['allBookings'],
+    queryFn: () => getAllBookings(token),
+  });
 
   return (
     <View style={styles.wrapper}>
@@ -53,16 +21,20 @@ export default function Bookings() {
         <ScreenHeaderText title="My Bookings" />
       </ScreenHeaderBg>
 
-      <View style={styles.main}>
-        <FlatList
-          contentContainerStyle={styles.flatlist}
-          data={MY_BOOKINGS}
-          ItemSeparatorComponent={() => (
-            <View style={styles.flatlistSeparator} />
-          )}
-          renderItem={({item}) => <BookingCard data={item} showDropdown />}
-        />
-      </View>
+      {status === 'loading' && <Text style={{marginTop: 50}}>Loading...</Text>}
+
+      {status === 'success' && (
+        <View style={styles.main}>
+          <FlatList
+            contentContainerStyle={styles.flatlist}
+            data={bookings}
+            ItemSeparatorComponent={() => (
+              <View style={styles.flatlistSeparator} />
+            )}
+            renderItem={({item}) => <BookingCard data={item} showDropdown />}
+          />
+        </View>
+      )}
     </View>
   );
 }

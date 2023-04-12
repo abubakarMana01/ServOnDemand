@@ -3,6 +3,8 @@ interface IAppContext {
   setTheme: React.Dispatch<React.SetStateAction<IAppContext['theme']>>;
   user: TUser | null;
   setUser: React.Dispatch<React.SetStateAction<IAppContext['user'] | null>>;
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<IAppContext['token']>>;
 }
 
 type TUser = {

@@ -24,40 +24,32 @@ export default function HandymanItem({data}: IHandymanItem) {
     .join('');
 
   return (
-    <View style={styles.infoContainer}>
-      {/* <Image
+    <TouchableOpacity onPress={() => navigation.navigate(ROUTES.DETAILS)}>
+      <View style={styles.infoContainer}>
+        {/* <Image
         source={{uri: data.picture}}
         resizeMode="cover"
         style={styles.userImg}
       /> */}
 
-      <Avatar size={55} initials={initials} />
+        <Avatar size={55} initials={initials} />
 
-      <View style={styles.userDetails}>
-        <Text style={styles.username} numberOfLines={1}>
-          {data.name}
-        </Text>
-        <View style={styles.userRatingContainer}>
-          <MaterialCommunityIcons name="star" color="#E38902" size={18} />
-          <Text style={styles.ratingText}>
-            {data.rating}{' '}
-            <Text style={styles.ratingCount}>
-              ({data.reviewsCount} reviews)
-            </Text>
+        <View style={styles.userDetails}>
+          <Text style={styles.username} numberOfLines={1}>
+            {data.name}
           </Text>
+          <View style={styles.userRatingContainer}>
+            <MaterialCommunityIcons name="star" color="#E38902" size={18} />
+            <Text style={styles.ratingText}>
+              {data.rating}{' '}
+              <Text style={styles.ratingCount}>
+                ({data.reviewsCount} reviews)
+              </Text>
+            </Text>
+          </View>
         </View>
       </View>
-
-      {/* <AppButton
-        title="Details"
-        onPress={() => navigation.navigate(ROUTES.DETAILS)}
-        customStyles={styles.selectButtonCustom}
-        customTextStyles={styles.selectButtonCustomText}
-      /> */}
-      <TouchableOpacity onPress={() => navigation.navigate(ROUTES.DETAILS)}>
-        <Text style={styles.reviewsButton}>Details</Text>
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 }
 

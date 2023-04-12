@@ -34,3 +34,12 @@ export const getUserInfo = async (token: string) => {
   });
   return data;
 };
+
+export const getAllServices = async (token: string) => {
+  const {data} = await axiosInstance.get('/services/all', {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  return data;
+};

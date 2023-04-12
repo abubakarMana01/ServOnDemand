@@ -13,6 +13,7 @@ interface IAppProvider {
 
 export default function AppProvider({children}: IAppProvider) {
   const [user, setUser] = useState<IAppContext['user']>(null);
+  const [token, setToken] = useState('');
   const [theme, setTheme] = useState(Appearance.getColorScheme()!);
   const {getToken} = useAuthToken();
   const [isLoading, setIsLoading] = useState(true);
@@ -22,13 +23,14 @@ export default function AppProvider({children}: IAppProvider) {
   });
 
   async function persistAuthState() {
-    const token = await getToken();
-    if (!token) {
+    const savedToken = await getToken();
+    if (!savedToken) {
       return setIsLoading(false);
     }
+    setToken(savedToken);
 
     try {
-      const {data} = await getUserInfo(token);
+      const {data} = await getUserInfo(savedToken);
       setUser(data);
     } catch (ex) {
       console.log(ex);
@@ -54,7 +56,8 @@ export default function AppProvider({children}: IAppProvider) {
   }
 
   return (
-    <AppContext.Provider value={{theme, setTheme, user, setUser}}>
+    <AppContext.Provider
+      value={{theme, setTheme, user, setUser, token, setToken}}>
       {theme === 'light' ? (
         <StatusBar
           barStyle={user ? 'light-content' : 'dark-content'}

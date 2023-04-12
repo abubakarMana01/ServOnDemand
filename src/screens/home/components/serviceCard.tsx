@@ -8,7 +8,7 @@ import {useAppContext} from '../../../context';
 import {Colors} from '../../../constants';
 
 interface IServiceCard {
-  service: any;
+  service: IService;
   isFirst: boolean;
   bonus?: {
     category: 'new' | 'most booked';
@@ -23,7 +23,7 @@ export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
 
   return (
     <Pressable
-      key={service.id}
+      key={service._id}
       style={[
         styles.card,
         {
@@ -34,7 +34,16 @@ export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
       onPress={() =>
         navigation.navigate(ROUTES.AVAILABLE_HANDYMEN, {title: service.title})
       }>
-      <Image source={{uri: service.image}} style={styles.image} />
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          // source={{uri: service.picture}}
+          source={{
+            uri: service.picture,
+          }}
+          resizeMode="cover"
+        />
+      </View>
       <Text numberOfLines={2} style={styles.cardText}>
         {service.title}
       </Text>
@@ -71,11 +80,16 @@ const stylesheet = ({theme}: IStyleSheet) =>
     card: {
       width: 100,
     },
-    image: {
+    imageContainer: {
       width: 100,
       height: 100,
       borderRadius: 10,
       backgroundColor: Colors.lightGrey,
+      overflow: 'hidden',
+    },
+    image: {
+      width: '100%',
+      height: '100%',
     },
     cardText: {
       marginTop: 4,

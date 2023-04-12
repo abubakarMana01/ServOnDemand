@@ -27,7 +27,7 @@ export default function Login() {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
-  const {setUser} = useAppContext();
+  const {setUser, setToken} = useAppContext();
   const {storeToken} = useAuthToken();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +43,13 @@ export default function Login() {
             validationSchema={loginValidationSchema}
             initialValues={{email: '', password: ''}}
             onSubmit={values =>
-              attemptLogin({values, setIsLoading, setUser, storeToken})
+              attemptLogin({
+                values,
+                setIsLoading,
+                setUser,
+                storeToken,
+                setToken,
+              })
             }>
             {({
               handleChange,

@@ -28,7 +28,7 @@ export default function BookingCard({data}: IBookingCard) {
             {data.service.title}
           </Text>
           <Text style={styles.date}>
-            {new Date(data.service.createdAt).toLocaleDateString()}
+            {new Date(data.createdAt).toLocaleDateString()}
           </Text>
 
           <View

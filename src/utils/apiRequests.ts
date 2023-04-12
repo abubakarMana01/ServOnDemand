@@ -44,6 +44,17 @@ export const getAllServices = async (token: string): Promise<IService[]> => {
   return data;
 };
 
+export const getMostBookedServices = async (
+  token: string,
+): Promise<IService[]> => {
+  const {data} = await axiosInstance.get('/services/most-booked', {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  return data;
+};
+
 export const getAllBookings = async (token: string): Promise<IBooking[]> => {
   const {data} = await axiosInstance.get('/bookings/all', {
     headers: {

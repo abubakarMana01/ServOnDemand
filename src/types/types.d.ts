@@ -10,4 +10,5 @@ interface IBooking {
   service: IService;
   status: 'upcoming' | 'cancelled' | 'completed';
   userId: string;
+  createdAt: string;
 }

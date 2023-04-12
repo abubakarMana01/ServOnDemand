@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {ScreenHeaderBg, ScreenHeaderText, SectionHeader} from '../components';
 import BookingCard from './bookings/bookingCard';
 import {Calendar} from 'react-native-calendars';
@@ -7,14 +7,55 @@ import {Colors} from '../constants';
 import {useAppContext} from '../context';
 import {getUpcomingBookings} from '../utils/apiRequests';
 import {useQuery} from '@tanstack/react-query';
+import {MarkedDates} from 'react-native-calendars/src/types';
 
 export default function CalendarView() {
   const {theme, token} = useAppContext();
   const styles = styleSheet({theme});
+  const [markedDates, setMarkedDates] = useState<MarkedDates>({});
+
+  const padTo2Digits = (num: number) => {
+    return num.toString().padStart(2, '0');
+  };
 
   const {data: bookings, status} = useQuery({
     queryKey: ['upcomingBookings'],
     queryFn: () => getUpcomingBookings(token),
+    onSuccess: res => {
+      const dates = res.map(booking => {
+        const date = new Date(booking.createdAt);
+        return (
+          date.getFullYear() +
+          '-' +
+          padTo2Digits(date.getMonth() + 1) +
+          '-' +
+          padTo2Digits(date.getDate())
+        );
+      });
+
+      const todaysDate = new Date();
+      const formattedTodaysDate =
+        todaysDate.getFullYear() +
+        '-' +
+        padTo2Digits(todaysDate.getMonth() + 1) +
+        '-' +
+        padTo2Digits(todaysDate.getDate());
+
+      const formattedDates: MarkedDates = {};
+      const options = {
+        selected: true,
+        selectedColor: theme === 'dark' ? Colors.blue : Colors.darkBlue,
+      };
+
+      for (const d of dates) {
+        formattedDates[d] = {...options};
+      }
+      formattedDates[formattedTodaysDate] = {
+        marked: true,
+      };
+
+      setMarkedDates(formattedDates);
+    },
   });
 
   return (
@@ -32,7 +73,6 @@ export default function CalendarView() {
               <>
                 <View style={styles.calendarContainer}>
                   <Calendar
-                    // Collection of dates that have to be marked. Default = {}
                     style={styles.calendar}
                     theme={{
                       arrowColor:
@@ -45,24 +85,7 @@ export default function CalendarView() {
                       textMonthFontWeight: '600',
                       textDayFontSize: 14,
                     }}
-                    markedDates={{
-                      '2023-04-11': {
-                        selected: true,
-                        // marked: true,
-                        selectedColor:
-                          theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                      },
-                      '2023-04-12': {
-                        marked: true,
-                        dotColor:
-                          theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                      },
-                      '2023-04-13': {
-                        marked: true,
-                        dotColor:
-                          theme === 'dark' ? Colors.blue : Colors.darkBlue,
-                      },
-                    }}
+                    markedDates={markedDates}
                   />
                 </View>
                 <SectionHeader

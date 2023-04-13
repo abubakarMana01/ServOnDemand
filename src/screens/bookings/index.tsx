@@ -1,6 +1,11 @@
-import {FlatList, StyleSheet, View, Text} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
-import {ScreenHeaderBg, ScreenHeaderText} from '../../components';
+import {
+  ErrorView,
+  LoaderView,
+  ScreenHeaderBg,
+  ScreenHeaderText,
+} from '../../components';
 import BookingCard from './bookingCard';
 import {useAppContext} from '../../context';
 import {useQuery} from '@tanstack/react-query';
@@ -21,8 +26,8 @@ export default function Bookings() {
         <ScreenHeaderText title="My Bookings" />
       </ScreenHeaderBg>
 
-      {status === 'loading' && <Text style={{marginTop: 50}}>Loading...</Text>}
-
+      {status === 'loading' && <LoaderView />}
+      {status === 'error' && <ErrorView />}
       {status === 'success' && (
         <View style={styles.main}>
           <FlatList

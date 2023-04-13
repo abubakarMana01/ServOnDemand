@@ -1,6 +1,12 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
-import {ScreenHeaderBg, ScreenHeaderText, SectionHeader} from '../components';
+import {
+  ErrorView,
+  LoaderView,
+  ScreenHeaderBg,
+  ScreenHeaderText,
+  SectionHeader,
+} from '../components';
 import BookingCard from './bookings/bookingCard';
 import {Calendar} from 'react-native-calendars';
 import {Colors} from '../constants';
@@ -64,6 +70,8 @@ export default function CalendarView() {
         <ScreenHeaderText title="Calendar" />
       </ScreenHeaderBg>
 
+      {status === 'loading' && <LoaderView />}
+      {status === 'error' && <ErrorView />}
       {status === 'success' && (
         <View style={styles.main}>
           <FlatList

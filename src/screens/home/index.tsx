@@ -1,23 +1,16 @@
-import {
-  ActivityIndicator,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import React from 'react';
 import HomeHeader from './components/homeHeader';
 import MostPopular from './components/mostPopular';
-import {SectionHeader} from '../../components';
+import {ErrorView, LoaderView, SectionHeader} from '../../components';
 import MostBookedServices from './components/mostBookedServices';
 import BookAService from './components/bookAService';
 import {useQuery} from '@tanstack/react-query';
 import {getAllServices} from '../../utils/apiRequests';
 import {useAppContext} from '../../context';
-import {Colors} from '../../constants';
 
 export default function Home() {
-  const {token, theme} = useAppContext();
+  const {token} = useAppContext();
 
   const {data, status} = useQuery({
     queryKey: ['allServices'],
@@ -28,15 +21,8 @@ export default function Home() {
     <View style={styles.wrapper}>
       <HomeHeader />
 
-      {status === 'loading' && (
-        <View style={styles.beforeSuccessContainer}>
-          <ActivityIndicator
-            size={50}
-            color={theme === 'dark' ? Colors.blue : Colors.darkBlue}
-          />
-        </View>
-      )}
-
+      {status === 'loading' && <LoaderView />}
+      {status === 'error' && <ErrorView />}
       {status === 'success' && (
         <View style={styles.scrollViewContainer}>
           <ScrollView bounces={true}>
@@ -69,12 +55,6 @@ export default function Home() {
           </ScrollView>
         </View>
       )}
-
-      {status === 'error' && (
-        <View style={styles.beforeSuccessContainer}>
-          <Text>Something failed!!!</Text>
-        </View>
-      )}
     </View>
   );
 }
@@ -82,11 +62,6 @@ export default function Home() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-  },
-  beforeSuccessContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   scrollViewContainer: {
     flex: 1,

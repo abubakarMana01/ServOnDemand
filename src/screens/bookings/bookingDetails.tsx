@@ -24,7 +24,6 @@ export default function BookingDetails() {
   const route = useRoute();
 
   const {service} = route.params as {service: IService};
-  console.log(route.params);
 
   return (
     <SafeAreaView style={{flex: 1}}>

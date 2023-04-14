@@ -142,6 +142,6 @@ const styleSheet = ({}: IStyleSheet) =>
       paddingBottom: 30,
     },
     flatlistSeparator: {
-      height: 16,
+      height: 24,
     },
   });

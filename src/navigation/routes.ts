@@ -11,6 +11,7 @@ export default Object.freeze({
   CALENDAR: 'Calendar',
   PROFILE: 'Profile',
 
+  AUTH_WELCOME: 'Auth Welcome',
   LOGIN: 'Login',
   SIGNUP: 'Signup',
 });

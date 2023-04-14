@@ -41,7 +41,7 @@ export const getAllServices = async (token: string): Promise<IService[]> => {
       Authorization: 'Bearer ' + token,
     },
   });
-  return data;
+  return data.data;
 };
 
 export const getMostBookedServices = async (
@@ -52,6 +52,15 @@ export const getMostBookedServices = async (
       Authorization: 'Bearer ' + token,
     },
   });
+  return data.data;
+};
+
+export const getHomeServices = async (token: string): Promise<IService[][]> => {
+  const data = await Promise.all([
+    getAllServices(token),
+    getMostBookedServices(token),
+  ]);
+
   return data;
 };
 

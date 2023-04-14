@@ -5,6 +5,7 @@ import {
   Platform,
   Pressable,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -34,116 +35,127 @@ export default function Login() {
   const [isRememberMeChecked, setIsRememberMeChecked] = useState(true);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.keyboardAvoidingView}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={styles.container}>
-          <Formik
-            validationSchema={loginValidationSchema}
-            initialValues={{email: '', password: ''}}
-            onSubmit={values =>
-              attemptLogin({
+    <>
+      {Platform.OS === 'ios' && (
+        <StatusBar
+          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+        />
+      )}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.keyboardAvoidingView}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <SafeAreaView style={styles.container}>
+            <Formik
+              validationSchema={loginValidationSchema}
+              initialValues={{email: '', password: ''}}
+              onSubmit={values =>
+                attemptLogin({
+                  values,
+                  setIsLoading,
+                  setUser,
+                  storeToken,
+                  setToken,
+                })
+              }>
+              {({
+                handleChange,
+                handleBlur,
+                handleSubmit,
                 values,
-                setIsLoading,
-                setUser,
-                storeToken,
-                setToken,
-              })
-            }>
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              errors,
-              touched,
-            }) => (
-              <>
-                {/* <View style={{flex: 1}} /> */}
+                errors,
+                touched,
+              }) => (
+                <>
+                  {/* <View style={{flex: 1}} /> */}
 
-                <View style={styles.header}>
-                  <Text style={styles.title}>Welcome Back! 👋</Text>
-                  <Text style={styles.subtitle}>
-                    You've been missed. Please login!
-                  </Text>
-                </View>
-
-                <View style={styles.form}>
-                  <View style={styles.inputContainer}>
-                    <AppTextInput
-                      label="Email address"
-                      placeholder="Email Address"
-                      keyboardType="email-address"
-                      autoCapitalize="none"
-                      value={values.email}
-                      onBlur={handleBlur('email')}
-                      onChangeText={handleChange('email')}
-                      error={errors.email}
-                      touched={touched.email}
-                      autoFocus
-                    />
-                  </View>
-
-                  <View style={styles.inputContainer}>
-                    <AppTextInput
-                      label="Password"
-                      placeholder="Enter your password"
-                      secureTextEntry
-                      autoCapitalize="none"
-                      value={values.password}
-                      onBlur={handleBlur('password')}
-                      onChangeText={handleChange('password')}
-                      error={errors.password}
-                      touched={touched.password}
-                    />
-                  </View>
-
-                  <View style={styles.forgotPasswordContainer}>
-                    <Pressable
-                      style={styles.forgotPasswordCheckBox}
-                      onPress={() => setIsRememberMeChecked(prev => !prev)}>
-                      <Ionicons
-                        name={
-                          isRememberMeChecked ? 'checkbox' : 'checkbox-outline'
-                        }
-                        size={24}
-                        color={theme === 'dark' ? Colors.blue : Colors.darkBlue}
-                      />
-                      <Text style={styles.remeberMeText}>Remember me</Text>
-                    </Pressable>
-                    <TouchableOpacity>
-                      <Text style={styles.forgotPasswordText}>
-                        Forgot password?
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-
-                <View style={styles.spacer} />
-
-                <View style={styles.bottom}>
-                  <AppButton
-                    title="Log in"
-                    isLoading={isLoading}
-                    onPress={handleSubmit}
-                    full
-                  />
-                  <Pressable
-                    style={styles.bottomTextContainer}
-                    onPress={() => navigation.navigate(ROUTES.SIGNUP)}>
-                    <Text style={styles.bottomText}>
-                      Don't have an account?{' '}
-                      <Text style={styles.bottomTextLink}>Create one</Text>
+                  <View style={styles.header}>
+                    <Text style={styles.title}>Welcome Back! 👋</Text>
+                    <Text style={styles.subtitle}>
+                      You've been missed. Please login!
                     </Text>
-                  </Pressable>
-                </View>
-              </>
-            )}
-          </Formik>
-        </SafeAreaView>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+                  </View>
+
+                  <View style={styles.form}>
+                    <View style={styles.inputContainer}>
+                      <AppTextInput
+                        label="Email address"
+                        placeholder="Email Address"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        value={values.email}
+                        onBlur={handleBlur('email')}
+                        onChangeText={handleChange('email')}
+                        error={errors.email}
+                        touched={touched.email}
+                        autoFocus
+                      />
+                    </View>
+
+                    <View style={styles.inputContainer}>
+                      <AppTextInput
+                        label="Password"
+                        placeholder="Enter your password"
+                        secureTextEntry
+                        autoCapitalize="none"
+                        value={values.password}
+                        onBlur={handleBlur('password')}
+                        onChangeText={handleChange('password')}
+                        error={errors.password}
+                        touched={touched.password}
+                      />
+                    </View>
+
+                    <View style={styles.forgotPasswordContainer}>
+                      <Pressable
+                        style={styles.forgotPasswordCheckBox}
+                        onPress={() => setIsRememberMeChecked(prev => !prev)}>
+                        <Ionicons
+                          name={
+                            isRememberMeChecked
+                              ? 'checkbox'
+                              : 'checkbox-outline'
+                          }
+                          size={24}
+                          color={
+                            theme === 'dark' ? Colors.blue : Colors.darkBlue
+                          }
+                        />
+                        <Text style={styles.remeberMeText}>Remember me</Text>
+                      </Pressable>
+                      <TouchableOpacity>
+                        <Text style={styles.forgotPasswordText}>
+                          Forgot password?
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+
+                  <View style={styles.spacer} />
+
+                  <View style={styles.bottom}>
+                    <AppButton
+                      title="Log in"
+                      isLoading={isLoading}
+                      onPress={handleSubmit}
+                      full
+                    />
+                    <Pressable
+                      style={styles.bottomTextContainer}
+                      onPress={() => navigation.navigate(ROUTES.SIGNUP)}>
+                      <Text style={styles.bottomText}>
+                        Don't have an account?{' '}
+                        <Text style={styles.bottomTextLink}>Create one</Text>
+                      </Text>
+                    </Pressable>
+                  </View>
+                </>
+              )}
+            </Formik>
+          </SafeAreaView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </>
   );
 }
 

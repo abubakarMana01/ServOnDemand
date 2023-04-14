@@ -6,7 +6,7 @@ import {ErrorView, LoaderView, SectionHeader} from '../../components';
 import MostBookedServices from './components/mostBookedServices';
 import BookAService from './components/bookAService';
 import {useQuery} from '@tanstack/react-query';
-import {getAllServices} from '../../utils/apiRequests';
+import {getHomeServices} from '../../utils/apiRequests';
 import {useAppContext} from '../../context';
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
 
   const {data, status} = useQuery({
     queryKey: ['allServices'],
-    queryFn: () => getAllServices(token),
+    queryFn: () => getHomeServices(token),
   });
 
   return (
@@ -28,14 +28,14 @@ export default function Home() {
           <ScrollView bounces={true}>
             <View style={styles.mainContainer}>
               {/* <View style={[styles.section, {marginTop: 20}]}>
-                <SectionHeader title="Categories" />
-                <Categories />
-              </View> */}
+                  <SectionHeader title="Categories" />
+                  <Categories />
+                </View> */}
 
               {/* <View style={[styles.section, styles.sectionMinMarginTop]}>
-                <SectionHeader title="Special Offers" />
-                <SpecialOffer />
-              </View> */}
+                  <SectionHeader title="Special Offers" />
+                  <SpecialOffer />
+                </View> */}
 
               <View style={[styles.section, styles.sectionMinMarginTop]}>
                 <SectionHeader title="Most Popular" />
@@ -44,12 +44,12 @@ export default function Home() {
 
               <View style={styles.section}>
                 <SectionHeader title="Most booked services" />
-                <MostBookedServices data={data} />
+                <MostBookedServices data={data[1]} />
               </View>
 
               <View style={styles.section}>
                 <SectionHeader title="Book a Service" />
-                <BookAService data={data} />
+                <BookAService data={data[0]} />
               </View>
             </View>
           </ScrollView>

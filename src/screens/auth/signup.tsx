@@ -5,6 +5,7 @@ import {
   Platform,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -47,118 +48,125 @@ export default function Signup() {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardAvoidingView}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={0}>
-      <SafeAreaView style={styles.container}>
-        <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
-          <View style={styles.header}>
-            <Text style={styles.title}>Sign up</Text>
-            <Text style={styles.subtitle}>
-              Please fill in the form to register
-            </Text>
-          </View>
+    <>
+      {Platform.OS === 'ios' && (
+        <StatusBar
+          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+        />
+      )}
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoidingView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}>
+        <SafeAreaView style={styles.container}>
+          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+            <View style={styles.header}>
+              <Text style={styles.title}>Sign up</Text>
+              <Text style={styles.subtitle}>
+                Please fill in the form to register
+              </Text>
+            </View>
 
-          <Formik
-            validationSchema={signupValidationSchema}
-            initialValues={{
-              email: '',
-              password: '',
-              firstName: '',
-              lastName: '',
-            }}
-            onSubmit={handleSignup}>
-            {({
-              errors,
-              handleSubmit,
-              handleBlur,
-              handleChange,
-              values,
-              touched,
-            }) => (
-              <>
-                <View style={styles.form}>
-                  <View style={styles.inputContainer}>
-                    <AppTextInput
-                      label="First name"
-                      placeholder="Enter your first name"
-                      keyboardType="default"
-                      autoCapitalize="words"
-                      value={values.firstName}
-                      onBlur={handleBlur('firstName')}
-                      onChangeText={handleChange('firstName')}
-                      error={errors.firstName}
-                      touched={touched.firstName}
-                      autoFocus
-                    />
+            <Formik
+              validationSchema={signupValidationSchema}
+              initialValues={{
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+              }}
+              onSubmit={handleSignup}>
+              {({
+                errors,
+                handleSubmit,
+                handleBlur,
+                handleChange,
+                values,
+                touched,
+              }) => (
+                <>
+                  <View style={styles.form}>
+                    <View style={styles.inputContainer}>
+                      <AppTextInput
+                        label="First name"
+                        placeholder="Enter your first name"
+                        keyboardType="default"
+                        autoCapitalize="words"
+                        value={values.firstName}
+                        onBlur={handleBlur('firstName')}
+                        onChangeText={handleChange('firstName')}
+                        error={errors.firstName}
+                        touched={touched.firstName}
+                        autoFocus
+                      />
+                    </View>
+
+                    <View style={styles.inputContainer}>
+                      <AppTextInput
+                        label="Last name"
+                        placeholder="Enter your last name"
+                        keyboardType="default"
+                        autoCapitalize="words"
+                        value={values.lastName}
+                        onBlur={handleBlur('lastName')}
+                        onChangeText={handleChange('lastName')}
+                        error={errors.lastName}
+                        touched={touched.lastName}
+                      />
+                    </View>
+
+                    <View style={styles.inputContainer}>
+                      <AppTextInput
+                        label="Email address"
+                        placeholder="Email Address"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        value={values.email}
+                        onBlur={handleBlur('email')}
+                        onChangeText={handleChange('email')}
+                        error={errors.email}
+                        touched={touched.email}
+                      />
+                    </View>
+
+                    <View style={styles.inputContainer}>
+                      <AppTextInput
+                        label="Password"
+                        placeholder="Enter your password"
+                        secureTextEntry
+                        autoCapitalize="none"
+                        value={values.password}
+                        onBlur={handleBlur('password')}
+                        onChangeText={handleChange('password')}
+                        error={errors.password}
+                        touched={touched.password}
+                      />
+                    </View>
                   </View>
 
-                  <View style={styles.inputContainer}>
-                    <AppTextInput
-                      label="Last name"
-                      placeholder="Enter your last name"
-                      keyboardType="default"
-                      autoCapitalize="words"
-                      value={values.lastName}
-                      onBlur={handleBlur('lastName')}
-                      onChangeText={handleChange('lastName')}
-                      error={errors.lastName}
-                      touched={touched.lastName}
+                  <View style={styles.bottom}>
+                    <AppButton
+                      title="Sign up"
+                      isLoading={isLoading}
+                      onPress={handleSubmit}
+                      full
                     />
+                    <Pressable
+                      style={styles.bottomTextContainer}
+                      onPress={() => navigation.navigate(ROUTES.LOGIN)}>
+                      <Text style={styles.bottomText}>
+                        Already have an account?{' '}
+                        <Text style={styles.bottomTextLink}>Log in</Text>
+                      </Text>
+                    </Pressable>
                   </View>
-
-                  <View style={styles.inputContainer}>
-                    <AppTextInput
-                      label="Email address"
-                      placeholder="Email Address"
-                      keyboardType="email-address"
-                      autoCapitalize="none"
-                      value={values.email}
-                      onBlur={handleBlur('email')}
-                      onChangeText={handleChange('email')}
-                      error={errors.email}
-                      touched={touched.email}
-                    />
-                  </View>
-
-                  <View style={styles.inputContainer}>
-                    <AppTextInput
-                      label="Password"
-                      placeholder="Enter your password"
-                      secureTextEntry
-                      autoCapitalize="none"
-                      value={values.password}
-                      onBlur={handleBlur('password')}
-                      onChangeText={handleChange('password')}
-                      error={errors.password}
-                      touched={touched.password}
-                    />
-                  </View>
-                </View>
-
-                <View style={styles.bottom}>
-                  <AppButton
-                    title="Sign up"
-                    isLoading={isLoading}
-                    onPress={handleSubmit}
-                    full
-                  />
-                  <Pressable
-                    style={styles.bottomTextContainer}
-                    onPress={() => navigation.navigate(ROUTES.LOGIN)}>
-                    <Text style={styles.bottomText}>
-                      Already have an account?{' '}
-                      <Text style={styles.bottomTextLink}>Log in</Text>
-                    </Text>
-                  </Pressable>
-                </View>
-              </>
-            )}
-          </Formik>
-        </ScrollView>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+                </>
+              )}
+            </Formik>
+          </ScrollView>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    </>
   );
 }
 

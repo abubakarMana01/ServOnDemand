@@ -23,7 +23,7 @@ export default function Bookings() {
   return (
     <View style={styles.wrapper}>
       <ScreenHeaderBg>
-        <ScreenHeaderText title="My Bookings" />
+        <ScreenHeaderText title="Bookings" />
       </ScreenHeaderBg>
 
       {status === 'loading' && <LoaderView />}

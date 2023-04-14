@@ -14,13 +14,17 @@ import {useAppContext} from '../../context';
 import {Colors} from '../../constants';
 import {AppButton, Divider, GoBackButton} from '../../components';
 import {ROUTES} from '../../navigation';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {ParamListBase, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export default function BookingDetails() {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const route = useRoute();
+
+  const {service} = route.params as {service: IService};
+  console.log(route.params);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -34,7 +38,7 @@ export default function BookingDetails() {
         <ImageBackground
           style={styles.imageBackground}
           source={{
-            uri: 'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800',
+            uri: service.picture,
           }}>
           <SafeAreaView style={{marginLeft: 16, marginTop: 16}}>
             <GoBackButton />
@@ -46,7 +50,7 @@ export default function BookingDetails() {
             <View style={styles.detailsTop}>
               <View style={{flex: 1}}>
                 <Text style={styles.title} numberOfLines={2}>
-                  Haircut for Men
+                  {service.title}
                 </Text>
                 <Text style={styles.handymanName}>Michael Charles</Text>
               </View>

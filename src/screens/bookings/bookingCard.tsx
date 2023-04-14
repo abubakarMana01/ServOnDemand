@@ -18,7 +18,9 @@ export default function BookingCard({data}: IBookingCard) {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate(ROUTES.ABOUT_BOOKING)}
+      onPress={() =>
+        navigation.navigate(ROUTES.ABOUT_BOOKING, {service: data.service})
+      }
       style={styles.container}>
       <View style={styles.infoContainer}>
         <Image source={{uri: data.service.picture}} style={styles.image} />

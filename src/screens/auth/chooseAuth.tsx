@@ -1,10 +1,4 @@
-import {
-  ImageBackground,
-  Platform,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import {ImageBackground, StatusBar, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {AppButton} from '../../components';
 import {Colors} from '../../constants';
@@ -20,7 +14,7 @@ export default function ChooseAuth() {
 
   return (
     <>
-      {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+      <StatusBar barStyle="light-content" backgroundColor={Colors.black} />
 
       <ImageBackground
         source={require('../../assets/background.jpg')}

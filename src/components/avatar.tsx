@@ -42,5 +42,6 @@ const styleSheet = ({size, backgroundColor, fontSize}: any) =>
       color: '#fff',
       fontSize,
       fontWeight: '500',
+      textTransform: 'uppercase',
     },
   });

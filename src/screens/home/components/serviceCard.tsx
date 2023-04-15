@@ -32,7 +32,10 @@ export default function ServiceCard({service, isFirst, bonus}: IServiceCard) {
         },
       ]}
       onPress={() =>
-        navigation.navigate(ROUTES.AVAILABLE_HANDYMEN, {title: service.title})
+        navigation.navigate(ROUTES.AVAILABLE_HANDYMEN, {
+          title: service.title,
+          serviceId: service._id,
+        })
       }>
       <View style={styles.imageContainer}>
         <Image

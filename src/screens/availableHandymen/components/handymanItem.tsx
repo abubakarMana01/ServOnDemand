@@ -17,7 +17,7 @@ export default function HandymanItem({data}: IHandymanItem) {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
-  const initials = data.name
+  const initials = (data.firstName + ' ' + data.lastName)
     .split(' ')
     .map(n => n[0])
     .slice(0, 2)
@@ -36,16 +36,16 @@ export default function HandymanItem({data}: IHandymanItem) {
 
         <View style={styles.userDetails}>
           <Text style={styles.username} numberOfLines={1}>
-            {data.name}
+            {data.firstName} {data.lastName}
           </Text>
           <View style={styles.userRatingContainer}>
             <MaterialCommunityIcons name="star" color="#E38902" size={18} />
-            <Text style={styles.ratingText}>
+            {/* <Text style={styles.ratingText}>
               {data.rating}{' '}
               <Text style={styles.ratingCount}>
                 ({data.reviewsCount} reviews)
               </Text>
-            </Text>
+            </Text> */}
           </View>
         </View>
       </View>
@@ -77,6 +77,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       fontWeight: '600',
       fontSize: 16,
       color: theme === 'dark' ? Colors.white : Colors.black,
+      textTransform: 'capitalize',
     },
     userRatingContainer: {
       flexDirection: 'row',

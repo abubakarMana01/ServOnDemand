@@ -83,3 +83,15 @@ export const getUpcomingBookings = async (
   });
   return data.data;
 };
+
+export const getAvailableHandymen = async (
+  token: string,
+  serviceId: string,
+): Promise<IHandyMan[]> => {
+  const {data} = await axiosInstance.get(`/workers/${serviceId}`, {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  return data.data;
+};

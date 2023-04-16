@@ -7,11 +7,11 @@ import {useAppContext} from '../context';
 
 export default function RootNavigator() {
   const navigationTheme = useNavigationTheme();
-  const {user} = useAppContext();
+  const {token} = useAppContext();
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      {user ? <BottomTabsNavigation /> : <AuthStackNavigator />}
+      {token ? <BottomTabsNavigation /> : <AuthStackNavigator />}
     </NavigationContainer>
   );
 }

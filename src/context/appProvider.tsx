@@ -27,10 +27,10 @@ export default function AppProvider({children}: IAppProvider) {
 
   async function persistAuthState() {
     const savedToken = await getToken();
+    setToken(savedToken!);
     if (!savedToken) {
       return setIsLoading(false);
     }
-    setToken(savedToken);
 
     try {
       const {data} = await getUserInfo(savedToken);
@@ -46,8 +46,6 @@ export default function AppProvider({children}: IAppProvider) {
     persistAuthState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(netInfo.isConnected);
 
   if (isLoading) {
     return (

@@ -24,9 +24,9 @@ const App = () => {
     return () => subscription.remove();
   }, []);
 
-  if (!netInfo.isConnected) {
-    return <NoInternetView />;
-  }
+  // if (!netInfo.isConnected) {
+  //   return <NoInternetView />;
+  // }
 
   return (
     <QueryClientProvider client={queryClient}>

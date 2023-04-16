@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Colors} from '../../constants';
 import {useAppContext} from '../../context';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {ParamListBase, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
 import {ROUTES} from '../../navigation';
 
@@ -13,17 +13,20 @@ interface IBookingCard {
 
 export default function BookingCard({data}: IBookingCard) {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const route = useRoute();
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
   return (
     <TouchableOpacity
-      onPress={() =>
+      activeOpacity={route.name === ROUTES.CALENDAR ? 1 : 0.1}
+      onPress={() => {
+        if (route.name === ROUTES.CALENDAR) return;
         navigation.navigate(ROUTES.ABOUT_BOOKING, {
           service: data.service,
           worker: data.worker,
-        })
-      }
+        });
+      }}
       style={styles.container}>
       <View style={styles.infoContainer}>
         <Image source={{uri: data.service.picture}} style={styles.image} />

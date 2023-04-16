@@ -4,6 +4,8 @@ import React from 'react';
 import {Colors} from '../constants';
 import {getUserInfo} from '../utils';
 import {useAuthToken} from '../hooks';
+import {useNetInfo} from '@react-native-community/netinfo';
+import {NoInternetView} from '../components';
 
 const AppContext = createContext({} as IAppContext);
 
@@ -12,6 +14,7 @@ interface IAppProvider {
 }
 
 export default function AppProvider({children}: IAppProvider) {
+  const netInfo = useNetInfo();
   const [user, setUser] = useState<IAppContext['user']>(null);
   const [token, setToken] = useState('');
   const [theme, setTheme] = useState(Appearance.getColorScheme()!);
@@ -44,6 +47,8 @@ export default function AppProvider({children}: IAppProvider) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(netInfo.isConnected);
+
   if (isLoading) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -53,6 +58,10 @@ export default function AppProvider({children}: IAppProvider) {
         />
       </View>
     );
+  }
+
+  if (!netInfo.isConnected) {
+    return <NoInternetView />;
   }
 
   return (

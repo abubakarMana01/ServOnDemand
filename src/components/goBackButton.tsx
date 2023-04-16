@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
+    elevation: 3,
     shadowOpacity: 0.2,
     shadowRadius: 3,
     shadowOffset: {

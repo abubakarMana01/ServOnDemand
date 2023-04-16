@@ -70,7 +70,10 @@ const AvailableHandymen = () => {
           ) : (
             <View
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Text>No service provider available</Text>
+              <Text
+                style={{color: theme === 'dark' ? Colors.white : Colors.black}}>
+                No service provider available
+              </Text>
             </View>
           )}
         </>

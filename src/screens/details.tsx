@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Image,
   ImageBackground,
   SafeAreaView,
   ScrollView,
@@ -184,9 +183,10 @@ const styleSheet = ({theme}: IStyleSheet) =>
     reviewsButton: {
       color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
       fontWeight: '500',
+      marginLeft: 8,
     },
     title: {
-      fontSize: 32,
+      fontSize: 28,
       fontWeight: '600',
       color: theme === 'dark' ? Colors.white : Colors.black,
       flex: 1,
@@ -235,7 +235,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     price: {
       fontSize: 32,
       fontWeight: '600',
-      color: theme === 'dark' ? Colors.white : Colors.black,
+      color: theme === 'dark' ? Colors.blue : Colors.darkBlue,
     },
     perHour: {
       fontSize: 14,

@@ -10,10 +10,14 @@ interface IHandyMan {
     address: string;
     coordinates: {latitude: string; longitude: string};
   };
+  ratings: {
+    count: number;
+    overallRatings: number;
+  };
   password: string;
   serviceOffered: {
     _id: string;
     description: string;
-    service: string;
+    service: IService;
   };
 }

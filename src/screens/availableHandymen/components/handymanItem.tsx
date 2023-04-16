@@ -24,7 +24,8 @@ export default function HandymanItem({data}: IHandymanItem) {
     .join('');
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(ROUTES.DETAILS)}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate(ROUTES.DETAILS, {data})}>
       <View style={styles.infoContainer}>
         {/* <Image
         source={{uri: data.picture}}
@@ -40,12 +41,12 @@ export default function HandymanItem({data}: IHandymanItem) {
           </Text>
           <View style={styles.userRatingContainer}>
             <MaterialCommunityIcons name="star" color="#E38902" size={18} />
-            {/* <Text style={styles.ratingText}>
-              {data.rating}{' '}
+            <Text style={styles.ratingText}>
+              {+data.ratings.overallRatings / data.ratings.count || 0}{' '}
               <Text style={styles.ratingCount}>
-                ({data.reviewsCount} reviews)
+                ({data.ratings.count} reviews)
               </Text>
-            </Text> */}
+            </Text>
           </View>
         </View>
       </View>

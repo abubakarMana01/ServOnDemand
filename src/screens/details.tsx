@@ -14,10 +14,10 @@ import {
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {AppButton, Divider, GoBackButton} from '../components';
+import {AppButton, Avatar, Divider, GoBackButton} from '../components';
 import {Colors} from '../constants';
 import {useAppContext} from '../context';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {ParamListBase, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ROUTES} from '../navigation';
 
@@ -25,6 +25,15 @@ export default function Details() {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const {
+    params: {data},
+  } = useRoute() as {params: {data: IHandyMan}};
+
+  const initials = (data.firstName + ' ' + data.lastName)
+    .split(' ')
+    .map(n => n[0])
+    .slice(0, 2)
+    .join('');
 
   return (
     <View style={styles.container}>
@@ -33,7 +42,7 @@ export default function Details() {
       )}
 
       <ImageBackground
-        source={require('../assets/details/painting.png')}
+        source={{uri: data.serviceOffered.service.picture}}
         style={styles.imageBackground}
         resizeMode="cover">
         <SafeAreaView style={{marginLeft: 16}}>
@@ -45,7 +54,9 @@ export default function Details() {
         <ScrollView>
           <View style={styles.main}>
             <View style={styles.header}>
-              <Text style={styles.title}>Painting</Text>
+              <Text style={styles.title} numberOfLines={1}>
+                {data.serviceOffered.service.title}
+              </Text>
 
               <TouchableOpacity
                 onPress={() => navigation.navigate(ROUTES.HANDYMAN_REVIEWS)}>
@@ -54,14 +65,18 @@ export default function Details() {
             </View>
 
             <View style={styles.infoContainer}>
-              <Image
+              {/* <Image
                 source={require('../assets/user2.png')}
                 resizeMode="cover"
                 style={styles.userImg}
-              />
+              /> */}
 
-              <View>
-                <Text style={styles.username}>Ogunmekpon Johnson</Text>
+              <Avatar initials={initials} size={43} />
+
+              <View style={{marginLeft: 10}}>
+                <Text style={styles.username}>
+                  {data.firstName} {data.lastName}
+                </Text>
                 <View style={styles.userRatingContainer}>
                   <MaterialCommunityIcons
                     name="star"
@@ -69,7 +84,10 @@ export default function Details() {
                     size={18}
                   />
                   <Text style={styles.ratingText}>
-                    4.8 / <Text style={styles.ratingCount}>(128 reviews)</Text>
+                    {data.ratings.overallRatings / data.ratings.count || 0} /{' '}
+                    <Text style={styles.ratingCount}>
+                      ({data.ratings.count} reviews)
+                    </Text>
                   </Text>
                 </View>
               </View>
@@ -84,7 +102,7 @@ export default function Details() {
                 />
               </View>
 
-              <Text style={styles.location}>Nile Street, Maitama, Abuja</Text>
+              <Text style={styles.location}>{data.location.address}</Text>
             </View>
 
             <View style={styles.infoContainer}>
@@ -97,7 +115,8 @@ export default function Details() {
               </View>
 
               <Text style={styles.price}>
-                ₦3000<Text style={styles.perHour}>/hr</Text>
+                ₦{data.chargePerHour}
+                <Text style={styles.perHour}>/hr</Text>
               </Text>
             </View>
 
@@ -110,9 +129,7 @@ export default function Details() {
             <View>
               <Text style={styles.descriptionTitle}>Description</Text>
               <Text style={styles.descriptionText}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Eveniet quam laborum ab quis nam. Reprehenderit, pariatur ipsa
-                voluptatum vel id error voluptatem iste.
+                {data.serviceOffered.description}
               </Text>
             </View>
           </View>
@@ -172,22 +189,24 @@ const styleSheet = ({theme}: IStyleSheet) =>
       fontSize: 32,
       fontWeight: '600',
       color: theme === 'dark' ? Colors.white : Colors.black,
+      flex: 1,
     },
     infoContainer: {
       marginTop: 20,
       flexDirection: 'row',
       alignItems: 'center',
     },
-    userImg: {
-      width: 43,
-      height: 43,
-      borderRadius: 21.5,
-      marginRight: 10,
-    },
+    // userImg: {
+    //   width: 43,
+    //   height: 43,
+    //   borderRadius: 21.5,
+    //   marginRight: 10,
+    // },
     username: {
       fontWeight: '600',
       fontSize: 18,
       color: theme === 'dark' ? Colors.white : Colors.black,
+      textTransform: 'capitalize',
     },
     userRatingContainer: {
       flexDirection: 'row',

@@ -68,7 +68,8 @@ const AvailableHandymen = () => {
               renderItem={({item}) => <HandymanItem data={item} />}
             />
           ) : (
-            <View>
+            <View
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Text>No service provider available</Text>
             </View>
           )}

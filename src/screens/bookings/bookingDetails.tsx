@@ -23,7 +23,10 @@ export default function BookingDetails() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const route = useRoute();
 
-  const {service} = route.params as {service: IService};
+  const {service, worker} = route.params as {
+    service: IService;
+    worker: IHandyMan;
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -51,10 +54,13 @@ export default function BookingDetails() {
                 <Text style={styles.title} numberOfLines={2}>
                   {service.title}
                 </Text>
-                <Text style={styles.handymanName}>Michael Charles</Text>
+                <Text style={styles.handymanName}>
+                  {worker.firstName} {worker.lastName}
+                </Text>
               </View>
               <Text style={styles.price}>
-                ₦3000<Text style={styles.perHour}>/hr</Text>
+                ₦{worker.chargePerHour}
+                <Text style={styles.perHour}>/hr</Text>
               </Text>
             </View>
 
@@ -67,9 +73,7 @@ export default function BookingDetails() {
             <View>
               <Text style={styles.descriptionTitle}>About Service</Text>
               <Text style={styles.descriptionText}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Eveniet quam laborum ab quis nam. Reprehenderit, pariatur ipsa
-                voluptatum vel id error voluptatem iste.
+                {worker.serviceOffered.description}
               </Text>
             </View>
           </ScrollView>
@@ -118,6 +122,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
       fontSize: 16,
       marginTop: 2,
       color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
+      textTransform: 'capitalize',
     },
     price: {
       fontSize: 30,

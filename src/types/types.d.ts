@@ -8,6 +8,7 @@ interface IService {
 interface IBooking {
   _id: string;
   service: IService;
+  worker: IHandyMan;
   status: 'upcoming' | 'cancelled' | 'completed';
   userId: string;
   createdAt: string;

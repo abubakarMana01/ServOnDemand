@@ -19,7 +19,10 @@ export default function BookingCard({data}: IBookingCard) {
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate(ROUTES.ABOUT_BOOKING, {service: data.service})
+        navigation.navigate(ROUTES.ABOUT_BOOKING, {
+          service: data.service,
+          worker: data.worker,
+        })
       }
       style={styles.container}>
       <View style={styles.infoContainer}>

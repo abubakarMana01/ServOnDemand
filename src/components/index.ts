@@ -8,3 +8,4 @@ export {default as AppButton} from './appButton';
 export {default as Avatar} from './avatar';
 export {default as LoaderView} from './loaderView';
 export {default as ErrorView} from './errorView';
+export {default as NoInternetView} from './noInternetView';

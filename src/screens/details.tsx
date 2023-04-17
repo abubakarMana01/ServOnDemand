@@ -58,7 +58,11 @@ export default function Details() {
               </Text>
 
               <TouchableOpacity
-                onPress={() => navigation.navigate(ROUTES.HANDYMAN_REVIEWS)}>
+                onPress={() =>
+                  navigation.navigate(ROUTES.HANDYMAN_REVIEWS, {
+                    workerId: data._id,
+                  })
+                }>
                 <Text style={styles.reviewsButton}>View reviews</Text>
               </TouchableOpacity>
             </View>

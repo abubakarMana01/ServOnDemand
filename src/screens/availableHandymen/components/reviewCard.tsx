@@ -1,22 +1,34 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import StarRating from 'react-native-star-rating-widget';
 import {useAppContext} from '../../../context';
 import {Colors} from '../../../constants';
+import {Avatar} from '../../../components';
 
-export default function ReviewCard({data}: {data: any}) {
+export default function ReviewCard({data}: {data: IReview}) {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
+
+  const initials = (data.customer.firstName + ' ' + data.customer.firstName)
+    .split(' ')
+    .map(n => n[0])
+    .slice(0, 2)
+    .join('');
 
   return (
     <View style={styles.container}>
       <View style={styles.userInfoContainer}>
-        <Image
+        {/* <Image
           source={require('../../../assets/user2.png')}
           style={styles.image}
-        />
+        /> */}
+
+        <Avatar initials={initials} size={45} />
+
         <View style={styles.userInfo}>
-          <Text style={styles.username}>{data.author}</Text>
+          <Text style={styles.username}>
+            {data.customer.firstName} {data.customer.lastName}
+          </Text>
           <View style={styles.infoFlex}>
             <StarRating
               color="#ffb700"
@@ -30,12 +42,14 @@ export default function ReviewCard({data}: {data: any}) {
             />
             <Text style={styles.rating}>{data.rating}</Text>
 
-            <Text style={styles.time}>{data.date}</Text>
+            <Text style={styles.time}>
+              {new Date(data.createdAt).toLocaleDateString()}
+            </Text>
           </View>
         </View>
       </View>
 
-      <Text style={styles.reviewText}>{data.review}</Text>
+      <Text style={styles.reviewText}>{data.comment}</Text>
     </View>
   );
 }
@@ -49,11 +63,13 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     userInfo: {
       flex: 1,
+      marginLeft: 8,
     },
     username: {
       fontSize: 16,
       fontWeight: '600',
       color: theme === 'dark' ? Colors.white : Colors.black,
+      textTransform: 'capitalize',
     },
     infoFlex: {
       marginTop: 2,
@@ -64,7 +80,6 @@ const styleSheet = ({theme}: IStyleSheet) =>
       width: 45,
       height: 45,
       borderRadius: 22.5,
-      marginRight: 8,
     },
     starStyle: {
       marginHorizontal: -1,

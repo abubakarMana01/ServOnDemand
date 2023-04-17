@@ -35,11 +35,14 @@ const AvailableHandymen = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const {data, status} = useQuery({
+  const {data, status, isRefetching} = useQuery({
     queryKey: ['availableHanymen'],
     queryFn: () => getAvailableHandymen(token, params.serviceId),
   });
 
+  if (status === 'loading' || isRefetching) {
+    return <LoaderView />;
+  }
   return (
     <View style={styles.container}>
       {Platform.OS === 'ios' && (
@@ -48,7 +51,6 @@ const AvailableHandymen = () => {
           backgroundColor={theme === 'dark' ? Colors.dark : Colors.white}
         />
       )}
-      {status === 'loading' && <LoaderView />}
 
       {status === 'success' && (
         <>

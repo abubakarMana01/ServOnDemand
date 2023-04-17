@@ -95,3 +95,28 @@ export const getAvailableHandymen = async (
   });
   return data.data;
 };
+
+export const getHandymanReviews = async (
+  token: string,
+  workerId: string,
+): Promise<{reviews: IReview[]}> => {
+  const {data} = await axiosInstance.get(`/reviews/${workerId}`, {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  return data.data;
+};
+
+export const addHandymanReviews = async (
+  token: string,
+  payload: {workerId: string; rating: number; comment: string},
+) => {
+  const {data} = await axiosInstance.post('/reviews/add', payload, {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+
+  return data.data;
+};

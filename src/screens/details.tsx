@@ -87,7 +87,10 @@ export default function Details() {
                     size={18}
                   />
                   <Text style={styles.ratingText}>
-                    {data.ratings.overallRatings / data.ratings.count || 0} /{' '}
+                    {(
+                      data.ratings.overallRatings / data.ratings.count || 0
+                    ).toFixed(1)}{' '}
+                    /{' '}
                     <Text style={styles.ratingCount}>
                       ({data.ratings.count} reviews)
                     </Text>

@@ -40,7 +40,7 @@ export default function ReviewCard({data}: {data: IReview}) {
                 console.log(rating);
               }}
             />
-            <Text style={styles.rating}>{data.rating}</Text>
+            <Text style={styles.rating}>{(data.rating || 0).toFixed(1)}</Text>
 
             <Text style={styles.time}>
               {new Date(data.createdAt).toLocaleDateString()}

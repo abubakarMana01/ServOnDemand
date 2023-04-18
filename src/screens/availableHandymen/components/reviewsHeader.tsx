@@ -19,7 +19,7 @@ export default function ReviewsHeader({
     <View>
       <View style={styles.reviewBasicInfo}>
         <Text style={styles.overallRating}>
-          {data.overallRatings / data.count || 0}
+          {(data.overallRatings / data.count || 0).toFixed(1)}
         </Text>
         <StarRating
           color="#ffb700"

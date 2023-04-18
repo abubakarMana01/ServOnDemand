@@ -21,10 +21,13 @@ export default function BookingCard({data}: IBookingCard) {
     <TouchableOpacity
       activeOpacity={route.name === ROUTES.CALENDAR ? 1 : 0.1}
       onPress={() => {
-        if (route.name === ROUTES.CALENDAR) return;
+        if (route.name === ROUTES.CALENDAR) {
+          return;
+        }
         navigation.navigate(ROUTES.ABOUT_BOOKING, {
           service: data.service,
           worker: data.worker,
+          status: data.status,
         });
       }}
       style={styles.container}>

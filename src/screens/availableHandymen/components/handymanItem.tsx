@@ -42,7 +42,9 @@ export default function HandymanItem({data}: IHandymanItem) {
           <View style={styles.userRatingContainer}>
             <MaterialCommunityIcons name="star" color="#E38902" size={18} />
             <Text style={styles.ratingText}>
-              {+data.ratings.overallRatings / data.ratings.count || 0}{' '}
+              {(+data.ratings.overallRatings / data.ratings.count || 0).toFixed(
+                1,
+              )}{' '}
               <Text style={styles.ratingCount}>
                 ({data.ratings.count} reviews)
               </Text>

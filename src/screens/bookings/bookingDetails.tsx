@@ -23,9 +23,10 @@ export default function BookingDetails() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const route = useRoute();
 
-  const {service, worker} = route.params as {
+  const {service, worker, status} = route.params as {
     service: IService;
     worker: IHandyMan;
+    status: 'completed' | 'cancelled' | 'upcoming';
   };
 
   return (
@@ -58,9 +59,40 @@ export default function BookingDetails() {
                   {worker.firstName} {worker.lastName}
                 </Text>
               </View>
-              <Text style={styles.price}>
-                ₦{worker.chargePerHour}
-                <Text style={styles.perHour}>/hr</Text>
+
+              <View>
+                <Text style={styles.price}>
+                  ₦{worker.chargePerHour}
+                  <Text style={styles.perHour}>/hr</Text>
+                </Text>
+              </View>
+            </View>
+
+            <View
+              style={[
+                styles.statusContainer,
+                {
+                  backgroundColor:
+                    status === 'completed'
+                      ? styles.completedStatus.backgroundColor
+                      : status === 'cancelled'
+                      ? styles.cancelledStatus.backgroundColor
+                      : styles.upcomingStatus.backgroundColor,
+                },
+              ]}>
+              <Text
+                style={[
+                  styles.statusText,
+                  {
+                    color:
+                      status === 'completed'
+                        ? styles.completedStatus.color
+                        : status === 'cancelled'
+                        ? styles.cancelledStatus.color
+                        : styles.upcomingStatus.color,
+                  },
+                ]}>
+                {status}
               </Text>
             </View>
 
@@ -80,7 +112,11 @@ export default function BookingDetails() {
 
           <AppButton
             title="Write a review"
-            onPress={() => navigation.navigate(ROUTES.WRITE_BOOKING_REVIEW)}
+            onPress={() =>
+              navigation.navigate(ROUTES.WRITE_BOOKING_REVIEW, {
+                workerId: worker._id,
+              })
+            }
             full
             customStyles={{marginTop: 8}}
           />
@@ -142,5 +178,29 @@ const styleSheet = ({theme}: IStyleSheet) =>
       color: theme === 'dark' ? Colors.grey : Colors.darkGrey,
       marginTop: 8,
       paddingBottom: 12,
+    },
+    statusContainer: {
+      paddingVertical: 4,
+      paddingHorizontal: 10,
+      borderRadius: 8,
+      alignSelf: 'flex-start',
+      marginTop: 8,
+    },
+    statusText: {
+      textTransform: 'capitalize',
+      fontWeight: '500',
+      fontSize: 12,
+    },
+    upcomingStatus: {
+      backgroundColor: theme === 'dark' ? '#1343ED' : '#1343ED30',
+      color: theme === 'dark' ? Colors.lightGrey : '#1343ED',
+    },
+    completedStatus: {
+      backgroundColor: theme === 'dark' ? '#00834c' : '#00A66030',
+      color: theme === 'dark' ? Colors.lightGrey : '#028a52',
+    },
+    cancelledStatus: {
+      backgroundColor: theme === 'dark' ? '#ED1313' : '#ED131320',
+      color: theme === 'dark' ? Colors.lightGrey : '#ED1313',
     },
   });

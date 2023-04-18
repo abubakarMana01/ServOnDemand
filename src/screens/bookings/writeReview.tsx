@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Alert,
   Keyboard,
   SafeAreaView,
   StyleSheet,
@@ -10,25 +11,46 @@ import {
 } from 'react-native';
 import {useAppContext} from '../../context';
 import {AppButton} from '../../components';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {ParamListBase, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Colors} from '../../constants';
 import StarRating from 'react-native-star-rating-widget';
+import {addHandymanReviews} from '../../utils/apiRequests';
 
 export default function WriteReview() {
-  const {theme} = useAppContext();
+  const {theme, token} = useAppContext();
+  const {params} = useRoute() as {params: {workerId: string}};
   const styles = styleSheet({theme});
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const [reviewInfo, setReviewInfo] = useState<{
+    rating: number;
+    comment: string;
+  }>({
+    rating: 0,
+    comment: '',
+  });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [rating, setRating] = useState(0);
   const [showReviewBox, setShowReviewBox] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setIsLoading(true);
-    setTimeout(() => {
+    const payload = {
+      workerId: params.workerId,
+      ...reviewInfo,
+    };
+    try {
+      await addHandymanReviews(token, payload);
       navigation.goBack();
-    }, 2000);
+    } catch (ex: any) {
+      console.log(ex.response?.data?.error || ex.message);
+      Alert.alert(
+        'Something failed',
+        ex?.response?.data?.error?.message || ex.message,
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -44,6 +66,10 @@ export default function WriteReview() {
                   multiline={true}
                   placeholder="What do you think about the service?"
                   placeholderTextColor={theme === 'dark' ? Colors.grey : 'auto'}
+                  value={reviewInfo.comment}
+                  onChangeText={text =>
+                    setReviewInfo(prev => ({...prev, comment: text}))
+                  }
                 />
               </View>
             ) : (
@@ -51,7 +77,7 @@ export default function WriteReview() {
                 <Text style={styles.ratingTitle}>How was the service?</Text>
                 <StarRating
                   color="#ffb700"
-                  rating={rating}
+                  rating={reviewInfo.rating}
                   animationConfig={{scale: 1}}
                   starSize={55}
                   enableHalfStar={false}
@@ -59,7 +85,7 @@ export default function WriteReview() {
                   starStyle={styles.starStyle}
                   enableSwiping
                   onChange={newRating => {
-                    setRating(newRating);
+                    setReviewInfo(prev => ({...prev, rating: newRating}));
                     setTimeout(() => {
                       setShowReviewBox(true);
                     }, 500);

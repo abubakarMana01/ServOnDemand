@@ -48,7 +48,6 @@ const AvailableHandymen = () => {
       {Platform.OS === 'ios' && (
         <StatusBar
           barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
-          backgroundColor={theme === 'dark' ? Colors.dark : Colors.white}
         />
       )}
 

@@ -20,8 +20,6 @@ export default function HandymanReviews() {
     queryFn: () => getHandymanReviews(token, params?.workerId),
   });
 
-  console.log(data);
-
   if (status === 'loading' || isRefetching) {
     return <LoaderView />;
   }
@@ -34,7 +32,7 @@ export default function HandymanReviews() {
           contentContainerStyle={styles.scrollView}
           ListHeaderComponent={() => (
             <>
-              <ReviewsHeader />
+              <ReviewsHeader data={data.ratings} />
 
               <View style={styles.separator}>
                 <Divider

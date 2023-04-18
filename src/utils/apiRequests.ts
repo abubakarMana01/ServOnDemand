@@ -99,7 +99,10 @@ export const getAvailableHandymen = async (
 export const getHandymanReviews = async (
   token: string,
   workerId: string,
-): Promise<{reviews: IReview[]}> => {
+): Promise<{
+  reviews: IReview[];
+  ratings: {count: number; overallRatings: number};
+}> => {
   const {data} = await axiosInstance.get(`/reviews/${workerId}`, {
     headers: {
       Authorization: 'Bearer ' + token,

@@ -9,7 +9,7 @@ export default function ReviewCard({data}: {data: IReview}) {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
-  const initials = (data.customer.firstName + ' ' + data.customer.firstName)
+  const initials = (data.customer.firstName + ' ' + data.customer.lastName)
     .split(' ')
     .map(n => n[0])
     .slice(0, 2)

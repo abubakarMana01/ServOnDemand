@@ -4,23 +4,32 @@ import {useAppContext} from '../../../context';
 import {Colors} from '../../../constants';
 import StarRating from 'react-native-star-rating-widget';
 
-export default function ReviewsHeader() {
+export default function ReviewsHeader({
+  data,
+}: {
+  data: {
+    count: number;
+    overallRatings: number;
+  };
+}) {
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
 
   return (
     <View>
       <View style={styles.reviewBasicInfo}>
-        <Text style={styles.overallRating}>4.0</Text>
+        <Text style={styles.overallRating}>
+          {data.overallRatings / data.count || 0}
+        </Text>
         <StarRating
           color="#ffb700"
-          rating={4}
+          rating={data.overallRatings / data.count || 0}
           animationConfig={{scale: 1}}
           starStyle={styles.starStyle}
           starSize={30}
           onChange={() => {}}
         />
-        <Text style={styles.overallCount}>based on 23 reviews</Text>
+        <Text style={styles.overallCount}>based on {data.count} reviews</Text>
       </View>
     </View>
   );

@@ -50,6 +50,10 @@ export default function AppProvider({children}: IAppProvider) {
   if (isLoading) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <StatusBar
+          barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
+          backgroundColor={theme === 'light' ? Colors.dark : Colors.white}
+        />
         <ActivityIndicator
           size="large"
           color={theme === 'dark' ? Colors.blue : Colors.darkBlue}
@@ -67,8 +71,8 @@ export default function AppProvider({children}: IAppProvider) {
       value={{theme, setTheme, user, setUser, token, setToken}}>
       {theme === 'light' ? (
         <StatusBar
-          barStyle={user ? 'light-content' : 'dark-content'}
-          backgroundColor={user ? Colors.dark : Colors.white}
+          barStyle={token ? 'light-content' : 'dark-content'}
+          backgroundColor={token ? Colors.dark : Colors.white}
         />
       ) : (
         <StatusBar barStyle="light-content" backgroundColor={Colors.dark} />

@@ -41,7 +41,16 @@ const AvailableHandymen = () => {
   });
 
   if (status === 'loading' || isRefetching) {
-    return <LoaderView />;
+    return (
+      <>
+        {Platform.OS === 'ios' && (
+          <StatusBar
+            barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+          />
+        )}
+        <LoaderView />
+      </>
+    );
   }
   return (
     <View style={styles.container}>

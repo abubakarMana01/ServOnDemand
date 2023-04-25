@@ -30,6 +30,7 @@ export default function ReviewCard({data}: {data: IReview}) {
             {data.customer.firstName} {data.customer.lastName}
           </Text>
           <View style={styles.infoFlex}>
+            <Text style={styles.rating}>{(data.rating || 0).toFixed(1)}</Text>
             <StarRating
               color="#ffb700"
               rating={+data.rating}
@@ -40,7 +41,6 @@ export default function ReviewCard({data}: {data: IReview}) {
                 console.log(rating);
               }}
             />
-            <Text style={styles.rating}>{(data.rating || 0).toFixed(1)}</Text>
 
             <Text style={styles.time}>
               {new Date(data.createdAt).toLocaleDateString()}
@@ -86,7 +86,7 @@ const styleSheet = ({theme}: IStyleSheet) =>
     },
     rating: {
       fontWeight: '500',
-      marginLeft: 8,
+      marginRight: 8,
       color: theme === 'dark' ? Colors.white : Colors.black,
     },
     time: {

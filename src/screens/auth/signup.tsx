@@ -74,6 +74,7 @@ export default function Signup() {
                 password: '',
                 firstName: '',
                 lastName: '',
+                phoneNumber: '',
               }}
               onSubmit={handleSignup}>
               {({
@@ -126,6 +127,19 @@ export default function Signup() {
                         onChangeText={handleChange('email')}
                         error={errors.email}
                         touched={touched.email}
+                      />
+                    </View>
+
+                    <View style={styles.inputContainer}>
+                      <AppTextInput
+                        label="Phone number"
+                        placeholder="Enter your phone number"
+                        keyboardType="number-pad"
+                        value={values.phoneNumber}
+                        onBlur={handleBlur('phoneNumber')}
+                        onChangeText={handleChange('phoneNumber')}
+                        error={errors.phoneNumber}
+                        touched={touched.phoneNumber}
                       />
                     </View>
 

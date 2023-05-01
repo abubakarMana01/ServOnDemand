@@ -123,3 +123,16 @@ export const addHandymanReviews = async (
 
   return data.data;
 };
+
+export const addNewBooking = async (
+  token: string,
+  payload: {workerId: string; serviceId: string},
+) => {
+  const {data} = await axiosInstance.post('/bookings/add', payload, {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
+
+  return data.data;
+};

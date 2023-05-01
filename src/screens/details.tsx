@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ImageBackground,
   SafeAreaView,
@@ -10,6 +10,7 @@ import {
   Platform,
   StatusBar,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -19,20 +20,38 @@ import {useAppContext} from '../context';
 import {ParamListBase, useNavigation, useRoute} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ROUTES} from '../navigation';
+import {addNewBooking} from '../utils/apiRequests';
 
 export default function Details() {
-  const {theme} = useAppContext();
+  const {theme, token} = useAppContext();
   const styles = styleSheet({theme});
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {
-    params: {data},
-  } = useRoute() as {params: {data: IHandyMan}};
+    params: {data, serviceId},
+  } = useRoute() as {params: {data: IHandyMan; serviceId: string}};
 
   const initials = (data.firstName + ' ' + data.lastName)
     .split(' ')
     .map(n => n[0])
     .slice(0, 2)
     .join('');
+
+  const handleAddBooking = async () => {
+    setIsLoading(true);
+    try {
+      await addNewBooking(token, {
+        serviceId: serviceId,
+        workerId: data._id,
+      });
+      Alert.alert('Success', 'The service has been booked successfully');
+      navigation.popToTop();
+    } catch (ex: any) {
+      console.log(ex.response.data);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -157,7 +176,12 @@ export default function Details() {
             />
           </View>
           <View style={styles.actionButton}>
-            <AppButton title="Book now" onPress={() => {}} full />
+            <AppButton
+              title="Book now"
+              onPress={handleAddBooking}
+              full
+              isLoading={isLoading}
+            />
           </View>
         </View>
       </SafeAreaView>

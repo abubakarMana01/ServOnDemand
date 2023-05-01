@@ -21,15 +21,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {useAuthToken} from '../../hooks';
 
 export default function Profile() {
-  const {theme, setUser, user} = useAppContext();
+  const {theme, setUser, user, setToken} = useAppContext();
   const styles = styleSheet({theme});
   const [isLoading, setIsLoading] = useState(false);
   const {removeToken} = useAuthToken();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setIsLoading(true);
     removeToken();
     setUser(null);
+    setToken('');
   };
 
   return (

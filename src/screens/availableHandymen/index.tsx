@@ -75,7 +75,9 @@ const AvailableHandymen = () => {
                 </View>
               )}
               data={data}
-              renderItem={({item}) => <HandymanItem data={item} />}
+              renderItem={({item}) => (
+                <HandymanItem data={item} serviceId={params.serviceId} />
+              )}
             />
           ) : (
             <View

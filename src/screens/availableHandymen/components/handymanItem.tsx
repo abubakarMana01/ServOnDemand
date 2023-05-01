@@ -10,9 +10,10 @@ import {ROUTES} from '../../../navigation';
 
 interface IHandymanItem {
   data: IHandyMan;
+  serviceId: string;
 }
 
-export default function HandymanItem({data}: IHandymanItem) {
+export default function HandymanItem({data, serviceId}: IHandymanItem) {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const {theme} = useAppContext();
   const styles = styleSheet({theme});
@@ -25,7 +26,7 @@ export default function HandymanItem({data}: IHandymanItem) {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate(ROUTES.DETAILS, {data})}>
+      onPress={() => navigation.navigate(ROUTES.DETAILS, {data, serviceId})}>
       <View style={styles.infoContainer}>
         {/* <Image
         source={{uri: data.picture}}

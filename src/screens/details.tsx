@@ -11,6 +11,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Alert,
+  Linking,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -51,6 +52,16 @@ export default function Details() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const openDialScreen = () => {
+    let number = '';
+    if (Platform.OS === 'ios') {
+      number = 'telprompt:${' + '09033889352' + '}';
+    } else {
+      number = 'tel:${' + '09033889352' + '}';
+    }
+    Linking.openURL(number);
   };
 
   return (
@@ -169,7 +180,7 @@ export default function Details() {
           <View style={styles.actionButton}>
             <AppButton
               title="Contact"
-              onPress={() => {}}
+              onPress={() => openDialScreen()}
               full
               customStyles={styles.messageButton}
               customTextStyles={styles.messageButtonText}

@@ -24,8 +24,8 @@ export default function BookingDetails() {
   const route = useRoute();
 
   const {service, worker, status} = route.params as {
-    service: IService;
     worker: IHandyMan;
+    service: IService;
     status: 'completed' | 'cancelled' | 'upcoming';
   };
 
